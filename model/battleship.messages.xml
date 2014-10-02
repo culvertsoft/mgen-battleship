@@ -5,7 +5,7 @@
             <text type="string"/>
         </Chat>
         <Fire>
-            <position type="battleship.state.Pos"/>
+            <position type="battleship.state.Vec2"/>
         </Fire>
         <PhaseChange>
             <phase type="battleship.state.Phase"/>

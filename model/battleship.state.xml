@@ -18,10 +18,11 @@
         </Ship>
         <Segment>
             <alive type="bool"/>
-            <pos type="Pos"/>
+            <pos type="Vec2"/>
         </Segment>
         <Map>
             <ships type="list[Ship]"/>
+            <size type="Vec2"/>
         </Map>
         <Player>
             <team type="Team"/>
@@ -35,9 +36,9 @@
             <currentTeam type="Team"/>
             <timeLastMove type="float64"/>
         </Game>
-        <Pos>
+        <Vec2 id="498">
             <x type="int32"/>
             <y type="int32"/>
-        </Pos>
+        </Vec2>
     </Types>
 </Module>

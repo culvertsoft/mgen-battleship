@@ -1,6 +1,6 @@
 <Project>
     <Sources>
-        <Source>battleship.state.xml</Source>
         <Source>battleship.messages.xml</Source>
+        <Source>battleship.state.xml</Source>
     </Sources>
 </Project>
