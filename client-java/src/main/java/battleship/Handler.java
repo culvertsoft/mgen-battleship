@@ -58,4 +58,8 @@ public class Handler  {
 		handleDiscard(o);
 	}
 
+	protected void handle(battleship.state.Shot o) {
+		handleDiscard(o);
+	}
+
 }

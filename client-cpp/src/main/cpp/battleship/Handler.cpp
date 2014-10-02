@@ -18,6 +18,7 @@
 #include "battleship/state/Player.h"
 #include "battleship/state/Game.h"
 #include "battleship/state/Vec2.h"
+#include "battleship/state/Shot.h"
 
 namespace battleship {
 
@@ -69,6 +70,10 @@ void Handler::handle(battleship::state::Game& o) {
 }
 
 void Handler::handle(battleship::state::Vec2& o) {
+	handleDiscard(o);
+}
+
+void Handler::handle(battleship::state::Shot& o) {
 	handleDiscard(o);
 }
 

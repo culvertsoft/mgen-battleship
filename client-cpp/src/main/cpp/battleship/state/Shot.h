@@ -7,65 +7,48 @@
  ********************************************************************************************************************
  ********************************************************************************************************************/
 
-#ifndef BATTLESHIP_STATE_PLAYER
-#define BATTLESHIP_STATE_PLAYER
+#ifndef BATTLESHIP_STATE_SHOT
+#define BATTLESHIP_STATE_SHOT
 
 #include "mgen/classes/MGenBase.h"
-#include "battleship/state/Shot.h"
-#include "battleship/state/Team.h"
+#include "battleship/state/Vec2.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace state {
 
-class Player : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Shot : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
-	Team m_team;
-	std::string m_name;
-	bool m_ready;
-	std::vector<Shot>  m_shots;
-	bool _m_team_isSet;
-	bool _m_name_isSet;
-	bool _m_ready_isSet;
-	bool _m_shots_isSet;
+	Vec2 m_pos;
+	bool m_isHit;
+	bool _m_pos_isSet;
+	bool _m_isHit_isSet;
 
 public:
-	Player();
-	Player(const Team& team,
-			const std::string& name,
-			const bool& ready,
-			const std::vector<Shot> & shots);
-	virtual ~Player();
+	Shot();
+	Shot(const Vec2& pos,
+			const bool& isHit);
+	virtual ~Shot();
 
-	const Team& getTeam() const;
-	const std::string& getName() const;
-	const bool& getReady() const;
-	const std::vector<Shot> & getShots() const;
+	const Vec2& getPos() const;
+	const bool& getIsHit() const;
 
-	Team& getTeamMutable();
-	std::string& getNameMutable();
-	bool& getReadyMutable();
-	std::vector<Shot> & getShotsMutable();
+	Vec2& getPosMutable();
+	bool& getIsHitMutable();
 
-	Player& setTeam(const Team& team);
-	Player& setName(const std::string& name);
-	Player& setReady(const bool& ready);
-	Player& setShots(const std::vector<Shot> & shots);
+	Shot& setPos(const Vec2& pos);
+	Shot& setIsHit(const bool& isHit);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
-	bool hasTeam() const;
-	bool hasName() const;
-	bool hasReady() const;
-	bool hasShots() const;
+	bool hasPos() const;
+	bool hasIsHit() const;
 
-	Player& unsetTeam();
-	Player& unsetName();
-	Player& unsetReady();
-	Player& unsetShots();
+	Shot& unsetPos();
+	Shot& unsetIsHit();
 
-	bool operator==(const Player& other) const;
-	bool operator!=(const Player& other) const;
+	bool operator==(const Shot& other) const;
+	bool operator!=(const Shot& other) const;
 
 
 							
@@ -83,17 +66,11 @@ public:
 	template<typename ReaderType, typename ReadContextType>
 	void _readField(const short fieldId, ReadContextType& context, ReaderType& reader) {
 		switch (fieldId) {
-		case _field_team_id:
-			reader.readField(_field_team_metadata(), context, getTeamMutable());
+		case _field_pos_id:
+			reader.readField(_field_pos_metadata(), context, getPosMutable());
 			break;
-		case _field_name_id:
-			reader.readField(_field_name_metadata(), context, getNameMutable());
-			break;
-		case _field_ready_id:
-			reader.readField(_field_ready_metadata(), context, getReadyMutable());
-			break;
-		case _field_shots_id:
-			reader.readField(_field_shots_metadata(), context, getShotsMutable());
+		case _field_isHit_id:
+			reader.readField(_field_isHit_metadata(), context, getIsHitMutable());
 			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
@@ -105,24 +82,18 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 4);
-				visitor.visit(getTeam(), _field_team_metadata());
-				visitor.visit(getName(), _field_name_metadata());
-				visitor.visit(getReady(), _field_ready_metadata());
-				visitor.visit(getShots(), _field_shots_metadata());
+				visitor.beginVisit(*this, 2);
+				visitor.visit(getPos(), _field_pos_metadata());
+				visitor.visit(getIsHit(), _field_isHit_metadata());
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isTeamSet(mgen::SHALLOW))
-					visitor.visit(getTeam(), _field_team_metadata());
-				if (_isNameSet(mgen::SHALLOW))
-					visitor.visit(getName(), _field_name_metadata());
-				if (_isReadySet(mgen::SHALLOW))
-					visitor.visit(getReady(), _field_ready_metadata());
-				if (_isShotsSet(mgen::SHALLOW))
-					visitor.visit(getShots(), _field_shots_metadata());
+				if (_isPosSet(mgen::SHALLOW))
+					visitor.visit(getPos(), _field_pos_metadata());
+				if (_isIsHitSet(mgen::SHALLOW))
+					visitor.visit(getIsHit(), _field_isHit_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -133,24 +104,18 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 4);
-				visitor.visit(getTeamMutable(), _field_team_metadata());
-				visitor.visit(getNameMutable(), _field_name_metadata());
-				visitor.visit(getReadyMutable(), _field_ready_metadata());
-				visitor.visit(getShotsMutable(), _field_shots_metadata());
+				visitor.beginVisit(*this, 2);
+				visitor.visit(getPosMutable(), _field_pos_metadata());
+				visitor.visit(getIsHitMutable(), _field_isHit_metadata());
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isTeamSet(mgen::SHALLOW))
-					visitor.visit(getTeamMutable(), _field_team_metadata());
-				if (_isNameSet(mgen::SHALLOW))
-					visitor.visit(getNameMutable(), _field_name_metadata());
-				if (_isReadySet(mgen::SHALLOW))
-					visitor.visit(getReadyMutable(), _field_ready_metadata());
-				if (_isShotsSet(mgen::SHALLOW))
-					visitor.visit(getShotsMutable(), _field_shots_metadata());
+				if (_isPosSet(mgen::SHALLOW))
+					visitor.visit(getPosMutable(), _field_pos_metadata());
+				if (_isIsHitSet(mgen::SHALLOW))
+					visitor.visit(getIsHitMutable(), _field_isHit_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -174,25 +139,21 @@ public:
 
 	bool _isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const;
 
-	Player& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
-	Player& _setNameSet(const bool state, const mgen::FieldSetDepth depth);
-	Player& _setReadySet(const bool state, const mgen::FieldSetDepth depth);
-	Player& _setShotsSet(const bool state, const mgen::FieldSetDepth depth);
+	Shot& _setPosSet(const bool state, const mgen::FieldSetDepth depth);
+	Shot& _setIsHitSet(const bool state, const mgen::FieldSetDepth depth);
 
-	Player& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
+	Shot& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
 	int _numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const;
 
-	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
-	bool _isNameSet(const mgen::FieldSetDepth depth) const;
-	bool _isReadySet(const mgen::FieldSetDepth depth) const;
-	bool _isShotsSet(const mgen::FieldSetDepth depth) const;
+	bool _isPosSet(const mgen::FieldSetDepth depth) const;
+	bool _isIsHitSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
 	bool _equals(const mgen::MGenBase& other) const;
 
-	Player * _deepCopy() const;
+	Shot * _deepCopy() const;
 
 	static mgen::MGenBase * _newInstance();
 
@@ -207,10 +168,10 @@ public:
  ********************************************************************************************************************
  ********************************************************************************************************************/	 		  
 		  
-	static const long long _type_id = 8473431594631525139LL;
+	static const long long _type_id = 5772087053517390128LL;
 	static const std::vector<long long>& _type_ids();
 
-	static const short _type_id_16bit = -18915;
+	static const short _type_id_16bit = -31648;
 	static const std::vector<short>& _type_ids_16bit();
 
 	static const std::string& _type_id_16bit_base64();
@@ -221,19 +182,15 @@ public:
 	static const std::string& _type_name();
 	static const std::vector<std::string>& _type_names();
 
-	static const mgen::Field& _field_team_metadata();
-	static const mgen::Field& _field_name_metadata();
-	static const mgen::Field& _field_ready_metadata();
-	static const mgen::Field& _field_shots_metadata();
+	static const mgen::Field& _field_pos_metadata();
+	static const mgen::Field& _field_isHit_metadata();
 
-	static const short _field_team_id = -1585;
-	static const short _field_name_id = -28058;
-	static const short _field_ready_id = 10645;
-	static const short _field_shots_id = 890;
+	static const short _field_pos_id = 16756;
+	static const short _field_isHit_id = 17064;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 
-}; // End class Player
+}; // End class Shot
 
 } // End namespace state
 } // End namespace battleship

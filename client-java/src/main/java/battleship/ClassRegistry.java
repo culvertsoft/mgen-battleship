@@ -24,6 +24,7 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 	public static ClassRegistryEntry battleship_state_Player = new ClassRegistryEntry(8473431594631525139L, battleship.state.Player._TYPE_IDS, "battleship.state.Player", new Ctor() { public MGenBase create() { return new battleship.state.Player(); } });
 	public static ClassRegistryEntry battleship_state_Game = new ClassRegistryEntry(1644051945579161717L, battleship.state.Game._TYPE_IDS, "battleship.state.Game", new Ctor() { public MGenBase create() { return new battleship.state.Game(); } });
 	public static ClassRegistryEntry battleship_state_Vec2 = new ClassRegistryEntry(6453467209109281982L, battleship.state.Vec2._TYPE_IDS, "battleship.state.Vec2", new Ctor() { public MGenBase create() { return new battleship.state.Vec2(); } });
+	public static ClassRegistryEntry battleship_state_Shot = new ClassRegistryEntry(5772087053517390128L, battleship.state.Shot._TYPE_IDS, "battleship.state.Shot", new Ctor() { public MGenBase create() { return new battleship.state.Shot(); } });
 
 	public ClassRegistry() {
 		add(battleship_messages_Chat);
@@ -36,6 +37,7 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 		add(battleship_state_Player);
 		add(battleship_state_Game);
 		add(battleship_state_Vec2);
+		add(battleship_state_Shot);
 	}
 
 	@Override
@@ -62,6 +64,8 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 				return battleship_state_Game;
 			case battleship.state.Vec2._TYPE_ID_16BIT:
 				return battleship_state_Vec2;
+			case battleship.state.Shot._TYPE_ID_16BIT:
+				return battleship_state_Shot;
 			default:
 				return null;
 		}
@@ -91,6 +95,8 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 				return battleship_state_Game;
 			case battleship.state.Vec2._TYPE_ID_16BIT_BASE64:
 				return battleship_state_Vec2;
+			case battleship.state.Shot._TYPE_ID_16BIT_BASE64:
+				return battleship_state_Shot;
 			default:
 				return null;
 		}

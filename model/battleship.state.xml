@@ -27,9 +27,12 @@
             <team type="Team"/>
             <name type="string"/>
             <ready type="bool"/>
+            <shots type="list[Shot]"/>
         </Player>
         <Game>
-            <players type="list[Player]"/>
+            <redPlayer type="Player" id="29583"/>
+            <bluePlayer type="Player"/>
+            <observers type="list[Player]"/>
             <redMap type="Map" id="21290"/>
             <blueMap type="Map"/>
             <phase type="Phase"/>
@@ -40,5 +43,9 @@
             <x type="int32"/>
             <y type="int32"/>
         </Vec2>
+        <Shot>
+            <pos type="Vec2"/>
+            <isHit type="bool"/>
+        </Shot>
     </Types>
 </Module>

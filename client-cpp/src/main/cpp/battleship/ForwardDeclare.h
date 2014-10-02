@@ -32,6 +32,7 @@ class Map;
 class Player;
 class Game;
 class Vec2;
+class Shot;
 
 } // End namespace state
 } // End namespace battleship

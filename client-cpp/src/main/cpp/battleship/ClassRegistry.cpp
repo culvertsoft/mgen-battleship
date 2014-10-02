@@ -18,6 +18,7 @@
 #include "battleship/state/Player.cpp"
 #include "battleship/state/Game.cpp"
 #include "battleship/state/Vec2.cpp"
+#include "battleship/state/Shot.cpp"
 #include "battleship/state/Team.cpp"
 #include "battleship/state/Phase.cpp"
 #include "battleship/Dispatcher.cpp"
@@ -36,6 +37,7 @@ ClassRegistry::ClassRegistry() {
 	add<battleship::state::Player>();
 	add<battleship::state::Game>();
 	add<battleship::state::Vec2>();
+	add<battleship::state::Shot>();
 }
 
 ClassRegistry::~ClassRegistry() {
@@ -52,6 +54,7 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 	static const mgen::ClassRegistryEntry battleship_state_Player(battleship::state::Player::_type_ids(), battleship::state::Player::_type_name(), battleship::state::Player::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Game(battleship::state::Game::_type_ids(), battleship::state::Game::_type_name(), battleship::state::Game::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Vec2(battleship::state::Vec2::_type_ids(), battleship::state::Vec2::_type_name(), battleship::state::Vec2::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_state_Shot(battleship::state::Shot::_type_ids(), battleship::state::Shot::_type_name(), battleship::state::Shot::_newInstance);
 
 	std::size_t i = 0;
 	switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
@@ -84,6 +87,9 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 			break;
 		case battleship::state::Vec2::_type_id_16bit:
 			return &battleship_state_Vec2;
+			break;
+		case battleship::state::Shot::_type_id_16bit:
+			return &battleship_state_Shot;
 			break;
 		default:
 			return 0;

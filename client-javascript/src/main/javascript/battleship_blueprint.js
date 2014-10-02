@@ -88,14 +88,29 @@
 			"flags": [],
 			"type": "boolean",
 			"hash": "KZU"
+		},
+		"shots": {
+			"flags": [],
+			"type": "list:battleship.state.Shot",
+			"hash": "A3o"
 		}
 	};
 	blueprint.classes["battleship.state.Game"] =  {
 		"__t": "r9U",
-		"players": {
+		"redPlayer": {
+			"flags": [],
+			"type": "battleship.state.Player",
+			"hash": "c48"
+		},
+		"bluePlayer": {
+			"flags": [],
+			"type": "battleship.state.Player",
+			"hash": "Kgg"
+		},
+		"observers": {
 			"flags": [],
 			"type": "list:battleship.state.Player",
-			"hash": "c48"
+			"hash": "Vlo"
 		},
 		"redMap": {
 			"flags": [],
@@ -136,6 +151,19 @@
 			"hash": "Dk4"
 		}
 	};
+	blueprint.classes["battleship.state.Shot"] =  {
+		"__t": "hGA",
+		"pos": {
+			"flags": [],
+			"type": "battleship.state.Vec2",
+			"hash": "QXQ"
+		},
+		"isHit": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "Qqg"
+		}
+	};
 	blueprint.lookup = function( typeId )  {
 		var t = typeId.match(/(.{1,3})/g); // Split typeId into array for easier reading of inheritance (every 3 char is a type).
 		switch( t[0] )  {
@@ -159,6 +187,8 @@
 				return "battleship.state.Game";
 			case "Fxs":
 				return "battleship.state.Vec2";
+			case "hGA":
+				return "battleship.state.Shot";
 		}
 	};
 

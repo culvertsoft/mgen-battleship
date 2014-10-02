@@ -46,6 +46,9 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 		case battleship::state::Vec2::_type_id_16bit:
 			handler.handle(static_cast<battleship::state::Vec2&>(object));
 			break;
+		case battleship::state::Shot::_type_id_16bit:
+			handler.handle(static_cast<battleship::state::Shot&>(object));
+			break;
 		default:
 			handler.handleUnknown(object);
 			break;

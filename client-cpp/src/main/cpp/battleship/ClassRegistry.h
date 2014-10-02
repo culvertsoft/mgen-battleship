@@ -21,6 +21,7 @@
 #include "battleship/state/Player.h"
 #include "battleship/state/Game.h"
 #include "battleship/state/Vec2.h"
+#include "battleship/state/Shot.h"
 
 namespace battleship {
 
@@ -67,6 +68,9 @@ public:
 			case battleship::state::Vec2::_type_id_16bit:
 				reader.readFields(static_cast<battleship::state::Vec2&>(o), context);
 				break;
+			case battleship::state::Shot::_type_id_16bit:
+				reader.readFields(static_cast<battleship::state::Shot&>(o), context);
+				break;
 			default:
 				return;
 				break;
@@ -111,6 +115,9 @@ public:
 			case battleship::state::Vec2::_type_id_16bit:
 				static_cast<battleship::state::Vec2&>(o)._accept<VisitorType>(visitor, selection);
 				break;
+			case battleship::state::Shot::_type_id_16bit:
+				static_cast<battleship::state::Shot&>(o)._accept<VisitorType>(visitor, selection);
+				break;
 			default:
 				return;
 				break;
@@ -154,6 +161,9 @@ public:
 				break;
 			case battleship::state::Vec2::_type_id_16bit:
 				static_cast<const battleship::state::Vec2&>(o)._accept<VisitorType>(visitor, selection);
+				break;
+			case battleship::state::Shot::_type_id_16bit:
+				static_cast<const battleship::state::Shot&>(o)._accept<VisitorType>(visitor, selection);
 				break;
 			default:
 				return;

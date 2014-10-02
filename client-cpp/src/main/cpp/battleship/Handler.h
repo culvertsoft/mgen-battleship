@@ -31,6 +31,7 @@ class Handler  {
 	virtual void handle(battleship::state::Player& o);
 	virtual void handle(battleship::state::Game& o);
 	virtual void handle(battleship::state::Vec2& o);
+	virtual void handle(battleship::state::Shot& o);
 
 }; // End class Handler
 

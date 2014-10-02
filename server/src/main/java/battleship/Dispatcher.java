@@ -52,6 +52,9 @@ public class Dispatcher  {
 			case battleship.state.Vec2._TYPE_ID_16BIT:
 				handler.handle((battleship.state.Vec2)o);
 				break;
+			case battleship.state.Shot._TYPE_ID_16BIT:
+				handler.handle((battleship.state.Shot)o);
+				break;
 			default:
 				handler.handleUnknown(o);
 				break;
