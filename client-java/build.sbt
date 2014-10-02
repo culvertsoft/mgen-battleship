@@ -18,3 +18,7 @@ libraryDependencies += "se.culvertsoft" % "mgen-javalib" % "SNAPSHOT"
 libraryDependencies += "se.culvertsoft" % "mnet-client" % "SNAPSHOT"
 
 EclipseKeys.withSource := true
+
+// Doesn't work, since MNet requires scala
+// autoScalaLibrary := false
+// EclipseKeys.projectFlavor := EclipseProjectFlavor.Java
