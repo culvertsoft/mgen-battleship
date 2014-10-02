@@ -1,0 +1,17 @@
+<Module>
+    <Enums> </Enums>
+    <Types>
+        <Chat>
+            <text type="string"/>
+        </Chat>
+        <Fire>
+            <position type="battleship.state.Pos"/>
+        </Fire>
+        <PhaseChange>
+            <phase type="battleship.state.Phase"/>
+        </PhaseChange>
+        <Snapshot>
+            <state type="battleship.state.Game"/>
+        </Snapshot>
+    </Types>
+</Module>

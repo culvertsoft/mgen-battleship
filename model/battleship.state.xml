@@ -1,0 +1,43 @@
+<Module>
+    <Enums>
+        <Team>
+            <RED> </RED>
+            <BLUE> </BLUE>
+            <OBSERVERS> </OBSERVERS>
+        </Team>
+        <Phase>
+            <LOBBY> </LOBBY>
+            <PLAYING> </PLAYING>
+            <PAUSED> </PAUSED>
+        </Phase>
+    </Enums>
+    <Types>
+        <Ship>
+            <points type="Segment"/>
+            <team type="Team"/>
+        </Ship>
+        <Segment>
+            <alive type="bool"/>
+            <pos type="Pos"/>
+        </Segment>
+        <Map>
+            <ships type="list[Ship]"/>
+        </Map>
+        <Player>
+            <team type="Team"/>
+            <name type="string"/>
+            <ready type="bool"/>
+        </Player>
+        <Game>
+            <players type="list[Player]"/>
+            <map type="Map"/>
+            <phase type="Phase"/>
+            <currentTeam type="Team"/>
+            <timeLastMove type="float64"/>
+        </Game>
+        <Pos>
+            <x type="int32"/>
+            <y type="int32"/>
+        </Pos>
+    </Types>
+</Module>
