@@ -1,0 +1,33 @@
+<Project>
+
+    <Sources>
+        <Source>battleship.messages.xml</Source>
+        <Source>battleship.state.xml</Source>
+    </Sources>
+
+    <Generator name="Java">
+        <output_path>client-java/src/main/java</output_path>
+        <classregistry_path>battleship</classregistry_path>
+        <class_path>se.culvertsoft.mgen.javapack.generator.JavaGenerator</class_path>
+    </Generator>
+
+    <Generator name="C++">
+        <output_path>client-cpp/src/main/cpp</output_path>
+        <classregistry_path>battleship</classregistry_path>
+        <generate_unity_build>true</generate_unity_build>
+        <class_path>se.culvertsoft.mgen.cpppack.generator.CppGenerator</class_path>
+    </Generator>
+
+    <Generator name="Javascript">
+        <class_path>se.culvertsoft.mgen.jspack.generator.JavascriptGenerator</class_path>
+        <output_path>client-javascript/src/main/javascript</output_path>
+        <output_filename>battleship_blueprint.js</output_filename>
+        <classregistryblueprint>battleship_blueprint</classregistryblueprint>
+    </Generator>
+
+    <Generator name="Java">
+        <output_path>server/src/main/java</output_path>
+        <classregistry_path>battleship</classregistry_path>
+        <class_path>se.culvertsoft.mgen.javapack.generator.JavaGenerator</class_path>
+    </Generator>
+</Project>
