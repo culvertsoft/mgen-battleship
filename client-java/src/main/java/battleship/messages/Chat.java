@@ -18,25 +18,37 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /*custom_imports_begin*//*custom_imports_end*/
 
-public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private String m_text;
+	private battleship.state.Team m_team;
 
 	public Chat() {
 		super();
 		m_text = null;
+		m_team = null;
 	}
 
-	public Chat(final String text) {
+	public Chat(final String text,
+				final battleship.state.Team team) {
 		m_text = text;
+		m_team = team;
 	}
 
 	public String getText() {
 		return m_text;
 	}
 
+	public battleship.state.Team getTeam() {
+		return m_team;
+	}
+
 	public boolean hasText() {
 		return _isTextSet(FieldSetDepth.SHALLOW);
+	}
+
+	public boolean hasTeam() {
+		return _isTeamSet(FieldSetDepth.SHALLOW);
 	}
 
 	public Chat unsetText() {
@@ -44,8 +56,18 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
+	public Chat unsetTeam() {
+		_setTeamSet(false, FieldSetDepth.SHALLOW);
+		return this;
+	}
+
 	public Chat setText(final String text) {
 		m_text = text;
+		return this;
+	}
+
+	public Chat setTeam(final battleship.state.Team team) {
+		m_team = team;
 		return this;
 	}
 
@@ -61,6 +83,7 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		final int prime = 31;
 		int result = 1860058464;
 		result = _isTextSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getText(), _text_METADATA.typ())) : result;
+		result = _isTeamSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getTeam(), _team_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -72,14 +95,18 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		final Chat o = (Chat)other;
 		return true
 		  && (_isTextSet(FieldSetDepth.SHALLOW) == o._isTextSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getText(), o.getText(), _text_METADATA.typ());
+		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
+		  && EqualityTester.areEqual(getText(), o.getText(), _text_METADATA.typ())
+		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ());
 	}
 
 	@Override
 	public Chat deepCopy() {
 		final Chat out = new Chat();
 		out.setText(DeepCopyer.deepCopy(getText(), _text_METADATA.typ()));
+		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
 		out._setTextSet(_isTextSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -145,8 +172,9 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 1);
+				visitor.beginVisit(this, 2);
 				visitor.visit(getText(), _text_METADATA);
+				visitor.visit(getTeam(), _team_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -154,6 +182,8 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
 				if (_isTextSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getText(), _text_METADATA);
+				if (_isTeamSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getTeam(), _team_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -167,6 +197,9 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldId) {
 			case (_text_ID):
 				setText((String)reader.readStringField(_text_METADATA, context));
+				return true;
+			case (_team_ID):
+				setTeam((battleship.state.Team)reader.readEnumField(_team_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -183,10 +216,16 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return m_text != null;
 	}
 
+	public boolean _isTeamSet(final FieldSetDepth fieldSetDepth) {
+		return m_team != null;
+	}
+
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
 			case (_text_ID):
 				return _isTextSet(depth);
+			case (_team_ID):
+				return _isTeamSet(depth);
 			default:
 				return false;
 		}
@@ -200,8 +239,17 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
+	public Chat _setTeamSet(final boolean state, final FieldSetDepth depth) {
+		if (state)
+			m_team = m_team != null ? m_team : battleship.state.Team.UNKNOWN;
+		else
+			m_team = null;
+		return this;
+	}
+
 	public Chat _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setTextSet(state, depth);
+		_setTeamSet(state, depth);
 		return this;
 	}
 
@@ -217,6 +265,7 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public int _nFieldsSet(final FieldSetDepth depth, final boolean includeTransient) {
 		int out = 0;
 		out += _isTextSet(depth) ? 1 : 0;
+		out += _isTeamSet(depth) ? 1 : 0;
 		return out;
 	}
 
@@ -225,6 +274,8 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldId) {
 			case (_text_ID):
 				return _text_METADATA;
+			case (_team_ID):
+				return _team_METADATA;
 			default:
 				return null;
 		}
@@ -235,6 +286,8 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldName) {
 			case ("text"):
 				return _text_METADATA;
+			case ("team"):
+				return _team_METADATA;
 			default:
 				return null;
 		}
@@ -255,26 +308,28 @@ public class Chat extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 
 	public static final long _TYPE_ID = 5570298698115942109L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.Chat._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Connection._TYPE_ID, battleship.messages.Chat._TYPE_ID };
 
 	public static final short _TYPE_ID_16BIT = 17379;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Chat._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Connection._TYPE_ID_16BIT, battleship.messages.Chat._TYPE_ID_16BIT };
 
 	public static final String _TYPE_ID_16BIT_BASE64 = "Q+M";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Chat._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Connection._TYPE_ID_16BIT_BASE64, battleship.messages.Chat._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Chat._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Connection._TYPE_ID_16BIT_BASE64 + battleship.messages.Chat._TYPE_ID_16BIT_BASE64;
 
 	public static final String _TYPE_NAME = "battleship.messages.Chat";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.Chat._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Connection._TYPE_NAME, battleship.messages.Chat._TYPE_NAME };
 
 	public static final Field _text_METADATA = new Field("battleship.messages.Chat", "text", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-15556);
+	public static final Field _team_METADATA = new Field("battleship.messages.Chat", "team", battleship.state.Team._TYPE, null, (short)-1585);
 
 	public static final short _text_ID = (short)-15556;
+	public static final short _team_ID = (short)-1585;
 
-	public static final Field[] _FIELDS = { _text_METADATA };
+	public static final Field[] _FIELDS = { _text_METADATA, _team_METADATA };
 
 }

@@ -15,10 +15,21 @@
 namespace battleship {
 namespace messages {
 
+class Connection;
+class GameInput;
+class GameInfo;
 class Chat;
 class Fire;
+class FireResult;
 class PhaseChange;
 class Snapshot;
+class Login;
+class LoginReply;
+class NextTurn;
+class Resign;
+class GameOver;
+class TeamSelect;
+class TeamSelectReply;
 
 } // End namespace messages
 } // End namespace battleship

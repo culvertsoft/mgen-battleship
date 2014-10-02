@@ -10,14 +10,14 @@
 #ifndef BATTLESHIP_MESSAGES_FIRE
 #define BATTLESHIP_MESSAGES_FIRE
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/GameInput.h"
 #include "battleship/state/Vec2.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class Fire : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Fire : public GameInput /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	battleship::state::Vec2 m_position;
 	bool _m_position_isSet;

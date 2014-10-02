@@ -14,10 +14,21 @@ import se.culvertsoft.mgen.javapack.classes.MGenBase;
 
 public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassRegistryBase  {
 
+	public static ClassRegistryEntry battleship_messages_Connection = new ClassRegistryEntry(7755333223434470491L, battleship.messages.Connection._TYPE_IDS, "battleship.messages.Connection", new Ctor() { public MGenBase create() { return new battleship.messages.Connection(); } });
+	public static ClassRegistryEntry battleship_messages_GameInput = new ClassRegistryEntry(20544504380178079L, battleship.messages.GameInput._TYPE_IDS, "battleship.messages.GameInput", new Ctor() { public MGenBase create() { return new battleship.messages.GameInput(); } });
+	public static ClassRegistryEntry battleship_messages_GameInfo = new ClassRegistryEntry(3660020118300555442L, battleship.messages.GameInfo._TYPE_IDS, "battleship.messages.GameInfo", new Ctor() { public MGenBase create() { return new battleship.messages.GameInfo(); } });
 	public static ClassRegistryEntry battleship_messages_Chat = new ClassRegistryEntry(5570298698115942109L, battleship.messages.Chat._TYPE_IDS, "battleship.messages.Chat", new Ctor() { public MGenBase create() { return new battleship.messages.Chat(); } });
 	public static ClassRegistryEntry battleship_messages_Fire = new ClassRegistryEntry(6880290600081744688L, battleship.messages.Fire._TYPE_IDS, "battleship.messages.Fire", new Ctor() { public MGenBase create() { return new battleship.messages.Fire(); } });
+	public static ClassRegistryEntry battleship_messages_FireResult = new ClassRegistryEntry(8695181952916377338L, battleship.messages.FireResult._TYPE_IDS, "battleship.messages.FireResult", new Ctor() { public MGenBase create() { return new battleship.messages.FireResult(); } });
 	public static ClassRegistryEntry battleship_messages_PhaseChange = new ClassRegistryEntry(6310518169450536016L, battleship.messages.PhaseChange._TYPE_IDS, "battleship.messages.PhaseChange", new Ctor() { public MGenBase create() { return new battleship.messages.PhaseChange(); } });
 	public static ClassRegistryEntry battleship_messages_Snapshot = new ClassRegistryEntry(7637425245762246339L, battleship.messages.Snapshot._TYPE_IDS, "battleship.messages.Snapshot", new Ctor() { public MGenBase create() { return new battleship.messages.Snapshot(); } });
+	public static ClassRegistryEntry battleship_messages_Login = new ClassRegistryEntry(6201271849124169878L, battleship.messages.Login._TYPE_IDS, "battleship.messages.Login", new Ctor() { public MGenBase create() { return new battleship.messages.Login(); } });
+	public static ClassRegistryEntry battleship_messages_LoginReply = new ClassRegistryEntry(1638563683387667720L, battleship.messages.LoginReply._TYPE_IDS, "battleship.messages.LoginReply", new Ctor() { public MGenBase create() { return new battleship.messages.LoginReply(); } });
+	public static ClassRegistryEntry battleship_messages_NextTurn = new ClassRegistryEntry(4079438618512772748L, battleship.messages.NextTurn._TYPE_IDS, "battleship.messages.NextTurn", new Ctor() { public MGenBase create() { return new battleship.messages.NextTurn(); } });
+	public static ClassRegistryEntry battleship_messages_Resign = new ClassRegistryEntry(2326114317782751943L, battleship.messages.Resign._TYPE_IDS, "battleship.messages.Resign", new Ctor() { public MGenBase create() { return new battleship.messages.Resign(); } });
+	public static ClassRegistryEntry battleship_messages_GameOver = new ClassRegistryEntry(4978160568720679319L, battleship.messages.GameOver._TYPE_IDS, "battleship.messages.GameOver", new Ctor() { public MGenBase create() { return new battleship.messages.GameOver(); } });
+	public static ClassRegistryEntry battleship_messages_TeamSelect = new ClassRegistryEntry(7168550251128746873L, battleship.messages.TeamSelect._TYPE_IDS, "battleship.messages.TeamSelect", new Ctor() { public MGenBase create() { return new battleship.messages.TeamSelect(); } });
+	public static ClassRegistryEntry battleship_messages_TeamSelectReply = new ClassRegistryEntry(7126685645384091317L, battleship.messages.TeamSelectReply._TYPE_IDS, "battleship.messages.TeamSelectReply", new Ctor() { public MGenBase create() { return new battleship.messages.TeamSelectReply(); } });
 	public static ClassRegistryEntry battleship_state_Ship = new ClassRegistryEntry(5434834621073515272L, battleship.state.Ship._TYPE_IDS, "battleship.state.Ship", new Ctor() { public MGenBase create() { return new battleship.state.Ship(); } });
 	public static ClassRegistryEntry battleship_state_Segment = new ClassRegistryEntry(3947935130376690974L, battleship.state.Segment._TYPE_IDS, "battleship.state.Segment", new Ctor() { public MGenBase create() { return new battleship.state.Segment(); } });
 	public static ClassRegistryEntry battleship_state_Map = new ClassRegistryEntry(9078412533289593707L, battleship.state.Map._TYPE_IDS, "battleship.state.Map", new Ctor() { public MGenBase create() { return new battleship.state.Map(); } });
@@ -27,10 +38,21 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 	public static ClassRegistryEntry battleship_state_Shot = new ClassRegistryEntry(5772087053517390128L, battleship.state.Shot._TYPE_IDS, "battleship.state.Shot", new Ctor() { public MGenBase create() { return new battleship.state.Shot(); } });
 
 	public ClassRegistry() {
+		add(battleship_messages_Connection);
+		add(battleship_messages_GameInput);
+		add(battleship_messages_GameInfo);
 		add(battleship_messages_Chat);
 		add(battleship_messages_Fire);
+		add(battleship_messages_FireResult);
 		add(battleship_messages_PhaseChange);
 		add(battleship_messages_Snapshot);
+		add(battleship_messages_Login);
+		add(battleship_messages_LoginReply);
+		add(battleship_messages_NextTurn);
+		add(battleship_messages_Resign);
+		add(battleship_messages_GameOver);
+		add(battleship_messages_TeamSelect);
+		add(battleship_messages_TeamSelectReply);
 		add(battleship_state_Ship);
 		add(battleship_state_Segment);
 		add(battleship_state_Map);
@@ -44,14 +66,48 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 	public ClassRegistryEntry getByTypeIds16Bit(final short[] ids) {
 		int i = 0;
 		switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
-			case battleship.messages.Chat._TYPE_ID_16BIT:
-				return battleship_messages_Chat;
-			case battleship.messages.Fire._TYPE_ID_16BIT:
-				return battleship_messages_Fire;
-			case battleship.messages.PhaseChange._TYPE_ID_16BIT:
-				return battleship_messages_PhaseChange;
-			case battleship.messages.Snapshot._TYPE_ID_16BIT:
-				return battleship_messages_Snapshot;
+			case battleship.messages.Connection._TYPE_ID_16BIT:
+				switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
+					case battleship.messages.Chat._TYPE_ID_16BIT:
+						return battleship_messages_Chat;
+					case battleship.messages.Login._TYPE_ID_16BIT:
+						return battleship_messages_Login;
+					case battleship.messages.LoginReply._TYPE_ID_16BIT:
+						return battleship_messages_LoginReply;
+					case battleship.messages.TeamSelect._TYPE_ID_16BIT:
+						return battleship_messages_TeamSelect;
+					case battleship.messages.TeamSelectReply._TYPE_ID_16BIT:
+						return battleship_messages_TeamSelectReply;
+					default:
+						return battleship_messages_Connection;
+				}
+			case battleship.messages.GameInput._TYPE_ID_16BIT:
+				switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
+					case battleship.messages.Fire._TYPE_ID_16BIT:
+						return battleship_messages_Fire;
+					case battleship.messages.Resign._TYPE_ID_16BIT:
+						return battleship_messages_Resign;
+					default:
+						return battleship_messages_GameInput;
+				}
+			case battleship.messages.GameInfo._TYPE_ID_16BIT:
+				switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
+					case battleship.messages.FireResult._TYPE_ID_16BIT:
+						return battleship_messages_FireResult;
+					case battleship.messages.PhaseChange._TYPE_ID_16BIT:
+						switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
+							case battleship.messages.GameOver._TYPE_ID_16BIT:
+								return battleship_messages_GameOver;
+							default:
+								return battleship_messages_PhaseChange;
+						}
+					case battleship.messages.Snapshot._TYPE_ID_16BIT:
+						return battleship_messages_Snapshot;
+					case battleship.messages.NextTurn._TYPE_ID_16BIT:
+						return battleship_messages_NextTurn;
+					default:
+						return battleship_messages_GameInfo;
+				}
 			case battleship.state.Ship._TYPE_ID_16BIT:
 				return battleship_state_Ship;
 			case battleship.state.Segment._TYPE_ID_16BIT:
@@ -75,14 +131,48 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 	public ClassRegistryEntry getByTypeIds16BitBase64(final String[] ids) {
 		int i = 0;
 		switch((i < ids.length ? ids[i++] : "0xFFFFFFFF")) {
-			case battleship.messages.Chat._TYPE_ID_16BIT_BASE64:
-				return battleship_messages_Chat;
-			case battleship.messages.Fire._TYPE_ID_16BIT_BASE64:
-				return battleship_messages_Fire;
-			case battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64:
-				return battleship_messages_PhaseChange;
-			case battleship.messages.Snapshot._TYPE_ID_16BIT_BASE64:
-				return battleship_messages_Snapshot;
+			case battleship.messages.Connection._TYPE_ID_16BIT_BASE64:
+				switch((i < ids.length ? ids[i++] : "0xFFFFFFFF")) {
+					case battleship.messages.Chat._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_Chat;
+					case battleship.messages.Login._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_Login;
+					case battleship.messages.LoginReply._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_LoginReply;
+					case battleship.messages.TeamSelect._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_TeamSelect;
+					case battleship.messages.TeamSelectReply._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_TeamSelectReply;
+					default:
+						return battleship_messages_Connection;
+				}
+			case battleship.messages.GameInput._TYPE_ID_16BIT_BASE64:
+				switch((i < ids.length ? ids[i++] : "0xFFFFFFFF")) {
+					case battleship.messages.Fire._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_Fire;
+					case battleship.messages.Resign._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_Resign;
+					default:
+						return battleship_messages_GameInput;
+				}
+			case battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64:
+				switch((i < ids.length ? ids[i++] : "0xFFFFFFFF")) {
+					case battleship.messages.FireResult._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_FireResult;
+					case battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64:
+						switch((i < ids.length ? ids[i++] : "0xFFFFFFFF")) {
+							case battleship.messages.GameOver._TYPE_ID_16BIT_BASE64:
+								return battleship_messages_GameOver;
+							default:
+								return battleship_messages_PhaseChange;
+						}
+					case battleship.messages.Snapshot._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_Snapshot;
+					case battleship.messages.NextTurn._TYPE_ID_16BIT_BASE64:
+						return battleship_messages_NextTurn;
+					default:
+						return battleship_messages_GameInfo;
+				}
 			case battleship.state.Ship._TYPE_ID_16BIT_BASE64:
 				return battleship_state_Ship;
 			case battleship.state.Segment._TYPE_ID_16BIT_BASE64:

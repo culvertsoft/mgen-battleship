@@ -6,24 +6,46 @@
 	var blueprint = {};
 	
 	blueprint.classes = {};
+	blueprint.classes["battleship.messages.Connection"] =  {
+		"__t": "LWc",
+	};
+	blueprint.classes["battleship.messages.GameInput"] =  {
+		"__t": "ew4",
+	};
+	blueprint.classes["battleship.messages.GameInfo"] =  {
+		"__t": "rCw",
+	};
 	blueprint.classes["battleship.messages.Chat"] =  {
-		"__t": "Q+M",
+		"__t": "LWcQ+M",
 		"text": {
 			"flags": [],
 			"type": "string",
 			"hash": "wzw"
+		},
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
 		}
 	};
 	blueprint.classes["battleship.messages.Fire"] =  {
-		"__t": "nKY",
+		"__t": "ew4nKY",
 		"position": {
 			"flags": [],
 			"type": "battleship.state.Vec2",
 			"hash": "mR8"
 		}
 	};
+	blueprint.classes["battleship.messages.FireResult"] =  {
+		"__t": "rCwefw",
+		"hit": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "cfc"
+		}
+	};
 	blueprint.classes["battleship.messages.PhaseChange"] =  {
-		"__t": "3mc",
+		"__t": "rCw3mc",
 		"phase": {
 			"flags": [],
 			"type": "enum:LOBBY, PLAYING, PAUSED",
@@ -31,11 +53,82 @@
 		}
 	};
 	blueprint.classes["battleship.messages.Snapshot"] =  {
-		"__t": "19I",
+		"__t": "rCw19I",
 		"state": {
 			"flags": [],
 			"type": "battleship.state.Game",
 			"hash": "Phk"
+		}
+	};
+	blueprint.classes["battleship.messages.Login"] =  {
+		"__t": "LWc5ZQ",
+		"name": {
+			"flags": [],
+			"type": "string",
+			"hash": "kmY"
+		}
+	};
+	blueprint.classes["battleship.messages.LoginReply"] =  {
+		"__t": "LWc2eI",
+		"uuid": {
+			"flags": [],
+			"type": "string",
+			"hash": "1Jg"
+		}
+	};
+	blueprint.classes["battleship.messages.NextTurn"] =  {
+		"__t": "rCwjUg",
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
+		},
+		"maxTime": {
+			"flags": [],
+			"type": "float64",
+			"hash": "Vog"
+		}
+	};
+	blueprint.classes["battleship.messages.Resign"] =  {
+		"__t": "ew4A6Q",
+	};
+	blueprint.classes["battleship.messages.GameOver"] =  {
+		"__t": "rCw3mc97g",
+		"phase": {
+			"flags": [],
+			"type": "enum:LOBBY, PLAYING, PAUSED",
+			"hash": "Hck"
+		},
+		"winner": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "44U"
+		},
+		"reason": {
+			"flags": [],
+			"type": "string",
+			"hash": "wgU"
+		}
+	};
+	blueprint.classes["battleship.messages.TeamSelect"] =  {
+		"__t": "LWcOSg",
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
+		}
+	};
+	blueprint.classes["battleship.messages.TeamSelectReply"] =  {
+		"__t": "LWc28g",
+		"result": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "YEI"
+		},
+		"failReason": {
+			"flags": [],
+			"type": "string",
+			"hash": "Bko"
 		}
 	};
 	blueprint.classes["battleship.state.Ship"] =  {
@@ -74,15 +167,20 @@
 	};
 	blueprint.classes["battleship.state.Player"] =  {
 		"__t": "th0",
-		"team": {
+		"uuid": {
 			"flags": [],
-			"type": "enum:RED, BLUE, OBSERVERS",
-			"hash": "+c8"
+			"type": "string",
+			"hash": "1Jg"
 		},
 		"name": {
 			"flags": [],
 			"type": "string",
 			"hash": "kmY"
+		},
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
 		},
 		"ready": {
 			"flags": [],
@@ -167,14 +265,44 @@
 	blueprint.lookup = function( typeId )  {
 		var t = typeId.match(/(.{1,3})/g); // Split typeId into array for easier reading of inheritance (every 3 char is a type).
 		switch( t[0] )  {
-			case "Q+M":
-				return "battleship.messages.Chat";
-			case "nKY":
-				return "battleship.messages.Fire";
-			case "3mc":
-				return "battleship.messages.PhaseChange";
-			case "19I":
-				return "battleship.messages.Snapshot";
+			case "LWc":
+				switch( t[1] )  {
+					case "Q+M":
+						return "battleship.messages.Chat";
+					case "5ZQ":
+						return "battleship.messages.Login";
+					case "2eI":
+						return "battleship.messages.LoginReply";
+					case "OSg":
+						return "battleship.messages.TeamSelect";
+					case "28g":
+						return "battleship.messages.TeamSelectReply";
+				}
+				return "battleship.messages.Connection";
+			case "ew4":
+				switch( t[1] )  {
+					case "nKY":
+						return "battleship.messages.Fire";
+					case "A6Q":
+						return "battleship.messages.Resign";
+				}
+				return "battleship.messages.GameInput";
+			case "rCw":
+				switch( t[1] )  {
+					case "efw":
+						return "battleship.messages.FireResult";
+					case "3mc":
+						switch( t[2] )  {
+							case "97g":
+								return "battleship.messages.GameOver";
+						}
+						return "battleship.messages.PhaseChange";
+					case "19I":
+						return "battleship.messages.Snapshot";
+					case "jUg":
+						return "battleship.messages.NextTurn";
+				}
+				return "battleship.messages.GameInfo";
 			case "bkI":
 				return "battleship.state.Ship";
 			case "LqM":

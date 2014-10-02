@@ -10,14 +10,14 @@
 #ifndef BATTLESHIP_MESSAGES_PHASECHANGE
 #define BATTLESHIP_MESSAGES_PHASECHANGE
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/GameInfo.h"
 #include "battleship/state/Phase.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class PhaseChange : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class PhaseChange : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	battleship::state::Phase m_phase;
 	bool _m_phase_isSet;

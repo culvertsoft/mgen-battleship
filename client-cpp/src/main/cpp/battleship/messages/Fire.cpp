@@ -204,27 +204,27 @@ const std::string& Fire::_type_name() {
 }
 
 const std::vector<long long>& Fire::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 6880290600081744688LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 20544504380178079LL << 6880290600081744688LL;
 	return out;
 }
 
 const std::vector<short>& Fire::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -25434;
+	static const std::vector<short> out = mgen::make_vector<short>() << 31502 << -25434;
 	return out;
 }
 
 const std::vector<std::string>& Fire::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Fire";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInput" << "battleship.messages.Fire";
 	return out;
 }
 
 const std::vector<std::string>& Fire::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "nKY";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "ew4" << "nKY";
 	return out;
 }
 
 const std::string& Fire::_type_ids_16bit_base64_string() {
-	static const std::string out("nKY");
+	static const std::string out("ew4nKY");
 	return out;
 }
 

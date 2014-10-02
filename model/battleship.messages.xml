@@ -1,17 +1,46 @@
 <Module>
     <Enums> </Enums>
     <Types>
-        <Chat>
+        <Connection> </Connection>
+        <GameInput> </GameInput>
+        <GameInfo> </GameInfo>
+        <Chat extends="Connection">
             <text type="string"/>
+            <team type="battleship.state.Team"/>
         </Chat>
-        <Fire>
+        <Fire extends="GameInput">
             <position type="battleship.state.Vec2"/>
         </Fire>
-        <PhaseChange>
+        <FireResult extends="GameInfo">
+            <hit type="bool"/>
+        </FireResult>
+        <PhaseChange extends="GameInfo">
             <phase type="battleship.state.Phase"/>
         </PhaseChange>
-        <Snapshot>
+        <Snapshot extends="GameInfo">
             <state type="battleship.state.Game"/>
         </Snapshot>
+        <Login extends="Connection">
+            <name type="string"/>
+        </Login>
+        <LoginReply extends="Connection">
+            <uuid type="string"/>
+        </LoginReply>
+        <NextTurn extends="GameInfo">
+            <team type="battleship.state.Team"/>
+            <maxTime type="float64"/>
+        </NextTurn>
+        <Resign extends="GameInput"> </Resign>
+        <GameOver extends="PhaseChange">
+            <winner type="battleship.state.Team"/>
+            <reason type="string"/>
+        </GameOver>
+        <TeamSelect extends="Connection">
+            <team type="battleship.state.Team"/>
+        </TeamSelect>
+        <TeamSelectReply extends="Connection">
+            <result type="bool"/>
+            <failReason type="string"/>
+        </TeamSelectReply>
     </Types>
 </Module>

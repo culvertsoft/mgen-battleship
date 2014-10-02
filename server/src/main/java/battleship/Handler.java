@@ -18,20 +18,64 @@ public class Handler  {
 
 	protected void handleUnknown(MGenBase o) { handleDiscard(o); }
 
-	protected void handle(battleship.messages.Chat o) {
+	protected void handle(battleship.messages.Connection o) {
 		handleDiscard(o);
+	}
+
+	protected void handle(battleship.messages.GameInput o) {
+		handleDiscard(o);
+	}
+
+	protected void handle(battleship.messages.GameInfo o) {
+		handleDiscard(o);
+	}
+
+	protected void handle(battleship.messages.Chat o) {
+		handle((battleship.messages.Connection)o);
 	}
 
 	protected void handle(battleship.messages.Fire o) {
-		handleDiscard(o);
+		handle((battleship.messages.GameInput)o);
+	}
+
+	protected void handle(battleship.messages.FireResult o) {
+		handle((battleship.messages.GameInfo)o);
 	}
 
 	protected void handle(battleship.messages.PhaseChange o) {
-		handleDiscard(o);
+		handle((battleship.messages.GameInfo)o);
 	}
 
 	protected void handle(battleship.messages.Snapshot o) {
-		handleDiscard(o);
+		handle((battleship.messages.GameInfo)o);
+	}
+
+	protected void handle(battleship.messages.Login o) {
+		handle((battleship.messages.Connection)o);
+	}
+
+	protected void handle(battleship.messages.LoginReply o) {
+		handle((battleship.messages.Connection)o);
+	}
+
+	protected void handle(battleship.messages.NextTurn o) {
+		handle((battleship.messages.GameInfo)o);
+	}
+
+	protected void handle(battleship.messages.Resign o) {
+		handle((battleship.messages.GameInput)o);
+	}
+
+	protected void handle(battleship.messages.GameOver o) {
+		handle((battleship.messages.PhaseChange)o);
+	}
+
+	protected void handle(battleship.messages.TeamSelect o) {
+		handle((battleship.messages.Connection)o);
+	}
+
+	protected void handle(battleship.messages.TeamSelectReply o) {
+		handle((battleship.messages.Connection)o);
 	}
 
 	protected void handle(battleship.state.Ship o) {

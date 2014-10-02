@@ -11,10 +11,21 @@
 #define BATTLESHIP_CLASSREGISTRY
 
 #include "mgen/classes/ClassRegistryBase.h"
+#include "battleship/messages/Connection.h"
+#include "battleship/messages/GameInput.h"
+#include "battleship/messages/GameInfo.h"
 #include "battleship/messages/Chat.h"
 #include "battleship/messages/Fire.h"
+#include "battleship/messages/FireResult.h"
 #include "battleship/messages/PhaseChange.h"
 #include "battleship/messages/Snapshot.h"
+#include "battleship/messages/Login.h"
+#include "battleship/messages/LoginReply.h"
+#include "battleship/messages/NextTurn.h"
+#include "battleship/messages/Resign.h"
+#include "battleship/messages/GameOver.h"
+#include "battleship/messages/TeamSelect.h"
+#include "battleship/messages/TeamSelectReply.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Segment.h"
 #include "battleship/state/Map.h"
@@ -38,17 +49,66 @@ public:
 
 		std::size_t i = 0;
 		switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-			case battleship::messages::Chat::_type_id_16bit:
-				reader.readFields(static_cast<battleship::messages::Chat&>(o), context);
+			case battleship::messages::Connection::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Chat::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::Chat&>(o), context);
+						break;
+					case battleship::messages::Login::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::Login&>(o), context);
+						break;
+					case battleship::messages::LoginReply::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::LoginReply&>(o), context);
+						break;
+					case battleship::messages::TeamSelect::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::TeamSelect&>(o), context);
+						break;
+					case battleship::messages::TeamSelectReply::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::TeamSelectReply&>(o), context);
+						break;
+					default:
+						reader.readFields(static_cast<battleship::messages::Connection&>(o), context);
+						break;
+				}
 				break;
-			case battleship::messages::Fire::_type_id_16bit:
-				reader.readFields(static_cast<battleship::messages::Fire&>(o), context);
+			case battleship::messages::GameInput::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Fire::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::Fire&>(o), context);
+						break;
+					case battleship::messages::Resign::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::Resign&>(o), context);
+						break;
+					default:
+						reader.readFields(static_cast<battleship::messages::GameInput&>(o), context);
+						break;
+				}
 				break;
-			case battleship::messages::PhaseChange::_type_id_16bit:
-				reader.readFields(static_cast<battleship::messages::PhaseChange&>(o), context);
-				break;
-			case battleship::messages::Snapshot::_type_id_16bit:
-				reader.readFields(static_cast<battleship::messages::Snapshot&>(o), context);
+			case battleship::messages::GameInfo::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::FireResult::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::FireResult&>(o), context);
+						break;
+					case battleship::messages::PhaseChange::_type_id_16bit:
+						switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+							case battleship::messages::GameOver::_type_id_16bit:
+								reader.readFields(static_cast<battleship::messages::GameOver&>(o), context);
+								break;
+							default:
+								reader.readFields(static_cast<battleship::messages::PhaseChange&>(o), context);
+								break;
+						}
+						break;
+					case battleship::messages::Snapshot::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::Snapshot&>(o), context);
+						break;
+					case battleship::messages::NextTurn::_type_id_16bit:
+						reader.readFields(static_cast<battleship::messages::NextTurn&>(o), context);
+						break;
+					default:
+						reader.readFields(static_cast<battleship::messages::GameInfo&>(o), context);
+						break;
+				}
 				break;
 			case battleship::state::Ship::_type_id_16bit:
 				reader.readFields(static_cast<battleship::state::Ship&>(o), context);
@@ -85,17 +145,66 @@ public:
 
 		std::size_t i = 0;
 		switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-			case battleship::messages::Chat::_type_id_16bit:
-				static_cast<battleship::messages::Chat&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::Connection::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Chat::_type_id_16bit:
+						static_cast<battleship::messages::Chat&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::Login::_type_id_16bit:
+						static_cast<battleship::messages::Login&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::LoginReply::_type_id_16bit:
+						static_cast<battleship::messages::LoginReply&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::TeamSelect::_type_id_16bit:
+						static_cast<battleship::messages::TeamSelect&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::TeamSelectReply::_type_id_16bit:
+						static_cast<battleship::messages::TeamSelectReply&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<battleship::messages::Connection&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
-			case battleship::messages::Fire::_type_id_16bit:
-				static_cast<battleship::messages::Fire&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::GameInput::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Fire::_type_id_16bit:
+						static_cast<battleship::messages::Fire&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::Resign::_type_id_16bit:
+						static_cast<battleship::messages::Resign&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<battleship::messages::GameInput&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
-			case battleship::messages::PhaseChange::_type_id_16bit:
-				static_cast<battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
-				break;
-			case battleship::messages::Snapshot::_type_id_16bit:
-				static_cast<battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::GameInfo::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::FireResult::_type_id_16bit:
+						static_cast<battleship::messages::FireResult&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::PhaseChange::_type_id_16bit:
+						switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+							case battleship::messages::GameOver::_type_id_16bit:
+								static_cast<battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							default:
+								static_cast<battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+						}
+						break;
+					case battleship::messages::Snapshot::_type_id_16bit:
+						static_cast<battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::NextTurn::_type_id_16bit:
+						static_cast<battleship::messages::NextTurn&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<battleship::messages::GameInfo&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
 			case battleship::state::Ship::_type_id_16bit:
 				static_cast<battleship::state::Ship&>(o)._accept<VisitorType>(visitor, selection);
@@ -132,17 +241,66 @@ public:
 
 		std::size_t i = 0;
 		switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-			case battleship::messages::Chat::_type_id_16bit:
-				static_cast<const battleship::messages::Chat&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::Connection::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Chat::_type_id_16bit:
+						static_cast<const battleship::messages::Chat&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::Login::_type_id_16bit:
+						static_cast<const battleship::messages::Login&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::LoginReply::_type_id_16bit:
+						static_cast<const battleship::messages::LoginReply&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::TeamSelect::_type_id_16bit:
+						static_cast<const battleship::messages::TeamSelect&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::TeamSelectReply::_type_id_16bit:
+						static_cast<const battleship::messages::TeamSelectReply&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<const battleship::messages::Connection&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
-			case battleship::messages::Fire::_type_id_16bit:
-				static_cast<const battleship::messages::Fire&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::GameInput::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::Fire::_type_id_16bit:
+						static_cast<const battleship::messages::Fire&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::Resign::_type_id_16bit:
+						static_cast<const battleship::messages::Resign&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<const battleship::messages::GameInput&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
-			case battleship::messages::PhaseChange::_type_id_16bit:
-				static_cast<const battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
-				break;
-			case battleship::messages::Snapshot::_type_id_16bit:
-				static_cast<const battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
+			case battleship::messages::GameInfo::_type_id_16bit:
+				switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+					case battleship::messages::FireResult::_type_id_16bit:
+						static_cast<const battleship::messages::FireResult&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::PhaseChange::_type_id_16bit:
+						switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+							case battleship::messages::GameOver::_type_id_16bit:
+								static_cast<const battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							default:
+								static_cast<const battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+						}
+						break;
+					case battleship::messages::Snapshot::_type_id_16bit:
+						static_cast<const battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					case battleship::messages::NextTurn::_type_id_16bit:
+						static_cast<const battleship::messages::NextTurn&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+					default:
+						static_cast<const battleship::messages::GameInfo&>(o)._accept<VisitorType>(visitor, selection);
+						break;
+				}
 				break;
 			case battleship::state::Ship::_type_id_16bit:
 				static_cast<const battleship::state::Ship&>(o)._accept<VisitorType>(visitor, selection);

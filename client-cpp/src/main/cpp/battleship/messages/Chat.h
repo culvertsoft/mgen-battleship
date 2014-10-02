@@ -10,33 +10,42 @@
 #ifndef BATTLESHIP_MESSAGES_CHAT
 #define BATTLESHIP_MESSAGES_CHAT
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/Connection.h"
+#include "battleship/state/Team.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class Chat : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Chat : public Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	std::string m_text;
+	battleship::state::Team m_team;
 	bool _m_text_isSet;
+	bool _m_team_isSet;
 
 public:
 	Chat();
-	Chat(const std::string& text);
+	Chat(const std::string& text,
+			const battleship::state::Team& team);
 	virtual ~Chat();
 
 	const std::string& getText() const;
+	const battleship::state::Team& getTeam() const;
 
 	std::string& getTextMutable();
+	battleship::state::Team& getTeamMutable();
 
 	Chat& setText(const std::string& text);
+	Chat& setTeam(const battleship::state::Team& team);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasText() const;
+	bool hasTeam() const;
 
 	Chat& unsetText();
+	Chat& unsetTeam();
 
 	bool operator==(const Chat& other) const;
 	bool operator!=(const Chat& other) const;
@@ -60,6 +69,9 @@ public:
 		case _field_text_id:
 			reader.readField(_field_text_metadata(), context, getTextMutable());
 			break;
+		case _field_team_id:
+			reader.readField(_field_team_metadata(), context, getTeamMutable());
+			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
 			break;
@@ -70,8 +82,9 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 1);
+				visitor.beginVisit(*this, 2);
 				visitor.visit(getText(), _field_text_metadata());
+				visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -79,6 +92,8 @@ public:
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
 				if (_isTextSet(mgen::SHALLOW))
 					visitor.visit(getText(), _field_text_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -89,8 +104,9 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 1);
+				visitor.beginVisit(*this, 2);
 				visitor.visit(getTextMutable(), _field_text_metadata());
+				visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -98,6 +114,8 @@ public:
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
 				if (_isTextSet(mgen::SHALLOW))
 					visitor.visit(getTextMutable(), _field_text_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -122,12 +140,14 @@ public:
 	bool _isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const;
 
 	Chat& _setTextSet(const bool state, const mgen::FieldSetDepth depth);
+	Chat& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
 
 	Chat& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
 	int _numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const;
 
 	bool _isTextSet(const mgen::FieldSetDepth depth) const;
+	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
@@ -163,8 +183,10 @@ public:
 	static const std::vector<std::string>& _type_names();
 
 	static const mgen::Field& _field_text_metadata();
+	static const mgen::Field& _field_team_metadata();
 
 	static const short _field_text_id = -15556;
+	static const short _field_team_id = -1585;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 

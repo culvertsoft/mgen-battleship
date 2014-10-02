@@ -24,8 +24,9 @@
             <size type="Vec2"/>
         </Map>
         <Player>
-            <team type="Team"/>
+            <uuid type="string"/>
             <name type="string"/>
+            <team type="Team"/>
             <ready type="bool"/>
             <shots type="list[Shot]"/>
         </Player>

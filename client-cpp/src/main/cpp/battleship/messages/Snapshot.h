@@ -10,14 +10,14 @@
 #ifndef BATTLESHIP_MESSAGES_SNAPSHOT
 #define BATTLESHIP_MESSAGES_SNAPSHOT
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/GameInfo.h"
 #include "battleship/state/Game.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class Snapshot : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Snapshot : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	battleship::state::Game m_state;
 	bool _m_state_isSet;
