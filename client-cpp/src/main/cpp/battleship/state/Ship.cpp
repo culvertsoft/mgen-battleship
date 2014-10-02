@@ -16,17 +16,12 @@ namespace battleship {
 namespace state {
 
 Ship::Ship() : 
-		m_team(Team_UNKNOWN),
-		_m_points_isSet(false),
-		_m_team_isSet(false) {
+		_m_points_isSet(false) {
 }
 
-Ship::Ship(const std::vector<Segment> & points, 
-			const Team& team) : 
+Ship::Ship(const std::vector<Segment> & points) : 
 		m_points(points),
-		m_team(team),
-		_m_points_isSet(true),
-		_m_team_isSet(true) {
+		_m_points_isSet(true) {
 }
 
 Ship::~Ship() {
@@ -36,29 +31,14 @@ const std::vector<Segment> & Ship::getPoints() const {
 	return m_points;
 }
 
-const Team& Ship::getTeam() const {
-	return m_team;
-}
-
 std::vector<Segment> & Ship::getPointsMutable() {
 	_m_points_isSet = true;
 	return m_points;
 }
 
-Team& Ship::getTeamMutable() {
-	_m_team_isSet = true;
-	return m_team;
-}
-
 Ship& Ship::setPoints(const std::vector<Segment> & points) {
 	m_points = points;
 	_m_points_isSet = true;
-	return *this;
-}
-
-Ship& Ship::setTeam(const Team& team) {
-	m_team = team;
-	_m_team_isSet = true;
 	return *this;
 }
 
@@ -68,26 +48,15 @@ bool Ship::hasPoints() const {
 	return _isPointsSet(mgen::SHALLOW);
 }
 
-bool Ship::hasTeam() const {
-	return _isTeamSet(mgen::SHALLOW);
-}
-
 Ship& Ship::unsetPoints() {
 	_setPointsSet(false, mgen::SHALLOW);
-	return *this;
-}
-
-Ship& Ship::unsetTeam() {
-	_setTeamSet(false, mgen::SHALLOW);
 	return *this;
 }
 
 bool Ship::operator==(const Ship& other) const {
 	return true
 		 && _isPointsSet(mgen::SHALLOW) == other._isPointsSet(mgen::SHALLOW)
-		 && _isTeamSet(mgen::SHALLOW) == other._isTeamSet(mgen::SHALLOW)
-		 && getPoints() == other.getPoints()
-		 && getTeam() == other.getTeam();
+		 && getPoints() == other.getPoints();
 }
 
 bool Ship::operator!=(const Ship& other) const {
@@ -110,15 +79,13 @@ const mgen::Field * Ship::_fieldById(const short id) const {
 	switch (id) {
 	case _field_points_id:
 		return &_field_points_metadata();
-	case _field_team_id:
-		return &_field_team_metadata();
 	default:
 		return 0;
 	}
 }
 
 const mgen::Field * Ship::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("points", &Ship::_field_points_metadata())("team", &Ship::_field_team_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("points", &Ship::_field_points_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -172,23 +139,14 @@ Ship& Ship::_setPointsSet(const bool state, const mgen::FieldSetDepth depth) {
 	return *this;
 }
 
-Ship& Ship::_setTeamSet(const bool state, const mgen::FieldSetDepth depth) {
-	if (!state)
-		m_team = Team_UNKNOWN;
-	_m_team_isSet = state;
-	return *this;
-}
-
 Ship& Ship::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
 	_setPointsSet(state, depth);
-	_setTeamSet(state, depth);
 	return *this;
 }
 
 int Ship::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const {
 	int out = 0;
 	out += _isPointsSet(depth) ? 1 : 0;
-	out += _isTeamSet(depth) ? 1 : 0;
 	return out;
 }
 
@@ -196,8 +154,6 @@ bool Ship::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth
 	switch(field.id()) {
 		case (_field_points_id):
 			return _isPointsSet(depth);
-		case (_field_team_id):
-			return _isTeamSet(depth);
 		default:
 			return false;
 	}
@@ -209,10 +165,6 @@ bool Ship::_isPointsSet(const mgen::FieldSetDepth depth) const {
 	} else {
 		return _m_points_isSet && mgen::validation::validateFieldDeep(getPoints());
 	}
-}
-
-bool Ship::_isTeamSet(const mgen::FieldSetDepth depth) const {
-	return _m_team_isSet;
 }
 
 bool Ship::_validate(const mgen::FieldSetDepth depth) const { 
@@ -284,17 +236,12 @@ const std::string& Ship::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& Ship::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_points_metadata() << _field_team_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_points_metadata();
 	return out;
 }
 
 const mgen::Field& Ship::_field_points_metadata() {
 	static const mgen::Field out(-26865, "points");
-	return out;
-}
-
-const mgen::Field& Ship::_field_team_metadata() {
-	static const mgen::Field out(-1585, "team");
 	return out;
 }
 

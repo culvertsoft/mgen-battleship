@@ -23,34 +23,22 @@ import se.culvertsoft.mgen.javapack.util.Marker;
 public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private java.util.ArrayList<Segment> m_points;
-	private Team m_team;
 
 	public Ship() {
 		super();
 		m_points = null;
-		m_team = null;
 	}
 
-	public Ship(final java.util.ArrayList<Segment> points,
-				final Team team) {
+	public Ship(final java.util.ArrayList<Segment> points) {
 		m_points = points;
-		m_team = team;
 	}
 
 	public java.util.ArrayList<Segment> getPoints() {
 		return m_points;
 	}
 
-	public Team getTeam() {
-		return m_team;
-	}
-
 	public boolean hasPoints() {
 		return _isPointsSet(FieldSetDepth.SHALLOW);
-	}
-
-	public boolean hasTeam() {
-		return _isTeamSet(FieldSetDepth.SHALLOW);
 	}
 
 	public Ship unsetPoints() {
@@ -58,18 +46,8 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	public Ship unsetTeam() {
-		_setTeamSet(false, FieldSetDepth.SHALLOW);
-		return this;
-	}
-
 	public Ship setPoints(final java.util.ArrayList<Segment> points) {
 		m_points = points;
-		return this;
-	}
-
-	public Ship setTeam(final Team team) {
-		m_team = team;
 		return this;
 	}
 
@@ -85,7 +63,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		final int prime = 31;
 		int result = -498342701;
 		result = _isPointsSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getPoints(), _points_METADATA.typ())) : result;
-		result = _isTeamSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getTeam(), _team_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -97,18 +74,14 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		final Ship o = (Ship)other;
 		return true
 		  && (_isPointsSet(FieldSetDepth.SHALLOW) == o._isPointsSet(FieldSetDepth.SHALLOW))
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ())
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ());
+		  && EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ());
 	}
 
 	@Override
 	public Ship deepCopy() {
 		final Ship out = new Ship();
 		out.setPoints(DeepCopyer.deepCopy(getPoints(), _points_METADATA.typ()));
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
 		out._setPointsSet(_isPointsSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -174,9 +147,8 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 2);
+				visitor.beginVisit(this, 1);
 				visitor.visit(getPoints(), _points_METADATA);
-				visitor.visit(getTeam(), _team_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -184,8 +156,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
 				if (_isPointsSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getPoints(), _points_METADATA);
-				if (_isTeamSet(FieldSetDepth.SHALLOW))
-					visitor.visit(getTeam(), _team_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -200,9 +170,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldId) {
 			case (_points_ID):
 				setPoints((java.util.ArrayList<Segment>)reader.readListField(_points_METADATA, context));
-				return true;
-			case (_team_ID):
-				setTeam((Team)reader.readEnumField(_team_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -223,16 +190,10 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		}
 	}
 
-	public boolean _isTeamSet(final FieldSetDepth fieldSetDepth) {
-		return m_team != null;
-	}
-
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
 			case (_points_ID):
 				return _isPointsSet(depth);
-			case (_team_ID):
-				return _isTeamSet(depth);
 			default:
 				return false;
 		}
@@ -248,17 +209,8 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	public Ship _setTeamSet(final boolean state, final FieldSetDepth depth) {
-		if (state)
-			m_team = m_team != null ? m_team : Team.UNKNOWN;
-		else
-			m_team = null;
-		return this;
-	}
-
 	public Ship _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setPointsSet(state, depth);
-		_setTeamSet(state, depth);
 		return this;
 	}
 
@@ -275,7 +227,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public int _nFieldsSet(final FieldSetDepth depth, final boolean includeTransient) {
 		int out = 0;
 		out += _isPointsSet(depth) ? 1 : 0;
-		out += _isTeamSet(depth) ? 1 : 0;
 		return out;
 	}
 
@@ -284,8 +235,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldId) {
 			case (_points_ID):
 				return _points_METADATA;
-			case (_team_ID):
-				return _team_METADATA;
 			default:
 				return null;
 		}
@@ -296,8 +245,6 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(fieldName) {
 			case ("points"):
 				return _points_METADATA;
-			case ("team"):
-				return _team_METADATA;
 			default:
 				return null;
 		}
@@ -335,11 +282,9 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public static final String[] _TYPE_NAMES = { battleship.state.Ship._TYPE_NAME };
 
 	public static final Field _points_METADATA = new Field("battleship.state.Ship", "points", new se.culvertsoft.mgen.api.model.ListType(new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Segment", 3947935130376690974L)), null, (short)-26865);
-	public static final Field _team_METADATA = new Field("battleship.state.Ship", "team", battleship.state.Team._TYPE, null, (short)-1585);
 
 	public static final short _points_ID = (short)-26865;
-	public static final short _team_ID = (short)-1585;
 
-	public static final Field[] _FIELDS = { _points_METADATA, _team_METADATA };
+	public static final Field[] _FIELDS = { _points_METADATA };
 
 }

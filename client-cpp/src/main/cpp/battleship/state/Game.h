@@ -23,12 +23,14 @@ namespace state {
 class Game : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	std::vector<Player>  m_players;
-	Map m_map;
+	Map m_redMap;
+	Map m_blueMap;
 	Phase m_phase;
 	Team m_currentTeam;
 	double m_timeLastMove;
 	bool _m_players_isSet;
-	bool _m_map_isSet;
+	bool _m_redMap_isSet;
+	bool _m_blueMap_isSet;
 	bool _m_phase_isSet;
 	bool _m_currentTeam_isSet;
 	bool _m_timeLastMove_isSet;
@@ -36,26 +38,30 @@ private:
 public:
 	Game();
 	Game(const std::vector<Player> & players,
-			const Map& map,
+			const Map& redMap,
+			const Map& blueMap,
 			const Phase& phase,
 			const Team& currentTeam,
 			const double& timeLastMove);
 	virtual ~Game();
 
 	const std::vector<Player> & getPlayers() const;
-	const Map& getMap() const;
+	const Map& getRedMap() const;
+	const Map& getBlueMap() const;
 	const Phase& getPhase() const;
 	const Team& getCurrentTeam() const;
 	const double& getTimeLastMove() const;
 
 	std::vector<Player> & getPlayersMutable();
-	Map& getMapMutable();
+	Map& getRedMapMutable();
+	Map& getBlueMapMutable();
 	Phase& getPhaseMutable();
 	Team& getCurrentTeamMutable();
 	double& getTimeLastMoveMutable();
 
 	Game& setPlayers(const std::vector<Player> & players);
-	Game& setMap(const Map& map);
+	Game& setRedMap(const Map& redMap);
+	Game& setBlueMap(const Map& blueMap);
 	Game& setPhase(const Phase& phase);
 	Game& setCurrentTeam(const Team& currentTeam);
 	Game& setTimeLastMove(const double& timeLastMove);
@@ -63,13 +69,15 @@ public:
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasPlayers() const;
-	bool hasMap() const;
+	bool hasRedMap() const;
+	bool hasBlueMap() const;
 	bool hasPhase() const;
 	bool hasCurrentTeam() const;
 	bool hasTimeLastMove() const;
 
 	Game& unsetPlayers();
-	Game& unsetMap();
+	Game& unsetRedMap();
+	Game& unsetBlueMap();
 	Game& unsetPhase();
 	Game& unsetCurrentTeam();
 	Game& unsetTimeLastMove();
@@ -96,8 +104,11 @@ public:
 		case _field_players_id:
 			reader.readField(_field_players_metadata(), context, getPlayersMutable());
 			break;
-		case _field_map_id:
-			reader.readField(_field_map_metadata(), context, getMapMutable());
+		case _field_redMap_id:
+			reader.readField(_field_redMap_metadata(), context, getRedMapMutable());
+			break;
+		case _field_blueMap_id:
+			reader.readField(_field_blueMap_metadata(), context, getBlueMapMutable());
 			break;
 		case _field_phase_id:
 			reader.readField(_field_phase_metadata(), context, getPhaseMutable());
@@ -118,9 +129,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 5);
+				visitor.beginVisit(*this, 6);
 				visitor.visit(getPlayers(), _field_players_metadata());
-				visitor.visit(getMap(), _field_map_metadata());
+				visitor.visit(getRedMap(), _field_redMap_metadata());
+				visitor.visit(getBlueMap(), _field_blueMap_metadata());
 				visitor.visit(getPhase(), _field_phase_metadata());
 				visitor.visit(getCurrentTeam(), _field_currentTeam_metadata());
 				visitor.visit(getTimeLastMove(), _field_timeLastMove_metadata());
@@ -131,8 +143,10 @@ public:
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
 				if (_isPlayersSet(mgen::SHALLOW))
 					visitor.visit(getPlayers(), _field_players_metadata());
-				if (_isMapSet(mgen::SHALLOW))
-					visitor.visit(getMap(), _field_map_metadata());
+				if (_isRedMapSet(mgen::SHALLOW))
+					visitor.visit(getRedMap(), _field_redMap_metadata());
+				if (_isBlueMapSet(mgen::SHALLOW))
+					visitor.visit(getBlueMap(), _field_blueMap_metadata());
 				if (_isPhaseSet(mgen::SHALLOW))
 					visitor.visit(getPhase(), _field_phase_metadata());
 				if (_isCurrentTeamSet(mgen::SHALLOW))
@@ -149,9 +163,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 5);
+				visitor.beginVisit(*this, 6);
 				visitor.visit(getPlayersMutable(), _field_players_metadata());
-				visitor.visit(getMapMutable(), _field_map_metadata());
+				visitor.visit(getRedMapMutable(), _field_redMap_metadata());
+				visitor.visit(getBlueMapMutable(), _field_blueMap_metadata());
 				visitor.visit(getPhaseMutable(), _field_phase_metadata());
 				visitor.visit(getCurrentTeamMutable(), _field_currentTeam_metadata());
 				visitor.visit(getTimeLastMoveMutable(), _field_timeLastMove_metadata());
@@ -162,8 +177,10 @@ public:
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
 				if (_isPlayersSet(mgen::SHALLOW))
 					visitor.visit(getPlayersMutable(), _field_players_metadata());
-				if (_isMapSet(mgen::SHALLOW))
-					visitor.visit(getMapMutable(), _field_map_metadata());
+				if (_isRedMapSet(mgen::SHALLOW))
+					visitor.visit(getRedMapMutable(), _field_redMap_metadata());
+				if (_isBlueMapSet(mgen::SHALLOW))
+					visitor.visit(getBlueMapMutable(), _field_blueMap_metadata());
 				if (_isPhaseSet(mgen::SHALLOW))
 					visitor.visit(getPhaseMutable(), _field_phase_metadata());
 				if (_isCurrentTeamSet(mgen::SHALLOW))
@@ -194,7 +211,8 @@ public:
 	bool _isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const;
 
 	Game& _setPlayersSet(const bool state, const mgen::FieldSetDepth depth);
-	Game& _setMapSet(const bool state, const mgen::FieldSetDepth depth);
+	Game& _setRedMapSet(const bool state, const mgen::FieldSetDepth depth);
+	Game& _setBlueMapSet(const bool state, const mgen::FieldSetDepth depth);
 	Game& _setPhaseSet(const bool state, const mgen::FieldSetDepth depth);
 	Game& _setCurrentTeamSet(const bool state, const mgen::FieldSetDepth depth);
 	Game& _setTimeLastMoveSet(const bool state, const mgen::FieldSetDepth depth);
@@ -204,7 +222,8 @@ public:
 	int _numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const;
 
 	bool _isPlayersSet(const mgen::FieldSetDepth depth) const;
-	bool _isMapSet(const mgen::FieldSetDepth depth) const;
+	bool _isRedMapSet(const mgen::FieldSetDepth depth) const;
+	bool _isBlueMapSet(const mgen::FieldSetDepth depth) const;
 	bool _isPhaseSet(const mgen::FieldSetDepth depth) const;
 	bool _isCurrentTeamSet(const mgen::FieldSetDepth depth) const;
 	bool _isTimeLastMoveSet(const mgen::FieldSetDepth depth) const;
@@ -243,13 +262,15 @@ public:
 	static const std::vector<std::string>& _type_names();
 
 	static const mgen::Field& _field_players_metadata();
-	static const mgen::Field& _field_map_metadata();
+	static const mgen::Field& _field_redMap_metadata();
+	static const mgen::Field& _field_blueMap_metadata();
 	static const mgen::Field& _field_phase_metadata();
 	static const mgen::Field& _field_currentTeam_metadata();
 	static const mgen::Field& _field_timeLastMove_metadata();
 
 	static const short _field_players_id = 29583;
-	static const short _field_map_id = 21290;
+	static const short _field_redMap_id = 21290;
+	static const short _field_blueMap_id = -19206;
 	static const short _field_phase_id = 7625;
 	static const short _field_currentTeam_id = -14726;
 	static const short _field_timeLastMove_id = 22636;

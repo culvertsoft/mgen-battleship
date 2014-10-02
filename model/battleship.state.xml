@@ -14,7 +14,6 @@
     <Types>
         <Ship>
             <points type="list[Segment]"/>
-            <team type="Team"/>
         </Ship>
         <Segment>
             <alive type="bool"/>
@@ -31,7 +30,8 @@
         </Player>
         <Game>
             <players type="list[Player]"/>
-            <map type="Map"/>
+            <redMap type="Map" id="21290"/>
+            <blueMap type="Map"/>
             <phase type="Phase"/>
             <currentTeam type="Team"/>
             <timeLastMove type="float64"/>

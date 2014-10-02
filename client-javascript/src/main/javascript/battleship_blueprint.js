@@ -44,11 +44,6 @@
 			"flags": [],
 			"type": "list:battleship.state.Segment",
 			"hash": "lw8"
-		},
-		"team": {
-			"flags": [],
-			"type": "enum:RED, BLUE, OBSERVERS",
-			"hash": "+c8"
 		}
 	};
 	blueprint.classes["battleship.state.Segment"] =  {
@@ -102,10 +97,15 @@
 			"type": "list:battleship.state.Player",
 			"hash": "c48"
 		},
-		"map": {
+		"redMap": {
 			"flags": [],
 			"type": "battleship.state.Map",
 			"hash": "Uyo"
+		},
+		"blueMap": {
+			"flags": [],
+			"type": "battleship.state.Map",
+			"hash": "tPo"
 		},
 		"phase": {
 			"flags": [],
