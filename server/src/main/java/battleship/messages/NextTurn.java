@@ -311,21 +311,21 @@ public class NextTurn extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ 
 
 	public static final long _TYPE_ID = 4079438618512772748L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.GameInfo._TYPE_ID, battleship.messages.NextTurn._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInfo._TYPE_ID, battleship.messages.NextTurn._TYPE_ID };
 
 	public static final short _TYPE_ID_16BIT = -29368;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.NextTurn._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.NextTurn._TYPE_ID_16BIT };
 
 	public static final String _TYPE_ID_16BIT_BASE64 = "jUg";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.NextTurn._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.NextTurn._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.NextTurn._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.NextTurn._TYPE_ID_16BIT_BASE64;
 
 	public static final String _TYPE_NAME = "battleship.messages.NextTurn";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.GameInfo._TYPE_NAME, battleship.messages.NextTurn._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.NextTurn._TYPE_NAME };
 
 	public static final Field _team_METADATA = new Field("battleship.messages.NextTurn", "team", battleship.state.Team._TYPE, null, (short)-1585);
 	public static final Field _maxTime_METADATA = new Field("battleship.messages.NextTurn", "maxTime", se.culvertsoft.mgen.api.model.Float64Type.INSTANCE, null, (short)22152);

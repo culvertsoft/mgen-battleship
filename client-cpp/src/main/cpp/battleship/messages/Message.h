@@ -7,48 +7,25 @@
  ********************************************************************************************************************
  ********************************************************************************************************************/
 
-#ifndef BATTLESHIP_MESSAGES_FIRERESULT
-#define BATTLESHIP_MESSAGES_FIRERESULT
+#ifndef BATTLESHIP_MESSAGES_MESSAGE
+#define BATTLESHIP_MESSAGES_MESSAGE
 
-#include "battleship/messages/GameInfo.h"
-#include "battleship/state/Vec2.h"
+#include "mgen/classes/MGenBase.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class FireResult : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Message : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
-	bool m_hit;
-	battleship::state::Vec2 m_position;
-	bool _m_hit_isSet;
-	bool _m_position_isSet;
-
 public:
-	FireResult();
-	FireResult(const bool& hit,
-			const battleship::state::Vec2& position);
-	virtual ~FireResult();
-
-	const bool& getHit() const;
-	const battleship::state::Vec2& getPosition() const;
-
-	bool& getHitMutable();
-	battleship::state::Vec2& getPositionMutable();
-
-	FireResult& setHit(const bool& hit);
-	FireResult& setPosition(const battleship::state::Vec2& position);
+	Message();
+	virtual ~Message();
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
-	bool hasHit() const;
-	bool hasPosition() const;
-
-	FireResult& unsetHit();
-	FireResult& unsetPosition();
-
-	bool operator==(const FireResult& other) const;
-	bool operator!=(const FireResult& other) const;
+	bool operator==(const Message& other) const;
+	bool operator!=(const Message& other) const;
 
 
 							
@@ -65,35 +42,19 @@ public:
 public:
 	template<typename ReaderType, typename ReadContextType>
 	void _readField(const short fieldId, ReadContextType& context, ReaderType& reader) {
-		switch (fieldId) {
-		case _field_hit_id:
-			reader.readField(_field_hit_metadata(), context, getHitMutable());
-			break;
-		case _field_position_id:
-			reader.readField(_field_position_metadata(), context, getPositionMutable());
-			break;
-		default:
-			reader.handleUnknownField(fieldId, context);
-			break;
-		}
+		reader.handleUnknownField(fieldId, context);
 	}
 
 	template<typename VisitorType>
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
-				visitor.visit(getHit(), _field_hit_metadata());
-				visitor.visit(getPosition(), _field_position_metadata());
+				visitor.beginVisit(*this, 0);
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isHitSet(mgen::SHALLOW))
-					visitor.visit(getHit(), _field_hit_metadata());
-				if (_isPositionSet(mgen::SHALLOW))
-					visitor.visit(getPosition(), _field_position_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -104,18 +65,12 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
-				visitor.visit(getHitMutable(), _field_hit_metadata());
-				visitor.visit(getPositionMutable(), _field_position_metadata());
+				visitor.beginVisit(*this, 0);
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isHitSet(mgen::SHALLOW))
-					visitor.visit(getHitMutable(), _field_hit_metadata());
-				if (_isPositionSet(mgen::SHALLOW))
-					visitor.visit(getPositionMutable(), _field_position_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -139,21 +94,15 @@ public:
 
 	bool _isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const;
 
-	FireResult& _setHitSet(const bool state, const mgen::FieldSetDepth depth);
-	FireResult& _setPositionSet(const bool state, const mgen::FieldSetDepth depth);
-
-	FireResult& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
+	Message& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
 	int _numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const;
-
-	bool _isHitSet(const mgen::FieldSetDepth depth) const;
-	bool _isPositionSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
 	bool _equals(const mgen::MGenBase& other) const;
 
-	FireResult * _deepCopy() const;
+	Message * _deepCopy() const;
 
 	static mgen::MGenBase * _newInstance();
 
@@ -168,10 +117,10 @@ public:
  ********************************************************************************************************************
  ********************************************************************************************************************/	 		  
 		  
-	static const long long _type_id = 8695181952916377338LL;
+	static const long long _type_id = 5193397973584545788LL;
 	static const std::vector<long long>& _type_ids();
 
-	static const short _type_id_16bit = 31228;
+	static const short _type_id_16bit = 28358;
 	static const std::vector<short>& _type_ids_16bit();
 
 	static const std::string& _type_id_16bit_base64();
@@ -182,15 +131,11 @@ public:
 	static const std::string& _type_name();
 	static const std::vector<std::string>& _type_names();
 
-	static const mgen::Field& _field_hit_metadata();
-	static const mgen::Field& _field_position_metadata();
 
-	static const short _field_hit_id = 29175;
-	static const short _field_position_id = -26337;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 
-}; // End class FireResult
+}; // End class Message
 
 } // End namespace messages
 } // End namespace battleship

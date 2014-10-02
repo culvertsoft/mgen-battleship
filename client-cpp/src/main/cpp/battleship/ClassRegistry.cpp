@@ -23,6 +23,7 @@
 #include "battleship/messages/GameOver.cpp"
 #include "battleship/messages/TeamSelect.cpp"
 #include "battleship/messages/TeamSelectReply.cpp"
+#include "battleship/messages/Message.cpp"
 #include "battleship/state/Ship.cpp"
 #include "battleship/state/Segment.cpp"
 #include "battleship/state/Map.cpp"
@@ -53,6 +54,7 @@ ClassRegistry::ClassRegistry() {
 	add<battleship::messages::GameOver>();
 	add<battleship::messages::TeamSelect>();
 	add<battleship::messages::TeamSelectReply>();
+	add<battleship::messages::Message>();
 	add<battleship::state::Ship>();
 	add<battleship::state::Segment>();
 	add<battleship::state::Map>();
@@ -81,6 +83,7 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 	static const mgen::ClassRegistryEntry battleship_messages_GameOver(battleship::messages::GameOver::_type_ids(), battleship::messages::GameOver::_type_name(), battleship::messages::GameOver::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_TeamSelect(battleship::messages::TeamSelect::_type_ids(), battleship::messages::TeamSelect::_type_name(), battleship::messages::TeamSelect::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_TeamSelectReply(battleship::messages::TeamSelectReply::_type_ids(), battleship::messages::TeamSelectReply::_type_name(), battleship::messages::TeamSelectReply::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_messages_Message(battleship::messages::Message::_type_ids(), battleship::messages::Message::_type_name(), battleship::messages::Message::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Ship(battleship::state::Ship::_type_ids(), battleship::state::Ship::_type_name(), battleship::state::Ship::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Segment(battleship::state::Segment::_type_ids(), battleship::state::Segment::_type_name(), battleship::state::Segment::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Map(battleship::state::Map::_type_ids(), battleship::state::Map::_type_name(), battleship::state::Map::_newInstance);
@@ -91,64 +94,71 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 
 	std::size_t i = 0;
 	switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-		case battleship::messages::Connection::_type_id_16bit:
+		case battleship::messages::Message::_type_id_16bit:
 			switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-				case battleship::messages::Chat::_type_id_16bit:
-					return &battleship_messages_Chat;
-					break;
-				case battleship::messages::Login::_type_id_16bit:
-					return &battleship_messages_Login;
-					break;
-				case battleship::messages::LoginReply::_type_id_16bit:
-					return &battleship_messages_LoginReply;
-					break;
-				case battleship::messages::TeamSelect::_type_id_16bit:
-					return &battleship_messages_TeamSelect;
-					break;
-				case battleship::messages::TeamSelectReply::_type_id_16bit:
-					return &battleship_messages_TeamSelectReply;
-					break;
-				default:
-					return &battleship_messages_Connection;
-					break;
-			}
-			break;
-		case battleship::messages::GameInput::_type_id_16bit:
-			switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-				case battleship::messages::Fire::_type_id_16bit:
-					return &battleship_messages_Fire;
-					break;
-				case battleship::messages::Resign::_type_id_16bit:
-					return &battleship_messages_Resign;
-					break;
-				default:
-					return &battleship_messages_GameInput;
-					break;
-			}
-			break;
-		case battleship::messages::GameInfo::_type_id_16bit:
-			switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-				case battleship::messages::FireResult::_type_id_16bit:
-					return &battleship_messages_FireResult;
-					break;
-				case battleship::messages::PhaseChange::_type_id_16bit:
+				case battleship::messages::Connection::_type_id_16bit:
 					switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-						case battleship::messages::GameOver::_type_id_16bit:
-							return &battleship_messages_GameOver;
+						case battleship::messages::Chat::_type_id_16bit:
+							return &battleship_messages_Chat;
+							break;
+						case battleship::messages::Login::_type_id_16bit:
+							return &battleship_messages_Login;
+							break;
+						case battleship::messages::LoginReply::_type_id_16bit:
+							return &battleship_messages_LoginReply;
+							break;
+						case battleship::messages::TeamSelect::_type_id_16bit:
+							return &battleship_messages_TeamSelect;
+							break;
+						case battleship::messages::TeamSelectReply::_type_id_16bit:
+							return &battleship_messages_TeamSelectReply;
 							break;
 						default:
-							return &battleship_messages_PhaseChange;
+							return &battleship_messages_Connection;
 							break;
 					}
 					break;
-				case battleship::messages::Snapshot::_type_id_16bit:
-					return &battleship_messages_Snapshot;
+				case battleship::messages::GameInput::_type_id_16bit:
+					switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+						case battleship::messages::Fire::_type_id_16bit:
+							return &battleship_messages_Fire;
+							break;
+						case battleship::messages::Resign::_type_id_16bit:
+							return &battleship_messages_Resign;
+							break;
+						default:
+							return &battleship_messages_GameInput;
+							break;
+					}
 					break;
-				case battleship::messages::NextTurn::_type_id_16bit:
-					return &battleship_messages_NextTurn;
+				case battleship::messages::GameInfo::_type_id_16bit:
+					switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+						case battleship::messages::FireResult::_type_id_16bit:
+							return &battleship_messages_FireResult;
+							break;
+						case battleship::messages::PhaseChange::_type_id_16bit:
+							switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
+								case battleship::messages::GameOver::_type_id_16bit:
+									return &battleship_messages_GameOver;
+									break;
+								default:
+									return &battleship_messages_PhaseChange;
+									break;
+							}
+							break;
+						case battleship::messages::Snapshot::_type_id_16bit:
+							return &battleship_messages_Snapshot;
+							break;
+						case battleship::messages::NextTurn::_type_id_16bit:
+							return &battleship_messages_NextTurn;
+							break;
+						default:
+							return &battleship_messages_GameInfo;
+							break;
+					}
 					break;
 				default:
-					return &battleship_messages_GameInfo;
+					return &battleship_messages_Message;
 					break;
 			}
 			break;

@@ -1,9 +1,9 @@
 <Module>
     <Enums> </Enums>
     <Types>
-        <Connection> </Connection>
-        <GameInput> </GameInput>
-        <GameInfo> </GameInfo>
+        <Connection extends="Message"> </Connection>
+        <GameInput extends="Message"> </GameInput>
+        <GameInfo extends="Message"> </GameInfo>
         <Chat extends="Connection">
             <text type="string"/>
             <team type="battleship.state.Team"/>
@@ -13,6 +13,7 @@
         </Fire>
         <FireResult extends="GameInfo">
             <hit type="bool"/>
+            <position type="battleship.state.Vec2"/>
         </FireResult>
         <PhaseChange extends="GameInfo">
             <phase type="battleship.state.Phase"/>
@@ -42,5 +43,6 @@
             <result type="bool"/>
             <failReason type="string"/>
         </TeamSelectReply>
+        <Message> </Message>
     </Types>
 </Module>

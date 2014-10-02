@@ -15,9 +15,9 @@ import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
 /*custom_imports_begin*//*custom_imports_end*/
 
-public class GameInput extends Message /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Message extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
-	public GameInput() {
+	public Message() {
 		super();
 	}
 
@@ -30,20 +30,20 @@ public class GameInput extends Message /*custom_ifcs_begin*//*custom_ifcs_end*/ 
 
 	@Override
 	public int hashCode() {
-		return -962257424;
+		return -450447105;
 	}
 
 	@Override
 	public boolean equals(final Object other) {
 		if (other == null) return false;
 		if (other == this) return true;
-		if (GameInput.class != other.getClass()) return false;
+		if (Message.class != other.getClass()) return false;
 		return true;
 	}
 
 	@Override
-	public GameInput deepCopy() {
-		final GameInput out = new GameInput();
+	public Message deepCopy() {
+		final Message out = new Message();
 		return out;
 	}
 
@@ -144,7 +144,7 @@ public class GameInput extends Message /*custom_ifcs_begin*//*custom_ifcs_end*/ 
 		}
 	}
 
-	public GameInput _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
+	public Message _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		return this;
 	}
 
@@ -191,23 +191,23 @@ public class GameInput extends Message /*custom_ifcs_begin*//*custom_ifcs_end*/ 
  ********************************************************************************************************************/	 		  
 		  
 
-	public static final long _TYPE_ID = 20544504380178079L;
+	public static final long _TYPE_ID = 5193397973584545788L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInput._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID };
 
-	public static final short _TYPE_ID_16BIT = 31502;
+	public static final short _TYPE_ID_16BIT = 28358;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInput._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT };
 
-	public static final String _TYPE_ID_16BIT_BASE64 = "ew4";
+	public static final String _TYPE_ID_16BIT_BASE64 = "bsY";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInput._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInput._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64;
 
-	public static final String _TYPE_NAME = "battleship.messages.GameInput";
+	public static final String _TYPE_NAME = "battleship.messages.Message";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInput._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME };
 
 	public static final Field[] _FIELDS = {  };
 

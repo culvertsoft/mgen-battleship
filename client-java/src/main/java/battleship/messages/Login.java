@@ -255,21 +255,21 @@ public class Login extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	public static final long _TYPE_ID = 6201271849124169878L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.Connection._TYPE_ID, battleship.messages.Login._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.Connection._TYPE_ID, battleship.messages.Login._TYPE_ID };
 
 	public static final short _TYPE_ID_16BIT = -6764;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Connection._TYPE_ID_16BIT, battleship.messages.Login._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.Connection._TYPE_ID_16BIT, battleship.messages.Login._TYPE_ID_16BIT };
 
 	public static final String _TYPE_ID_16BIT_BASE64 = "5ZQ";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Connection._TYPE_ID_16BIT_BASE64, battleship.messages.Login._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.Connection._TYPE_ID_16BIT_BASE64, battleship.messages.Login._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Connection._TYPE_ID_16BIT_BASE64 + battleship.messages.Login._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.Connection._TYPE_ID_16BIT_BASE64 + battleship.messages.Login._TYPE_ID_16BIT_BASE64;
 
 	public static final String _TYPE_NAME = "battleship.messages.Login";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.Connection._TYPE_NAME, battleship.messages.Login._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.Connection._TYPE_NAME, battleship.messages.Login._TYPE_NAME };
 
 	public static final Field _name_METADATA = new Field("battleship.messages.Login", "name", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-28058);
 

@@ -41,15 +41,15 @@ void Handler::handleUnknown(mgen::MGenBase& o) {
 }
 
 void Handler::handle(battleship::messages::Connection& o) {
-	handleDiscard(o);
+	handle(static_cast<battleship::messages::Message&>(o));
 }
 
 void Handler::handle(battleship::messages::GameInput& o) {
-	handleDiscard(o);
+	handle(static_cast<battleship::messages::Message&>(o));
 }
 
 void Handler::handle(battleship::messages::GameInfo& o) {
-	handleDiscard(o);
+	handle(static_cast<battleship::messages::Message&>(o));
 }
 
 void Handler::handle(battleship::messages::Chat& o) {
@@ -98,6 +98,10 @@ void Handler::handle(battleship::messages::TeamSelect& o) {
 
 void Handler::handle(battleship::messages::TeamSelectReply& o) {
 	handle(static_cast<battleship::messages::Connection&>(o));
+}
+
+void Handler::handle(battleship::messages::Message& o) {
+	handleDiscard(o);
 }
 
 void Handler::handle(battleship::state::Ship& o) {

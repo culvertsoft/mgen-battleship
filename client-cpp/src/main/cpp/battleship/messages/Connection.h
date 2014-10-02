@@ -10,13 +10,13 @@
 #ifndef BATTLESHIP_MESSAGES_CONNECTION
 #define BATTLESHIP_MESSAGES_CONNECTION
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/Message.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class Connection : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Connection : public Message /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 public:
 	Connection();

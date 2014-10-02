@@ -247,27 +247,27 @@ const std::string& Chat::_type_name() {
 }
 
 const std::vector<long long>& Chat::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 7755333223434470491LL << 5570298698115942109LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 7755333223434470491LL << 5570298698115942109LL;
 	return out;
 }
 
 const std::vector<short>& Chat::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << 11623 << 17379;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << 11623 << 17379;
 	return out;
 }
 
 const std::vector<std::string>& Chat::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Connection" << "battleship.messages.Chat";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.Connection" << "battleship.messages.Chat";
 	return out;
 }
 
 const std::vector<std::string>& Chat::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "LWc" << "Q+M";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "LWc" << "Q+M";
 	return out;
 }
 
 const std::string& Chat::_type_ids_16bit_base64_string() {
-	static const std::string out("LWcQ+M");
+	static const std::string out("bsYLWcQ+M");
 	return out;
 }
 

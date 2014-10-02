@@ -267,27 +267,27 @@ const std::string& GameOver::_type_name() {
 }
 
 const std::vector<long long>& GameOver::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 3660020118300555442LL << 6310518169450536016LL << 4978160568720679319LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 6310518169450536016LL << 4978160568720679319LL;
 	return out;
 }
 
 const std::vector<short>& GameOver::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -21460 << -8601 << -2120;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << -8601 << -2120;
 	return out;
 }
 
 const std::vector<std::string>& GameOver::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInfo" << "battleship.messages.PhaseChange" << "battleship.messages.GameOver";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.PhaseChange" << "battleship.messages.GameOver";
 	return out;
 }
 
 const std::vector<std::string>& GameOver::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "rCw" << "3mc" << "97g";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "3mc" << "97g";
 	return out;
 }
 
 const std::string& GameOver::_type_ids_16bit_base64_string() {
-	static const std::string out("rCw3mc97g");
+	static const std::string out("bsYrCw3mc97g");
 	return out;
 }
 

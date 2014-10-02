@@ -10,13 +10,13 @@
 #ifndef BATTLESHIP_MESSAGES_GAMEINPUT
 #define BATTLESHIP_MESSAGES_GAMEINPUT
 
-#include "mgen/classes/MGenBase.h"
+#include "battleship/messages/Message.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class GameInput : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class GameInput : public Message /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 public:
 	GameInput();

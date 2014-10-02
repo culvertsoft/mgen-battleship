@@ -248,27 +248,27 @@ const std::string& NextTurn::_type_name() {
 }
 
 const std::vector<long long>& NextTurn::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 3660020118300555442LL << 4079438618512772748LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 4079438618512772748LL;
 	return out;
 }
 
 const std::vector<short>& NextTurn::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -21460 << -29368;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << -29368;
 	return out;
 }
 
 const std::vector<std::string>& NextTurn::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInfo" << "battleship.messages.NextTurn";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.NextTurn";
 	return out;
 }
 
 const std::vector<std::string>& NextTurn::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "rCw" << "jUg";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "jUg";
 	return out;
 }
 
 const std::string& NextTurn::_type_ids_16bit_base64_string() {
-	static const std::string out("rCwjUg");
+	static const std::string out("bsYrCwjUg");
 	return out;
 }
 

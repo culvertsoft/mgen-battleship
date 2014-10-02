@@ -19,15 +19,15 @@ public class Handler  {
 	protected void handleUnknown(MGenBase o) { handleDiscard(o); }
 
 	protected void handle(battleship.messages.Connection o) {
-		handleDiscard(o);
+		handle((battleship.messages.Message)o);
 	}
 
 	protected void handle(battleship.messages.GameInput o) {
-		handleDiscard(o);
+		handle((battleship.messages.Message)o);
 	}
 
 	protected void handle(battleship.messages.GameInfo o) {
-		handleDiscard(o);
+		handle((battleship.messages.Message)o);
 	}
 
 	protected void handle(battleship.messages.Chat o) {
@@ -76,6 +76,10 @@ public class Handler  {
 
 	protected void handle(battleship.messages.TeamSelectReply o) {
 		handle((battleship.messages.Connection)o);
+	}
+
+	protected void handle(battleship.messages.Message o) {
+		handleDiscard(o);
 	}
 
 	protected void handle(battleship.state.Ship o) {

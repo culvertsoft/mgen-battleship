@@ -255,21 +255,21 @@ public class PhaseChange extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end
 
 	public static final long _TYPE_ID = 6310518169450536016L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.GameInfo._TYPE_ID, battleship.messages.PhaseChange._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInfo._TYPE_ID, battleship.messages.PhaseChange._TYPE_ID };
 
 	public static final short _TYPE_ID_16BIT = -8601;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.PhaseChange._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.PhaseChange._TYPE_ID_16BIT };
 
 	public static final String _TYPE_ID_16BIT_BASE64 = "3mc";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64;
 
 	public static final String _TYPE_NAME = "battleship.messages.PhaseChange";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.GameInfo._TYPE_NAME, battleship.messages.PhaseChange._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.PhaseChange._TYPE_NAME };
 
 	public static final Field _phase_METADATA = new Field("battleship.messages.PhaseChange", "phase", battleship.state.Phase._TYPE, null, (short)7625);
 

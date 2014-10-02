@@ -17,12 +17,16 @@ namespace messages {
 
 FireResult::FireResult() : 
 		m_hit(false),
-		_m_hit_isSet(false) {
+		_m_hit_isSet(false),
+		_m_position_isSet(false) {
 }
 
-FireResult::FireResult(const bool& hit) : 
+FireResult::FireResult(const bool& hit, 
+			const battleship::state::Vec2& position) : 
 		m_hit(hit),
-		_m_hit_isSet(true) {
+		m_position(position),
+		_m_hit_isSet(true),
+		_m_position_isSet(true) {
 }
 
 FireResult::~FireResult() {
@@ -32,14 +36,29 @@ const bool& FireResult::getHit() const {
 	return m_hit;
 }
 
+const battleship::state::Vec2& FireResult::getPosition() const {
+	return m_position;
+}
+
 bool& FireResult::getHitMutable() {
 	_m_hit_isSet = true;
 	return m_hit;
 }
 
+battleship::state::Vec2& FireResult::getPositionMutable() {
+	_m_position_isSet = true;
+	return m_position;
+}
+
 FireResult& FireResult::setHit(const bool& hit) {
 	m_hit = hit;
 	_m_hit_isSet = true;
+	return *this;
+}
+
+FireResult& FireResult::setPosition(const battleship::state::Vec2& position) {
+	m_position = position;
+	_m_position_isSet = true;
 	return *this;
 }
 
@@ -49,15 +68,26 @@ bool FireResult::hasHit() const {
 	return _isHitSet(mgen::SHALLOW);
 }
 
+bool FireResult::hasPosition() const {
+	return _isPositionSet(mgen::SHALLOW);
+}
+
 FireResult& FireResult::unsetHit() {
 	_setHitSet(false, mgen::SHALLOW);
+	return *this;
+}
+
+FireResult& FireResult::unsetPosition() {
+	_setPositionSet(false, mgen::SHALLOW);
 	return *this;
 }
 
 bool FireResult::operator==(const FireResult& other) const {
 	return true
 		 && _isHitSet(mgen::SHALLOW) == other._isHitSet(mgen::SHALLOW)
-		 && getHit() == other.getHit();
+		 && _isPositionSet(mgen::SHALLOW) == other._isPositionSet(mgen::SHALLOW)
+		 && getHit() == other.getHit()
+		 && getPosition() == other.getPosition();
 }
 
 bool FireResult::operator!=(const FireResult& other) const {
@@ -80,13 +110,15 @@ const mgen::Field * FireResult::_fieldById(const short id) const {
 	switch (id) {
 	case _field_hit_id:
 		return &_field_hit_metadata();
+	case _field_position_id:
+		return &_field_position_metadata();
 	default:
 		return 0;
 	}
 }
 
 const mgen::Field * FireResult::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("hit", &FireResult::_field_hit_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("hit", &FireResult::_field_hit_metadata())("position", &FireResult::_field_position_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -138,14 +170,23 @@ FireResult& FireResult::_setHitSet(const bool state, const mgen::FieldSetDepth d
 	return *this;
 }
 
+FireResult& FireResult::_setPositionSet(const bool state, const mgen::FieldSetDepth depth) {
+	if (depth == mgen::DEEP)
+		m_position._setAllFieldsSet(state, mgen::DEEP);
+	_m_position_isSet = state;
+	return *this;
+}
+
 FireResult& FireResult::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
 	_setHitSet(state, depth);
+	_setPositionSet(state, depth);
 	return *this;
 }
 
 int FireResult::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const {
 	int out = 0;
 	out += _isHitSet(depth) ? 1 : 0;
+	out += _isPositionSet(depth) ? 1 : 0;
 	return out;
 }
 
@@ -153,6 +194,8 @@ bool FireResult::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth
 	switch(field.id()) {
 		case (_field_hit_id):
 			return _isHitSet(depth);
+		case (_field_position_id):
+			return _isPositionSet(depth);
 		default:
 			return false;
 	}
@@ -162,11 +205,20 @@ bool FireResult::_isHitSet(const mgen::FieldSetDepth depth) const {
 	return _m_hit_isSet;
 }
 
+bool FireResult::_isPositionSet(const mgen::FieldSetDepth depth) const {
+	if (depth == mgen::SHALLOW) {
+		return _m_position_isSet;
+	} else {
+		return _m_position_isSet && mgen::validation::validateFieldDeep(getPosition());
+	}
+}
+
 bool FireResult::_validate(const mgen::FieldSetDepth depth) const { 
 	if (depth == mgen::SHALLOW) {
 		return true;
 	} else {
-		return true;
+		return true
+				&& (!_isPositionSet(mgen::SHALLOW) || _isPositionSet(mgen::DEEP));
 	}
 }
 
@@ -200,27 +252,27 @@ const std::string& FireResult::_type_name() {
 }
 
 const std::vector<long long>& FireResult::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 3660020118300555442LL << 8695181952916377338LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 8695181952916377338LL;
 	return out;
 }
 
 const std::vector<short>& FireResult::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -21460 << 31228;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << 31228;
 	return out;
 }
 
 const std::vector<std::string>& FireResult::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInfo" << "battleship.messages.FireResult";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.FireResult";
 	return out;
 }
 
 const std::vector<std::string>& FireResult::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "rCw" << "efw";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "efw";
 	return out;
 }
 
 const std::string& FireResult::_type_ids_16bit_base64_string() {
-	static const std::string out("rCwefw");
+	static const std::string out("bsYrCwefw");
 	return out;
 }
 
@@ -230,12 +282,17 @@ const std::string& FireResult::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& FireResult::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_hit_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_hit_metadata() << _field_position_metadata();
 	return out;
 }
 
 const mgen::Field& FireResult::_field_hit_metadata() {
 	static const mgen::Field out(29175, "hit");
+	return out;
+}
+
+const mgen::Field& FireResult::_field_position_metadata() {
+	static const mgen::Field out(-26337, "position");
 	return out;
 }
 

@@ -30,6 +30,7 @@ class Resign;
 class GameOver;
 class TeamSelect;
 class TeamSelectReply;
+class Message;
 
 } // End namespace messages
 } // End namespace battleship

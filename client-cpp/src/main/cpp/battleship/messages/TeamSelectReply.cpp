@@ -247,27 +247,27 @@ const std::string& TeamSelectReply::_type_name() {
 }
 
 const std::vector<long long>& TeamSelectReply::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 7755333223434470491LL << 7126685645384091317LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 7755333223434470491LL << 7126685645384091317LL;
 	return out;
 }
 
 const std::vector<short>& TeamSelectReply::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << 11623 << -9272;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << 11623 << -9272;
 	return out;
 }
 
 const std::vector<std::string>& TeamSelectReply::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Connection" << "battleship.messages.TeamSelectReply";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.Connection" << "battleship.messages.TeamSelectReply";
 	return out;
 }
 
 const std::vector<std::string>& TeamSelectReply::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "LWc" << "28g";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "LWc" << "28g";
 	return out;
 }
 
 const std::string& TeamSelectReply::_type_ids_16bit_base64_string() {
-	static const std::string out("LWc28g");
+	static const std::string out("bsYLWc28g");
 	return out;
 }
 

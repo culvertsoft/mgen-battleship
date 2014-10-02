@@ -204,27 +204,27 @@ const std::string& Snapshot::_type_name() {
 }
 
 const std::vector<long long>& Snapshot::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 3660020118300555442LL << 7637425245762246339LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 7637425245762246339LL;
 	return out;
 }
 
 const std::vector<short>& Snapshot::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -21460 << -10286;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << -10286;
 	return out;
 }
 
 const std::vector<std::string>& Snapshot::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInfo" << "battleship.messages.Snapshot";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.Snapshot";
 	return out;
 }
 
 const std::vector<std::string>& Snapshot::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "rCw" << "19I";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "19I";
 	return out;
 }
 
 const std::string& Snapshot::_type_ids_16bit_base64_string() {
-	static const std::string out("rCw19I");
+	static const std::string out("bsYrCw19I");
 	return out;
 }
 

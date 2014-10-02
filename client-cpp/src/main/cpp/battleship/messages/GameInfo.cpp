@@ -144,27 +144,27 @@ const std::string& GameInfo::_type_name() {
 }
 
 const std::vector<long long>& GameInfo::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 3660020118300555442LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL;
 	return out;
 }
 
 const std::vector<short>& GameInfo::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << -21460;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460;
 	return out;
 }
 
 const std::vector<std::string>& GameInfo::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInfo";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo";
 	return out;
 }
 
 const std::vector<std::string>& GameInfo::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "rCw";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw";
 	return out;
 }
 
 const std::string& GameInfo::_type_ids_16bit_base64_string() {
-	static const std::string out("rCw");
+	static const std::string out("bsYrCw");
 	return out;
 }
 

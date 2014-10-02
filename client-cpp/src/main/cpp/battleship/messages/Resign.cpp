@@ -144,27 +144,27 @@ const std::string& Resign::_type_name() {
 }
 
 const std::vector<long long>& Resign::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 20544504380178079LL << 2326114317782751943LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 20544504380178079LL << 2326114317782751943LL;
 	return out;
 }
 
 const std::vector<short>& Resign::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << 31502 << 932;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << 31502 << 932;
 	return out;
 }
 
 const std::vector<std::string>& Resign::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.GameInput" << "battleship.messages.Resign";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInput" << "battleship.messages.Resign";
 	return out;
 }
 
 const std::vector<std::string>& Resign::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "ew4" << "A6Q";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "ew4" << "A6Q";
 	return out;
 }
 
 const std::string& Resign::_type_ids_16bit_base64_string() {
-	static const std::string out("ew4A6Q");
+	static const std::string out("bsYew4A6Q");
 	return out;
 }
 
