@@ -36,7 +36,7 @@
             <currentTeam type="Team"/>
             <timeLastMove type="float64"/>
         </Game>
-        <Vec2>
+        <Vec2 id="498">
             <x type="int32"/>
             <y type="int32"/>
         </Vec2>
