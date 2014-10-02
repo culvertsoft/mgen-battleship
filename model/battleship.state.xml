@@ -13,7 +13,7 @@
     </Enums>
     <Types>
         <Ship>
-            <points type="Segment"/>
+            <points type="list[Segment]"/>
             <team type="Team"/>
         </Ship>
         <Segment>

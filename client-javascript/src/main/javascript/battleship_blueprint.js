@@ -42,7 +42,7 @@
 		"__t": "bkI",
 		"points": {
 			"flags": [],
-			"type": "battleship.state.Segment",
+			"type": "list:battleship.state.Segment",
 			"hash": "lw8"
 		},
 		"team": {

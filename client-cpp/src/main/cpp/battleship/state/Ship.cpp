@@ -21,7 +21,7 @@ Ship::Ship() :
 		_m_team_isSet(false) {
 }
 
-Ship::Ship(const Segment& points, 
+Ship::Ship(const std::vector<Segment> & points, 
 			const Team& team) : 
 		m_points(points),
 		m_team(team),
@@ -32,7 +32,7 @@ Ship::Ship(const Segment& points,
 Ship::~Ship() {
 }
 
-const Segment& Ship::getPoints() const {
+const std::vector<Segment> & Ship::getPoints() const {
 	return m_points;
 }
 
@@ -40,7 +40,7 @@ const Team& Ship::getTeam() const {
 	return m_team;
 }
 
-Segment& Ship::getPointsMutable() {
+std::vector<Segment> & Ship::getPointsMutable() {
 	_m_points_isSet = true;
 	return m_points;
 }
@@ -50,7 +50,7 @@ Team& Ship::getTeamMutable() {
 	return m_team;
 }
 
-Ship& Ship::setPoints(const Segment& points) {
+Ship& Ship::setPoints(const std::vector<Segment> & points) {
 	m_points = points;
 	_m_points_isSet = true;
 	return *this;
@@ -164,8 +164,10 @@ const std::vector<mgen::Field>& Ship::_fieldMetadatas() const {
 }
 
 Ship& Ship::_setPointsSet(const bool state, const mgen::FieldSetDepth depth) {
-	if (depth == mgen::DEEP)
-		m_points._setAllFieldsSet(state, mgen::DEEP);
+	if (!state)
+		m_points.clear();
+	else if (depth == mgen::DEEP)
+		mgen::validation::setFieldSetDeep(m_points);
 	_m_points_isSet = state;
 	return *this;
 }

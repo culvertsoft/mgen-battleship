@@ -20,24 +20,24 @@ namespace state {
 
 class Ship : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
-	Segment m_points;
+	std::vector<Segment>  m_points;
 	Team m_team;
 	bool _m_points_isSet;
 	bool _m_team_isSet;
 
 public:
 	Ship();
-	Ship(const Segment& points,
+	Ship(const std::vector<Segment> & points,
 			const Team& team);
 	virtual ~Ship();
 
-	const Segment& getPoints() const;
+	const std::vector<Segment> & getPoints() const;
 	const Team& getTeam() const;
 
-	Segment& getPointsMutable();
+	std::vector<Segment> & getPointsMutable();
 	Team& getTeamMutable();
 
-	Ship& setPoints(const Segment& points);
+	Ship& setPoints(const std::vector<Segment> & points);
 	Ship& setTeam(const Team& team);
 
 	/*custom_methods_begin*//*custom_methods_end*/

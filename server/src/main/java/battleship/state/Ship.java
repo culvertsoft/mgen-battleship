@@ -22,7 +22,7 @@ import se.culvertsoft.mgen.javapack.util.Marker;
 
 public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
-	private Segment m_points;
+	private java.util.ArrayList<Segment> m_points;
 	private Team m_team;
 
 	public Ship() {
@@ -31,13 +31,13 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		m_team = null;
 	}
 
-	public Ship(final Segment points,
+	public Ship(final java.util.ArrayList<Segment> points,
 				final Team team) {
 		m_points = points;
 		m_team = team;
 	}
 
-	public Segment getPoints() {
+	public java.util.ArrayList<Segment> getPoints() {
 		return m_points;
 	}
 
@@ -63,7 +63,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	public Ship setPoints(final Segment points) {
+	public Ship setPoints(final java.util.ArrayList<Segment> points) {
 		m_points = points;
 		return this;
 	}
@@ -192,13 +192,14 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean _readField(final short fieldId,
 	                         final Object context,
 	                         final Reader reader) throws java.io.IOException {
 		switch(fieldId) {
 			case (_points_ID):
-				setPoints((Segment)reader.readMgenObjectField(_points_METADATA, context));
+				setPoints((java.util.ArrayList<Segment>)reader.readListField(_points_METADATA, context));
 				return true;
 			case (_team_ID):
 				setTeam((Team)reader.readEnumField(_team_METADATA, context));
@@ -239,7 +240,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 
 	public Ship _setPointsSet(final boolean state, final FieldSetDepth depth) {
 		if (state)
-			m_points = m_points != null ? m_points : new Segment();
+			m_points = m_points != null ? m_points : new java.util.ArrayList<Segment>();
 		else
 			m_points = null;
 		if (depth == FieldSetDepth.DEEP)
@@ -333,7 +334,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 
 	public static final String[] _TYPE_NAMES = { battleship.state.Ship._TYPE_NAME };
 
-	public static final Field _points_METADATA = new Field("battleship.state.Ship", "points", new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Segment", 3947935130376690974L), null, (short)-26865);
+	public static final Field _points_METADATA = new Field("battleship.state.Ship", "points", new se.culvertsoft.mgen.api.model.ListType(new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Segment", 3947935130376690974L)), null, (short)-26865);
 	public static final Field _team_METADATA = new Field("battleship.state.Ship", "team", battleship.state.Team._TYPE, null, (short)-1585);
 
 	public static final short _points_ID = (short)-26865;
