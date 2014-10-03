@@ -56,10 +56,10 @@ public abstract class NetworkClient {
 	/**
 	 * Called by the implementation when losing the connection.
 	 */
-	protected void onDisconnect() {
+	protected void onDisconnect(final String reason) {
 		m_speaker.dispatch(m_speaker.new Action() {		
 			public void apply(final NetworkListener listener) {
-				listener.onDisconnect();
+				listener.onDisconnect(reason);
 			}
 		});
 	}
@@ -75,6 +75,17 @@ public abstract class NetworkClient {
 		});
 	}
 
+	/**
+	 * Called by the implementation when an error on the networklayer occurs.
+	 */
+	protected void onNetworkError(final Exception error, final Object source) {
+		m_speaker.dispatch(m_speaker.new Action() {		
+			public void apply(final NetworkListener listener) {
+				listener.onError(error, source);
+			}
+		});
+	}
+	
 	private final Speaker<NetworkListener> m_speaker = new Speaker<>();
 
 }

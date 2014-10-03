@@ -13,7 +13,7 @@ public interface NetworkListener {
 	 * Called when the network layer disconnects from the mgen-battleship
 	 * server.
 	 */
-	void onDisconnect();
+	void onDisconnect(String reason);
 
 	/**
 	 * Called when the network layer receives a message
@@ -22,5 +22,16 @@ public interface NetworkListener {
 	 *            The message received
 	 */
 	void onMessage(Message message);
+
+	/**
+	 * Called when an error occurs on the network layer
+	 * 
+	 * @param error
+	 *            The error
+	 * 
+	 * @param source
+	 *            The source of the error (for internal debugging)
+	 */
+	void onError(Exception error, Object source);
 
 }
