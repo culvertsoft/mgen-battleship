@@ -77,6 +77,8 @@ public class Server {
 		public void onJoin(final Player player) {
 			m_players.put(m_currentClient, player);
 			// TODO: join logic
+			reply(new LoginReply(player.getUuid()));
+			// TODO: Announce somehow
 		}
 
 		@Override
@@ -98,15 +100,12 @@ public class Server {
 		@Override
 		protected void handle(final Login o) {
 			if (!m_players.containsKey(m_currentClient)) {
-				final Player player = new Player(
+				onJoin(new Player(
 						UUID.randomUUID().toString(),
 						o.getName(),
 						Team.OBSERVERS,
 						false,
-						new ArrayList<Shot>());
-				m_currentPlayer = player;
-				reply(new LoginReply(player.getUuid()));
-				onJoin(player);
+						new ArrayList<Shot>()));
 			}
 		}
 
