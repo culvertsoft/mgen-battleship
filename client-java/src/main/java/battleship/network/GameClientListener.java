@@ -2,6 +2,7 @@ package battleship.network;
 
 import battleship.Handler;
 import battleship.messages.Chat;
+import battleship.messages.Fire;
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
 import battleship.messages.LoginReply;
@@ -35,6 +36,16 @@ public abstract class GameClientListener extends Handler {
 	}
 
 	@Override
+	public void handle(LoginReply o) {
+		super.handle(o); // Default impl just forwards to super
+	}
+
+	@Override
+	public void handle(TeamSelectReply o) {
+		super.handle(o); // Default impl just forwards to super
+	}
+	
+	@Override
 	protected void handle(ShipPlacementReply o) {
 		super.handle(o); // Default impl just forwards to super
 	}
@@ -65,17 +76,7 @@ public abstract class GameClientListener extends Handler {
 	}
 
 	@Override
-	public void handle(LoginReply o) {
-		super.handle(o); // Default impl just forwards to super
-	}
-
-	@Override
 	public void handle(NextTurn o) {
-		super.handle(o); // Default impl just forwards to super
-	}
-
-	@Override
-	public void handle(Resign o) {
 		super.handle(o); // Default impl just forwards to super
 	}
 
@@ -84,15 +85,6 @@ public abstract class GameClientListener extends Handler {
 		super.handle(o); // Default impl just forwards to super
 	}
 
-	@Override
-	public void handle(TeamSelectReply o) {
-		super.handle(o); // Default impl just forwards to super
-	}
-
-	@Override
-	public void handle(Shot o) {
-		super.handle(o); // Default impl just forwards to super
-	}
 
 	// /////////////////////////////////////////////////////// //
 	// ////////////////////// PRIVATE /////////////////////// //
