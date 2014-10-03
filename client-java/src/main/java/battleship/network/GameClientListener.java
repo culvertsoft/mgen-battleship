@@ -9,6 +9,8 @@ import battleship.messages.Message;
 import battleship.messages.NextTurn;
 import battleship.messages.PhaseChange;
 import battleship.messages.Resign;
+import battleship.messages.ShipPlacementReply;
+import battleship.messages.ShipSunk;
 import battleship.messages.Snapshot;
 import battleship.messages.TeamSelectReply;
 import battleship.state.Shot;
@@ -33,43 +35,63 @@ public abstract class GameClientListener extends Handler {
 	}
 
 	@Override
+	protected void handle(ShipPlacementReply o) {
+		super.handle(o); // Default impl just forwards to super
+	}
+
+	@Override
+	protected void handle(ShipSunk o) {
+		super.handle(o); // Default impl just forwards to super
+	}
+
+	@Override
 	public void handle(Chat o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(FireResult o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(PhaseChange o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(Snapshot o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(LoginReply o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(NextTurn o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(Resign o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(GameOver o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(TeamSelectReply o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
 	public void handle(Shot o) {
+		super.handle(o); // Default impl just forwards to super
 	}
 
 	// /////////////////////////////////////////////////////// //

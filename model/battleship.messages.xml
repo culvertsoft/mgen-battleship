@@ -44,5 +44,16 @@
             <failReason type="string"/>
         </TeamSelectReply>
         <Message> </Message>
+        <ShipPlacement extends="GameInput">
+            <ships type="list[battleship.state.Ship]"/>
+        </ShipPlacement>
+        <ShipPlacementReply extends="GameInfo">
+            <result type="bool"/>
+            <failReason type="int32"/>
+        </ShipPlacementReply>
+        <ShipSunk extends="GameInfo">
+            <ship type="battleship.state.Ship"/>
+            <team type="battleship.state.Team"/>
+        </ShipSunk>
     </Types>
 </Module>

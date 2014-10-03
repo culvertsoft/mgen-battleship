@@ -48,6 +48,9 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 						case battleship::messages::Resign::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::Resign&>(object));
 							break;
+						case battleship::messages::ShipPlacement::_type_id_16bit:
+							handler.handle(static_cast<battleship::messages::ShipPlacement&>(object));
+							break;
 						default:
 							handler.handle(static_cast<battleship::messages::GameInput&>(object));
 							break;
@@ -73,6 +76,12 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 							break;
 						case battleship::messages::NextTurn::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::NextTurn&>(object));
+							break;
+						case battleship::messages::ShipPlacementReply::_type_id_16bit:
+							handler.handle(static_cast<battleship::messages::ShipPlacementReply&>(object));
+							break;
+						case battleship::messages::ShipSunk::_type_id_16bit:
+							handler.handle(static_cast<battleship::messages::ShipSunk&>(object));
 							break;
 						default:
 							handler.handle(static_cast<battleship::messages::GameInfo&>(object));

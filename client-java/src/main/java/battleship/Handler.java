@@ -82,6 +82,18 @@ public class Handler  {
 		handleDiscard(o);
 	}
 
+	protected void handle(battleship.messages.ShipPlacement o) {
+		handle((battleship.messages.GameInput)o);
+	}
+
+	protected void handle(battleship.messages.ShipPlacementReply o) {
+		handle((battleship.messages.GameInfo)o);
+	}
+
+	protected void handle(battleship.messages.ShipSunk o) {
+		handle((battleship.messages.GameInfo)o);
+	}
+
 	protected void handle(battleship.state.Ship o) {
 		handleDiscard(o);
 	}

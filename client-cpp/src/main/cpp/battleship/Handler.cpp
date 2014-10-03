@@ -19,6 +19,9 @@
 #include "battleship/messages/GameOver.h"
 #include "battleship/messages/TeamSelect.h"
 #include "battleship/messages/TeamSelectReply.h"
+#include "battleship/messages/ShipPlacement.h"
+#include "battleship/messages/ShipPlacementReply.h"
+#include "battleship/messages/ShipSunk.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Segment.h"
 #include "battleship/state/Map.h"
@@ -102,6 +105,18 @@ void Handler::handle(battleship::messages::TeamSelectReply& o) {
 
 void Handler::handle(battleship::messages::Message& o) {
 	handleDiscard(o);
+}
+
+void Handler::handle(battleship::messages::ShipPlacement& o) {
+	handle(static_cast<battleship::messages::GameInput&>(o));
+}
+
+void Handler::handle(battleship::messages::ShipPlacementReply& o) {
+	handle(static_cast<battleship::messages::GameInfo&>(o));
+}
+
+void Handler::handle(battleship::messages::ShipSunk& o) {
+	handle(static_cast<battleship::messages::GameInfo&>(o));
 }
 
 void Handler::handle(battleship::state::Ship& o) {

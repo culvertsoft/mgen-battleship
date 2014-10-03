@@ -139,6 +139,40 @@
 	blueprint.classes["battleship.messages.Message"] =  {
 		"__t": "bsY",
 	};
+	blueprint.classes["battleship.messages.ShipPlacement"] =  {
+		"__t": "bsYew45Qc",
+		"ships": {
+			"flags": [],
+			"type": "list:battleship.state.Ship",
+			"hash": "fR4"
+		}
+	};
+	blueprint.classes["battleship.messages.ShipPlacementReply"] =  {
+		"__t": "bsYrCwhKE",
+		"result": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "YEI"
+		},
+		"failReason": {
+			"flags": [],
+			"type": "int32",
+			"hash": "Bko"
+		}
+	};
+	blueprint.classes["battleship.messages.ShipSunk"] =  {
+		"__t": "bsYrCwnSY",
+		"ship": {
+			"flags": [],
+			"type": "battleship.state.Ship",
+			"hash": "oIY"
+		},
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
+		}
+	};
 	blueprint.classes["battleship.state.Ship"] =  {
 		"__t": "bkI",
 		"points": {
@@ -295,6 +329,8 @@
 								return "battleship.messages.Fire";
 							case "A6Q":
 								return "battleship.messages.Resign";
+							case "5Qc":
+								return "battleship.messages.ShipPlacement";
 						}
 						return "battleship.messages.GameInput";
 					case "rCw":
@@ -311,6 +347,10 @@
 								return "battleship.messages.Snapshot";
 							case "jUg":
 								return "battleship.messages.NextTurn";
+							case "hKE":
+								return "battleship.messages.ShipPlacementReply";
+							case "nSY":
+								return "battleship.messages.ShipSunk";
 						}
 						return "battleship.messages.GameInfo";
 				}

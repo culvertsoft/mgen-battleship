@@ -31,6 +31,9 @@ class GameOver;
 class TeamSelect;
 class TeamSelectReply;
 class Message;
+class ShipPlacement;
+class ShipPlacementReply;
+class ShipSunk;
 
 } // End namespace messages
 } // End namespace battleship

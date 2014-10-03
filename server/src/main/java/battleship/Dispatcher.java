@@ -54,6 +54,9 @@ public class Dispatcher  {
 							case battleship.messages.Resign._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.Resign)o);
 								break;
+							case battleship.messages.ShipPlacement._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.ShipPlacement)o);
+								break;
 							default:
 								handler.handle((battleship.messages.GameInput)o);
 								break;
@@ -79,6 +82,12 @@ public class Dispatcher  {
 								break;
 							case battleship.messages.NextTurn._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.NextTurn)o);
+								break;
+							case battleship.messages.ShipPlacementReply._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.ShipPlacementReply)o);
+								break;
+							case battleship.messages.ShipSunk._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.ShipSunk)o);
 								break;
 							default:
 								handler.handle((battleship.messages.GameInfo)o);

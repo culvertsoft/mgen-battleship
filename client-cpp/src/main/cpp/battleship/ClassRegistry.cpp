@@ -24,6 +24,9 @@
 #include "battleship/messages/TeamSelect.cpp"
 #include "battleship/messages/TeamSelectReply.cpp"
 #include "battleship/messages/Message.cpp"
+#include "battleship/messages/ShipPlacement.cpp"
+#include "battleship/messages/ShipPlacementReply.cpp"
+#include "battleship/messages/ShipSunk.cpp"
 #include "battleship/state/Ship.cpp"
 #include "battleship/state/Segment.cpp"
 #include "battleship/state/Map.cpp"
@@ -55,6 +58,9 @@ ClassRegistry::ClassRegistry() {
 	add<battleship::messages::TeamSelect>();
 	add<battleship::messages::TeamSelectReply>();
 	add<battleship::messages::Message>();
+	add<battleship::messages::ShipPlacement>();
+	add<battleship::messages::ShipPlacementReply>();
+	add<battleship::messages::ShipSunk>();
 	add<battleship::state::Ship>();
 	add<battleship::state::Segment>();
 	add<battleship::state::Map>();
@@ -84,6 +90,9 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 	static const mgen::ClassRegistryEntry battleship_messages_TeamSelect(battleship::messages::TeamSelect::_type_ids(), battleship::messages::TeamSelect::_type_name(), battleship::messages::TeamSelect::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_TeamSelectReply(battleship::messages::TeamSelectReply::_type_ids(), battleship::messages::TeamSelectReply::_type_name(), battleship::messages::TeamSelectReply::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_Message(battleship::messages::Message::_type_ids(), battleship::messages::Message::_type_name(), battleship::messages::Message::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacement(battleship::messages::ShipPlacement::_type_ids(), battleship::messages::ShipPlacement::_type_name(), battleship::messages::ShipPlacement::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacementReply(battleship::messages::ShipPlacementReply::_type_ids(), battleship::messages::ShipPlacementReply::_type_name(), battleship::messages::ShipPlacementReply::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_messages_ShipSunk(battleship::messages::ShipSunk::_type_ids(), battleship::messages::ShipSunk::_type_name(), battleship::messages::ShipSunk::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Ship(battleship::state::Ship::_type_ids(), battleship::state::Ship::_type_name(), battleship::state::Ship::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Segment(battleship::state::Segment::_type_ids(), battleship::state::Segment::_type_name(), battleship::state::Segment::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Map(battleship::state::Map::_type_ids(), battleship::state::Map::_type_name(), battleship::state::Map::_newInstance);
@@ -126,6 +135,9 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 						case battleship::messages::Resign::_type_id_16bit:
 							return &battleship_messages_Resign;
 							break;
+						case battleship::messages::ShipPlacement::_type_id_16bit:
+							return &battleship_messages_ShipPlacement;
+							break;
 						default:
 							return &battleship_messages_GameInput;
 							break;
@@ -151,6 +163,12 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 							break;
 						case battleship::messages::NextTurn::_type_id_16bit:
 							return &battleship_messages_NextTurn;
+							break;
+						case battleship::messages::ShipPlacementReply::_type_id_16bit:
+							return &battleship_messages_ShipPlacementReply;
+							break;
+						case battleship::messages::ShipSunk::_type_id_16bit:
+							return &battleship_messages_ShipSunk;
 							break;
 						default:
 							return &battleship_messages_GameInfo;
