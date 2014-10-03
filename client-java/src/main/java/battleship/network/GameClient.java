@@ -92,7 +92,7 @@ public class GameClient {
 
 		@Override
 		public void onError(Exception error, Object source) {
-			m_listener.onNetworkError(error, source);			
+			m_listener.onNetworkError(error, source);
 		}
 
 	}

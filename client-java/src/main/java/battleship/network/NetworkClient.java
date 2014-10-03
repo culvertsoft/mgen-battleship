@@ -9,6 +9,11 @@ public abstract class NetworkClient {
 	 * Starts this clients internal threads.
 	 */
 	public abstract void init();
+
+	/**
+	 * Stops this clients internal threads.
+	 */
+	public abstract void close();
 	
 	/**
 	 * You call this to send a message to the server.
