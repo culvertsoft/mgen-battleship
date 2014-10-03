@@ -1,7 +1,7 @@
 <Project>
     <Generator name="Java">
         <class_path>se.culvertsoft.mgen.javapack.generator.JavaGenerator</class_path>
-        <output_path>client-java/src/main/java</output_path>
+        <output_path>common-java/src/main/java</output_path>
         <classregistry_path>battleship</classregistry_path>
     </Generator>
     <Generator name="C++">
@@ -16,11 +16,6 @@
         <classregistry_path></classregistry_path>
         <output_filename>battleship_blueprint.js</output_filename>
         <classregistryblueprint>battleship_blueprint</classregistryblueprint>
-    </Generator>
-    <Generator name="Java">
-        <class_path>se.culvertsoft.mgen.javapack.generator.JavaGenerator</class_path>
-        <output_path>server/src/main/java</output_path>
-        <classregistry_path>battleship</classregistry_path>
     </Generator>
     <Sources>
         <Source>battleship.messages.xml</Source>
