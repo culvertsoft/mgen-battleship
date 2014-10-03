@@ -46,12 +46,12 @@ public abstract class GameClientListener extends Handler {
 	}
 	
 	@Override
-	protected void handle(ShipPlacementReply o) {
+	public void handle(ShipPlacementReply o) {
 		super.handle(o); // Default impl just forwards to super
 	}
 
 	@Override
-	protected void handle(ShipSunk o) {
+	public void handle(ShipSunk o) {
 		super.handle(o); // Default impl just forwards to super
 	}
 
