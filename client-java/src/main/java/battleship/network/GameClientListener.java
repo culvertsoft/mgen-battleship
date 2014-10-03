@@ -29,9 +29,12 @@ public abstract class GameClientListener extends Handler {
 	/**
 	 * Override this to see when you disconnect
 	 */
-	public void onDisconnect() {
+	public void onDisconnect(String reason) {
 	}
 
+	public void onNetworkError(Exception error, Object source) {		
+	}
+	
 	@Override
 	public void handle(LoginReply o) {
 		super.handle(o); // Default impl just forwards to super
@@ -90,5 +93,6 @@ public abstract class GameClientListener extends Handler {
 	void dispatch(Message o) {
 		super.handle(o);
 	}
+
 
 }

@@ -1,11 +1,11 @@
 package battleship.network;
 
-import battleship.messages.Message;
 import se.culvertsoft.mnet.NodeSettings;
 import se.culvertsoft.mnet.api.Connection;
 import se.culvertsoft.mnet.api.Route;
 import se.culvertsoft.mnet.backend.WebsockBackendSettings;
 import se.culvertsoft.mnet.client.MNetClient;
+import battleship.messages.Message;
 
 public class MNetNetworkClient extends NetworkClient {
 

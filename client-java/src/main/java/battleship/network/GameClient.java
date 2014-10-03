@@ -78,16 +78,21 @@ public class GameClient {
 		}
 
 		@Override
-		public void onDisconnect() {
-			m_connected = false;
-			m_listener.onDisconnect();
-		}
-
-		@Override
 		public void onConnect() {
 			m_connected = true;
 			m_network.sendMessage(new Login(m_nickName));
 			m_listener.onConnect();
+		}
+
+		@Override
+		public void onDisconnect(String reason) {
+			m_connected = false;
+			m_listener.onDisconnect(reason);
+		}
+
+		@Override
+		public void onError(Exception error, Object source) {
+			m_listener.onNetworkError(error, source);			
 		}
 
 	}
