@@ -123,12 +123,12 @@ public class Server {
 	private final NetworkListener m_networkListener = new NetworkListener() {
 
 		@Override
-		public void onConnect(final Client client) {
+		public synchronized void onConnect(final Client client) {
 			System.out.println("client connected, waiting for login from: " + client);
 		}
 
 		@Override
-		public void onDisconnect(final Client client, final String reason) {
+		public synchronized void onDisconnect(final Client client, final String reason) {
 			if (m_players.containsKey(client)) {
 				m_currentClient = client;
 				m_currentPlayer = m_players.get(client);
@@ -137,14 +137,14 @@ public class Server {
 		}
 
 		@Override
-		public void onMessage(final Client client, final Message message) {
+		public synchronized void onMessage(final Client client, final Message message) {
 			m_currentClient = client;
 			m_currentPlayer = m_players.get(client);
 			Dispatcher.dispatch(message, m_gameListener);
 		}
 
 		@Override
-		public void onError(final Exception error, final Object source) {
+		public synchronized void onError(final Exception error, final Object source) {
 			System.err.println("Error from: " + source);
 			error.printStackTrace();
 		}
