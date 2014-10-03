@@ -1,11 +1,17 @@
 package battleship.network;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import battleship.Dispatcher;
 import battleship.messages.Chat;
 import battleship.messages.Fire;
 import battleship.messages.Login;
 import battleship.messages.Message;
+import battleship.messages.Resign;
+import battleship.messages.ShipPlacement;
 import battleship.messages.TeamSelect;
+import battleship.state.Ship;
 import battleship.state.Team;
 import battleship.state.Vec2;
 
@@ -23,6 +29,13 @@ public class GameClient {
 	 */
 	public void init() {
 		m_network.init();
+	}
+
+	/**
+	 * Closes the underlying threads of the attached network interface
+	 */
+	public void close() {
+		m_network.close();
 	}
 
 	/**
@@ -65,6 +78,23 @@ public class GameClient {
 	 */
 	public void chat(final String message, final Team team) {
 		m_network.sendMessage(new Chat(message, team));
+	}
+
+	/**
+	 * Sends a resignation message (you give up this match).
+	 */
+	public void resign() {
+		m_network.sendMessage(new Resign());
+	}
+
+	/**
+	 * Sends a message to place ships (before starting a game)
+	 * 
+	 * @param ships
+	 *            The placed shipts
+	 */
+	public void placeShips(final List<Ship> ships) {
+		m_network.sendMessage(new ShipPlacement(new ArrayList<>(ships)));
 	}
 
 	// /////////////////////////////////////////////////////// //
