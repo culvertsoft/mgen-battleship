@@ -2,19 +2,16 @@ package battleship.network;
 
 import battleship.Handler;
 import battleship.messages.Chat;
-import battleship.messages.Fire;
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
 import battleship.messages.LoginReply;
 import battleship.messages.Message;
 import battleship.messages.NextTurn;
 import battleship.messages.PhaseChange;
-import battleship.messages.Resign;
 import battleship.messages.ShipPlacementReply;
 import battleship.messages.ShipSunk;
 import battleship.messages.Snapshot;
 import battleship.messages.TeamSelectReply;
-import battleship.state.Shot;
 
 /**
  * Implement these methods to receive messages from the server
