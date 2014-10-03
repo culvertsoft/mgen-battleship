@@ -22,6 +22,7 @@
 #include "battleship/messages/ShipPlacement.h"
 #include "battleship/messages/ShipPlacementReply.h"
 #include "battleship/messages/ShipSunk.h"
+#include "battleship/messages/SetReady.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Segment.h"
 #include "battleship/state/Map.h"
@@ -117,6 +118,10 @@ void Handler::handle(battleship::messages::ShipPlacementReply& o) {
 
 void Handler::handle(battleship::messages::ShipSunk& o) {
 	handle(static_cast<battleship::messages::GameInfo&>(o));
+}
+
+void Handler::handle(battleship::messages::SetReady& o) {
+	handle(static_cast<battleship::messages::Connection&>(o));
 }
 
 void Handler::handle(battleship::state::Ship& o) {

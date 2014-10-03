@@ -27,6 +27,7 @@
 #include "battleship/messages/ShipPlacement.cpp"
 #include "battleship/messages/ShipPlacementReply.cpp"
 #include "battleship/messages/ShipSunk.cpp"
+#include "battleship/messages/SetReady.cpp"
 #include "battleship/state/Ship.cpp"
 #include "battleship/state/Segment.cpp"
 #include "battleship/state/Map.cpp"
@@ -61,6 +62,7 @@ ClassRegistry::ClassRegistry() {
 	add<battleship::messages::ShipPlacement>();
 	add<battleship::messages::ShipPlacementReply>();
 	add<battleship::messages::ShipSunk>();
+	add<battleship::messages::SetReady>();
 	add<battleship::state::Ship>();
 	add<battleship::state::Segment>();
 	add<battleship::state::Map>();
@@ -93,6 +95,7 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacement(battleship::messages::ShipPlacement::_type_ids(), battleship::messages::ShipPlacement::_type_name(), battleship::messages::ShipPlacement::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacementReply(battleship::messages::ShipPlacementReply::_type_ids(), battleship::messages::ShipPlacementReply::_type_name(), battleship::messages::ShipPlacementReply::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_ShipSunk(battleship::messages::ShipSunk::_type_ids(), battleship::messages::ShipSunk::_type_name(), battleship::messages::ShipSunk::_newInstance);
+	static const mgen::ClassRegistryEntry battleship_messages_SetReady(battleship::messages::SetReady::_type_ids(), battleship::messages::SetReady::_type_name(), battleship::messages::SetReady::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Ship(battleship::state::Ship::_type_ids(), battleship::state::Ship::_type_name(), battleship::state::Ship::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Segment(battleship::state::Segment::_type_ids(), battleship::state::Segment::_type_name(), battleship::state::Segment::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_state_Map(battleship::state::Map::_type_ids(), battleship::state::Map::_type_name(), battleship::state::Map::_newInstance);
@@ -121,6 +124,9 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 							break;
 						case battleship::messages::TeamSelectReply::_type_id_16bit:
 							return &battleship_messages_TeamSelectReply;
+							break;
+						case battleship::messages::SetReady::_type_id_16bit:
+							return &battleship_messages_SetReady;
 							break;
 						default:
 							return &battleship_messages_Connection;

@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import battleship.Dispatcher;
 import battleship.messages.Chat;
 import battleship.messages.Fire;
 import battleship.messages.Login;
+import battleship.messages.LoginReply;
 import battleship.messages.Message;
 import battleship.messages.Resign;
+import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.TeamSelect;
 import battleship.state.Player;
+import battleship.state.Shot;
+import battleship.state.Team;
 
 public class Server {
 
@@ -70,34 +75,49 @@ public class Server {
 
 		@Override
 		public void onJoin(final Player player) {
-			// TODO Auto-generated method stub
+			m_players.put(m_currentClient, player);
+			// TODO: join logic
 		}
 
 		@Override
 		public void onLeft(final Player player, final String reason) {
-			// TODO Auto-generated method stub
+			// TODO: Leave logic
+			m_players.remove(m_currentClient);
 		}
 
 		@Override
 		protected void handle(final Chat o) {
 			// TODO Auto-generated method stub
-			super.handle(o);
 		}
 
 		@Override
 		protected void handle(final Fire o) {
 			// TODO Auto-generated method stub
-			super.handle(o);
 		}
 
 		@Override
 		protected void handle(final Login o) {
+			if (!m_players.containsKey(m_currentClient)) {
+				final Player player = new Player(
+						UUID.randomUUID().toString(),
+						o.getName(),
+						Team.OBSERVERS,
+						false,
+						new ArrayList<Shot>());
+				m_currentPlayer = player;
+				reply(new LoginReply(player.getUuid()));
+				onJoin(player);
+			}
+		}
+
+		@Override
+		protected void handle(final Resign o) {
 			// TODO Auto-generated method stub
 			super.handle(o);
 		}
 
 		@Override
-		protected void handle(final Resign o) {
+		protected void handle(final SetReady o) {
 			// TODO Auto-generated method stub
 			super.handle(o);
 		}

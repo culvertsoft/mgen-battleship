@@ -173,6 +173,14 @@
 			"hash": "+c8"
 		}
 	};
+	blueprint.classes["battleship.messages.SetReady"] =  {
+		"__t": "bsYLWcJrc",
+		"isReady": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "0kk"
+		}
+	};
 	blueprint.classes["battleship.state.Ship"] =  {
 		"__t": "bkI",
 		"points": {
@@ -321,6 +329,8 @@
 								return "battleship.messages.TeamSelect";
 							case "28g":
 								return "battleship.messages.TeamSelectReply";
+							case "Jrc":
+								return "battleship.messages.SetReady";
 						}
 						return "battleship.messages.Connection";
 					case "ew4":

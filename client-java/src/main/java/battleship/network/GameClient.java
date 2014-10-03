@@ -9,6 +9,7 @@ import battleship.messages.Fire;
 import battleship.messages.Login;
 import battleship.messages.Message;
 import battleship.messages.Resign;
+import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.TeamSelect;
 import battleship.state.Ship;
@@ -95,6 +96,16 @@ public class GameClient {
 	 */
 	public void placeShips(final List<Ship> ships) {
 		m_network.sendMessage(new ShipPlacement(new ArrayList<>(ships)));
+	}
+
+	/**
+	 * Sends a message that we are ready to start the game
+	 * 
+	 * @param ready
+	 *            If we are ready to start the game
+	 */
+	public void setReady(final boolean ready) {
+		m_network.sendMessage(new SetReady(ready));
 	}
 
 	// /////////////////////////////////////////////////////// //

@@ -35,6 +35,9 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 						case battleship::messages::TeamSelectReply::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::TeamSelectReply&>(object));
 							break;
+						case battleship::messages::SetReady::_type_id_16bit:
+							handler.handle(static_cast<battleship::messages::SetReady&>(object));
+							break;
 						default:
 							handler.handle(static_cast<battleship::messages::Connection&>(object));
 							break;

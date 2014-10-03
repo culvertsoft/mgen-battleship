@@ -34,6 +34,7 @@ class Message;
 class ShipPlacement;
 class ShipPlacementReply;
 class ShipSunk;
+class SetReady;
 
 } // End namespace messages
 } // End namespace battleship

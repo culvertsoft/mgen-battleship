@@ -94,6 +94,10 @@ public class Handler  {
 		handle((battleship.messages.GameInfo)o);
 	}
 
+	protected void handle(battleship.messages.SetReady o) {
+		handle((battleship.messages.Connection)o);
+	}
+
 	protected void handle(battleship.state.Ship o) {
 		handleDiscard(o);
 	}

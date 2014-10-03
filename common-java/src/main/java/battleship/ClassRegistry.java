@@ -33,6 +33,7 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 	public static ClassRegistryEntry battleship_messages_ShipPlacement = new ClassRegistryEntry(8410045829630410805L, battleship.messages.ShipPlacement._TYPE_IDS, "battleship.messages.ShipPlacement", new Ctor() { public MGenBase create() { return new battleship.messages.ShipPlacement(); } });
 	public static ClassRegistryEntry battleship_messages_ShipPlacementReply = new ClassRegistryEntry(7335008637833281350L, battleship.messages.ShipPlacementReply._TYPE_IDS, "battleship.messages.ShipPlacementReply", new Ctor() { public MGenBase create() { return new battleship.messages.ShipPlacementReply(); } });
 	public static ClassRegistryEntry battleship_messages_ShipSunk = new ClassRegistryEntry(2431416064824807951L, battleship.messages.ShipSunk._TYPE_IDS, "battleship.messages.ShipSunk", new Ctor() { public MGenBase create() { return new battleship.messages.ShipSunk(); } });
+	public static ClassRegistryEntry battleship_messages_SetReady = new ClassRegistryEntry(1279998461071668545L, battleship.messages.SetReady._TYPE_IDS, "battleship.messages.SetReady", new Ctor() { public MGenBase create() { return new battleship.messages.SetReady(); } });
 	public static ClassRegistryEntry battleship_state_Ship = new ClassRegistryEntry(5434834621073515272L, battleship.state.Ship._TYPE_IDS, "battleship.state.Ship", new Ctor() { public MGenBase create() { return new battleship.state.Ship(); } });
 	public static ClassRegistryEntry battleship_state_Segment = new ClassRegistryEntry(3947935130376690974L, battleship.state.Segment._TYPE_IDS, "battleship.state.Segment", new Ctor() { public MGenBase create() { return new battleship.state.Segment(); } });
 	public static ClassRegistryEntry battleship_state_Map = new ClassRegistryEntry(9078412533289593707L, battleship.state.Map._TYPE_IDS, "battleship.state.Map", new Ctor() { public MGenBase create() { return new battleship.state.Map(); } });
@@ -61,6 +62,7 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 		add(battleship_messages_ShipPlacement);
 		add(battleship_messages_ShipPlacementReply);
 		add(battleship_messages_ShipSunk);
+		add(battleship_messages_SetReady);
 		add(battleship_state_Ship);
 		add(battleship_state_Segment);
 		add(battleship_state_Map);
@@ -88,6 +90,8 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 								return battleship_messages_TeamSelect;
 							case battleship.messages.TeamSelectReply._TYPE_ID_16BIT:
 								return battleship_messages_TeamSelectReply;
+							case battleship.messages.SetReady._TYPE_ID_16BIT:
+								return battleship_messages_SetReady;
 							default:
 								return battleship_messages_Connection;
 						}
@@ -164,6 +168,8 @@ public class ClassRegistry extends se.culvertsoft.mgen.javapack.classes.ClassReg
 								return battleship_messages_TeamSelect;
 							case battleship.messages.TeamSelectReply._TYPE_ID_16BIT_BASE64:
 								return battleship_messages_TeamSelectReply;
+							case battleship.messages.SetReady._TYPE_ID_16BIT_BASE64:
+								return battleship_messages_SetReady;
 							default:
 								return battleship_messages_Connection;
 						}

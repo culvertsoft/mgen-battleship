@@ -41,6 +41,9 @@ public class Dispatcher  {
 							case battleship.messages.TeamSelectReply._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.TeamSelectReply)o);
 								break;
+							case battleship.messages.SetReady._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.SetReady)o);
+								break;
 							default:
 								handler.handle((battleship.messages.Connection)o);
 								break;

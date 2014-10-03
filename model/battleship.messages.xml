@@ -55,5 +55,8 @@
             <ship type="battleship.state.Ship"/>
             <team type="battleship.state.Team"/>
         </ShipSunk>
+        <SetReady extends="Connection">
+            <isReady type="bool"/>
+        </SetReady>
     </Types>
 </Module>
