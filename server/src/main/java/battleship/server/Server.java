@@ -16,6 +16,7 @@ import battleship.messages.IncorrectUsage;
 import battleship.messages.Login;
 import battleship.messages.LoginReply;
 import battleship.messages.Message;
+import battleship.messages.NextTurn;
 import battleship.messages.PhaseChange;
 import battleship.messages.PlayerChangedTeam;
 import battleship.messages.PlayerJoined;
@@ -29,7 +30,6 @@ import battleship.messages.TeamSelectReply;
 import battleship.state.Game;
 import battleship.state.Phase;
 import battleship.state.Player;
-import battleship.state.Segment;
 import battleship.state.Ship;
 import battleship.state.Shot;
 import battleship.state.Team;
@@ -143,26 +143,25 @@ public class Server {
 				return;
 			}
 
-			for (final Ship enemyShip : shipsOf(opposingTeam(player))) {
-				for (final Segment segment : enemyShip.getPoints()) {
-					if (segment.getPos().equals(o.getPosition())) {
-						segment.setAlive(false);
-						broadcast(new FireResult(true, o.getPosition(), player.getTeam()));
-						if (enemyShip.isSunk()) {
-							broadcast(new ShipSunk(enemyShip, opposingTeam(player)));
-
-							if (!isAlive(player)) {
-								handleGameOver(player.getTeam(), "All enemy ships sunk!");
-							}
-
-						}
-						broadcastSnapshot();
+			final Team opposingTeam = opposingTeam(player);
+			final Player opponent = playerOf(opposingTeam);
+			final Ship ship = mapOf(opposingTeam).shipAt(o.getPosition());
+			if (ship != null) {
+				ship.takeHit(o.getPosition());
+				broadcast(new FireResult(true, o.getPosition(), player.getTeam()));
+				if (ship.isSunk()) {
+					broadcast(new ShipSunk(ship, opposingTeam));
+					if (!isAlive(opponent)) {
+						handleGameOver(player.getTeam(), "All enemy ships sunk!");
 						return;
 					}
 				}
+			} else {
+				broadcast(new FireResult(false, o.getPosition(), player.getTeam()));
 			}
 
-			broadcast(new FireResult(false, o.getPosition(), player.getTeam()));
+			broadcastSnapshot();
+			nextTurn();
 
 		}
 
@@ -265,6 +264,23 @@ public class Server {
 		clearPlayersShips();
 	}
 
+	private void nextTurn(final Team team) {
+		game().setCurrentTeam(team);
+		broadcast(new NextTurn(team, getMaxTime()));
+	}
+
+	private void nextTurn() {
+		if (game().getCurrentTeam() == Team.BLUE) {
+			nextTurn(Team.RED);
+		} else {
+			nextTurn(Team.BLUE);
+		}
+	}
+
+	private double getMaxTime() {
+		return 10.0;
+	}
+
 	private void clearPlayersShips() {
 		game().setRedMap(createMap());
 		game().setBlueMap(createMap());
@@ -305,6 +321,7 @@ public class Server {
 
 	private void startGame() {
 		setPhase(Phase.PLAYING);
+		nextTurn();
 	}
 
 	private boolean playersReady() {
@@ -439,6 +456,17 @@ public class Server {
 	private void setPhase(Phase newPhase) {
 		m_game.setPhase(newPhase);
 		broadcast(new PhaseChange(newPhase));
+	}
+
+	private Player playerOf(final Team team) {
+		switch (team) {
+		case BLUE:
+			return game().getBluePlayer();
+		case RED:
+			return game().getRedPlayer();
+		default:
+			return null;
+		}
 	}
 
 	private Team opposingTeam(final Team team) {

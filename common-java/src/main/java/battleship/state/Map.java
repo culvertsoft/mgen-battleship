@@ -8,6 +8,8 @@
  ********************************************************************************************************************/
 package battleship.state;
 
+import battleship.messages.FireResult;
+import battleship.messages.ShipSunk;
 import se.culvertsoft.mgen.api.model.Field;
 import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
@@ -73,7 +75,20 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_
 		return this;
 	}
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/*custom_methods_begin*/
+
+	public Ship shipAt(final Vec2 position) {
+		for (final Ship ship : getShips()) {
+			for (final Segment segment : ship.getPoints()) {
+				if (segment.getPos().equals(position)) {
+					return ship;
+				}
+			}
+		}
+		return null;
+	}
+
+	/*custom_methods_end*/
 
 	@Override
 	public String toString() {
@@ -348,5 +363,6 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_
 	public static final short _size_ID = (short)-31998;
 
 	public static final Field[] _FIELDS = { _ships_METADATA, _size_METADATA };
+
 
 }

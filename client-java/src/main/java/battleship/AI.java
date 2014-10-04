@@ -25,15 +25,6 @@ public interface AI {
 	String selectName();
 
 	/**
-	 * Called when you should place your ships. Returning a bad value will cause
-	 * you to auto resign.
-	 * 
-	 * @return
-	 * 	The placement of your ships
-	 */
-	List<Ship> placeShips();
-
-	/**
 	 * Called when you should select a team. Note that the team may be full, and
 	 * you must wait for the assignedTeam(..) callback below to see what team
 	 * you are actually assigned to.
@@ -43,7 +34,15 @@ public interface AI {
 	 *         Return null or your current team if you don't want to change your
 	 *         team.
 	 */
-	Team selectTeam(final Game gameState);
+	Team selectTeam();
+
+	/**
+	 * Called when you should place your ships. Returning a bad value will cause
+	 * you to auto resign.
+	 * 
+	 * @return The placement of your ships
+	 */
+	List<Ship> placeShips();
 
 	/**
 	 * Called when it's your turn to make a shot

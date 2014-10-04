@@ -1,14 +1,11 @@
 package battleship;
 
-import java.util.List;
-
 import battleship.messages.Chat;
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
 import battleship.messages.LoginReply;
 import battleship.messages.NextTurn;
 import battleship.messages.PhaseChange;
-import battleship.messages.ShipPlacementReply;
 import battleship.messages.ShipSunk;
 import battleship.messages.Snapshot;
 import battleship.messages.TeamSelectReply;
@@ -17,7 +14,6 @@ import battleship.network.GameClientListener;
 import battleship.network.MNetNetworkClient;
 import battleship.state.Game;
 import battleship.state.Phase;
-import battleship.state.Ship;
 import battleship.state.Shot;
 import battleship.state.Team;
 
@@ -56,10 +52,11 @@ public class SimpleGameClient {
 	 * Overload this to handle chat messages
 	 * 
 	 * @param msg
-	 *            The chat messag received
+	 *            The chat message received
 	 */
 	public void onChat(final Chat msg) {
-		System.out.println(msg.getTeam() + ": " + msg.getText());
+		final String teamString = msg.hasTeam() ? msg.getTeam().toString() : "ALL";
+		System.out.println(msg.getFrom() + " (" + teamString + "): " + msg.getText());
 	}
 
 	/**
@@ -88,8 +85,7 @@ public class SimpleGameClient {
 				m_id = o.getUuid();
 				m_team = o.getTeam();
 				m_ai.assignedTeam(m_team);
-				m_ships = m_ai.placeShips();
-				sendShipPlacement();
+				selectTeamAndShips();
 			} else {
 				SimpleGameClient.this.onError(
 						new RuntimeException("Login failed: " + o.getFailReason()),
@@ -100,17 +96,8 @@ public class SimpleGameClient {
 		@Override
 		public void handle(TeamSelectReply o) {
 			if (o.getResult()) {
+				m_team = o.getTeam();
 				m_ai.assignedTeam(o.getTeam());
-				sendShipPlacement();
-			}
-		}
-
-		@Override
-		public void handle(ShipPlacementReply o) {
-			if (o.getResult()) {
-
-			} else {
-
 			}
 		}
 
@@ -133,10 +120,7 @@ public class SimpleGameClient {
 		public void handle(PhaseChange o) {
 			m_ai.gamePhaseChanged(o.getPhase());
 			if (o.getPhase() == Phase.LOBBY) {
-				m_ships = m_ai.placeShips();
-				m_team = m_ai.selectTeam(m_state);
-				sendTeam();
-				sendShipPlacement();
+				selectTeamAndShips();
 			}
 		}
 
@@ -165,18 +149,14 @@ public class SimpleGameClient {
 
 	}
 
-	private void sendTeam() {
-		m_gameClient.selectTeam(m_team);
-	}
-
-	private void sendShipPlacement() {
-		m_gameClient.placeShips(m_ships);
+	private void selectTeamAndShips() {
+		m_gameClient.selectTeam(m_ai.selectTeam());
+		m_gameClient.placeShips(m_ai.placeShips());
 	}
 
 	private Game m_state;
 	private String m_id;
 	private Team m_team;
-	private List<Ship> m_ships;
 	private final AI m_ai;
 	private final GameClientListener m_gameListener;
 	private final MNetNetworkClient m_networkClient;
