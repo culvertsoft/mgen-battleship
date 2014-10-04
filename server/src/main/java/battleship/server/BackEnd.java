@@ -6,4 +6,8 @@ public interface BackEnd {
 
 	void close();
 
+	public interface Factory {
+		BackEnd create(final int port, final NetworkListener listener);
+	}
+
 }

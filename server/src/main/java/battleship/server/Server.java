@@ -51,36 +51,29 @@ public class Server {
 	 * @param backend
 	 *            The backend to add
 	 */
-	public void addBackend(final BackEnd backend) {
-		m_backEnds.add(backend);
+	public Server addBackend(final int port, final BackEnd.Factory factory) {
+		m_backEnds.add(factory.create(port, m_networkListener));
+		return this;
 	}
 
 	/**
 	 * Starts this clients internal threads.
 	 */
-	public void init() {
+	public Server init() {
 		for (final BackEnd backend : m_backEnds) {
 			backend.init();
 		}
+		return this;
 	}
 
 	/**
 	 * Stops this clients internal threads.
 	 */
-	public void close() {
+	public Server close() {
 		for (final BackEnd backend : m_backEnds) {
 			backend.close();
 		}
-	}
-
-	/**
-	 * Gets the internal NetworkListener interface. This is attachable to new
-	 * BackEnds that may be added to this Server.
-	 * 
-	 * @return The internal NetworkListener interface of this Server.
-	 */
-	public NetworkListener networkListener() {
-		return m_networkListener;
+		return this;
 	}
 
 	// ////////////////////////////////////////////////////////////// //
@@ -214,13 +207,18 @@ public class Server {
 			final Player player = sendingPlayer();
 			final Team newTeam = o.getTeam();
 			if (isPreGame() && player != null) {
-				if (isTeamFree(newTeam)) {
-					player.setTeam(newTeam);
-					reply(new TeamSelectReply(true, null));
-					broadcast(new PlayerChangedTeam(player.getUuid()));
-					broadcastSnapshot();
+				final Team oldTeam = player.getTeam();
+				if (newTeam != oldTeam) {
+					if (isTeamFree(newTeam)) {
+						setPlayerTeam(player, newTeam, oldTeam);
+						reply(new TeamSelectReply(true, null));
+						broadcast(new PlayerChangedTeam(player.getUuid()));
+						broadcastSnapshot();
+					} else {
+						reply(new TeamSelectReply(false, "Team is full"));
+					}
 				} else {
-					reply(new TeamSelectReply(false, "Team is full"));
+					incorrectUsage("You're already on that team");
 				}
 			}
 		}
@@ -280,6 +278,35 @@ public class Server {
 		broadcast(new GameOver(Phase.LOBBY_POSTGAME, winner, reason));
 		setPhase(Phase.LOBBY_POSTGAME);
 		broadcastSnapshot();
+	}
+
+	private void setPlayerTeam(final Player player, final Team newTeam, final Team oldTeam) {
+
+		player.setTeam(newTeam);
+
+		switch (oldTeam) {
+		case RED:
+			game().unsetRedPlayer();
+			break;
+		case BLUE:
+			game().unsetBluePlayer();
+			break;
+		default:
+			game().getObservers().remove(player);
+			break;
+		}
+
+		switch (newTeam) {
+		case RED:
+			game().setRedPlayer(player);
+			break;
+		case BLUE:
+			game().setBluePlayer(player);
+			break;
+		default:
+			game().getObservers().add(player);
+			break;
+		}
 	}
 
 	private void resetToPreGameLobby() {

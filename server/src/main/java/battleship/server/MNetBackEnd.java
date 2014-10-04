@@ -67,6 +67,13 @@ public class MNetBackEnd extends se.culvertsoft.mnet.client.MNetClient implement
 			handleError(e, this);
 		}
 	}
+	
+	public static final BackEnd.Factory FACTORY = new Factory() {
+		@Override
+		public BackEnd create(final int port, final NetworkListener listener) {
+			return new MNetBackEnd(port, listener);
+		}
+	}; 
 
 	private final Map<Route, MNetClient> m_clients = new HashMap<>();
 	private final Serializer m_serializer = new Serializer();
