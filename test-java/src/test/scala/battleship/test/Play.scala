@@ -24,7 +24,7 @@ class Play {
     val p1 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
     val p2 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
         
-    Thread.sleep(1000)
+    Thread.sleep(5000)
 
     server.close()    
   }

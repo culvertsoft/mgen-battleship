@@ -281,6 +281,7 @@ public class Server {
 	// ////////////////////////////////////////////////////////////// //
 
 	private void handleGameOver(final Team winner, final String reason) {
+		System.out.println("Game over - " + reason + "  winner: " + winner);
 		broadcast(new GameOver(winner, reason));
 		setPhase(Phase.LOBBY);
 		broadcastSnapshot();

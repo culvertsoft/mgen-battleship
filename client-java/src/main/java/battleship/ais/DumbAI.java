@@ -71,7 +71,6 @@ public class DumbAI implements AI {
 
 	@Override
 	public void gameOver(GameOver gameOverMsg) {
-		System.out.println(gameOverMsg);
 	}
 
 	@Override
