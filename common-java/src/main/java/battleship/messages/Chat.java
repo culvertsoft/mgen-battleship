@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -22,17 +22,21 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private String m_text;
 	private battleship.state.Team m_team;
+	private String m_from;
 
 	public Chat() {
 		super();
 		m_text = null;
 		m_team = null;
+		m_from = null;
 	}
 
 	public Chat(final String text,
-				final battleship.state.Team team) {
+				final battleship.state.Team team,
+				final String from) {
 		m_text = text;
 		m_team = team;
+		m_from = from;
 	}
 
 	public String getText() {
@@ -43,12 +47,20 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return m_team;
 	}
 
+	public String getFrom() {
+		return m_from;
+	}
+
 	public boolean hasText() {
 		return _isTextSet(FieldSetDepth.SHALLOW);
 	}
 
 	public boolean hasTeam() {
 		return _isTeamSet(FieldSetDepth.SHALLOW);
+	}
+
+	public boolean hasFrom() {
+		return _isFromSet(FieldSetDepth.SHALLOW);
 	}
 
 	public Chat unsetText() {
@@ -61,6 +73,11 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return this;
 	}
 
+	public Chat unsetFrom() {
+		_setFromSet(false, FieldSetDepth.SHALLOW);
+		return this;
+	}
+
 	public Chat setText(final String text) {
 		m_text = text;
 		return this;
@@ -68,6 +85,11 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	public Chat setTeam(final battleship.state.Team team) {
 		m_team = team;
+		return this;
+	}
+
+	public Chat setFrom(final String from) {
+		m_from = from;
 		return this;
 	}
 
@@ -84,6 +106,7 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		int result = 1860058464;
 		result = _isTextSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getText(), _text_METADATA.typ())) : result;
 		result = _isTeamSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getTeam(), _team_METADATA.typ())) : result;
+		result = _isFromSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getFrom(), _from_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -96,8 +119,10 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return true
 		  && (_isTextSet(FieldSetDepth.SHALLOW) == o._isTextSet(FieldSetDepth.SHALLOW))
 		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
+		  && (_isFromSet(FieldSetDepth.SHALLOW) == o._isFromSet(FieldSetDepth.SHALLOW))
 		  && EqualityTester.areEqual(getText(), o.getText(), _text_METADATA.typ())
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ());
+		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ())
+		  && EqualityTester.areEqual(getFrom(), o.getFrom(), _from_METADATA.typ());
 	}
 
 	@Override
@@ -105,8 +130,10 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		final Chat out = new Chat();
 		out.setText(DeepCopyer.deepCopy(getText(), _text_METADATA.typ()));
 		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
+		out.setFrom(DeepCopyer.deepCopy(getFrom(), _from_METADATA.typ()));
 		out._setTextSet(_isTextSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		out._setFromSet(_isFromSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -172,9 +199,10 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 2);
+				visitor.beginVisit(this, 3);
 				visitor.visit(getText(), _text_METADATA);
 				visitor.visit(getTeam(), _team_METADATA);
+				visitor.visit(getFrom(), _from_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -184,6 +212,8 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 					visitor.visit(getText(), _text_METADATA);
 				if (_isTeamSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getTeam(), _team_METADATA);
+				if (_isFromSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getFrom(), _from_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -200,6 +230,9 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 				return true;
 			case (_team_ID):
 				setTeam((battleship.state.Team)reader.readEnumField(_team_METADATA, context));
+				return true;
+			case (_from_ID):
+				setFrom((String)reader.readStringField(_from_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -220,12 +253,18 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return m_team != null;
 	}
 
+	public boolean _isFromSet(final FieldSetDepth fieldSetDepth) {
+		return m_from != null;
+	}
+
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
 			case (_text_ID):
 				return _isTextSet(depth);
 			case (_team_ID):
 				return _isTeamSet(depth);
+			case (_from_ID):
+				return _isFromSet(depth);
 			default:
 				return false;
 		}
@@ -247,9 +286,18 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return this;
 	}
 
+	public Chat _setFromSet(final boolean state, final FieldSetDepth depth) {
+		if (state)
+			m_from = m_from != null ? m_from : "";
+		else
+			m_from = null;
+		return this;
+	}
+
 	public Chat _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setTextSet(state, depth);
 		_setTeamSet(state, depth);
+		_setFromSet(state, depth);
 		return this;
 	}
 
@@ -266,6 +314,7 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		int out = 0;
 		out += _isTextSet(depth) ? 1 : 0;
 		out += _isTeamSet(depth) ? 1 : 0;
+		out += _isFromSet(depth) ? 1 : 0;
 		return out;
 	}
 
@@ -276,6 +325,8 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 				return _text_METADATA;
 			case (_team_ID):
 				return _team_METADATA;
+			case (_from_ID):
+				return _from_METADATA;
 			default:
 				return null;
 		}
@@ -288,6 +339,8 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 				return _text_METADATA;
 			case ("team"):
 				return _team_METADATA;
+			case ("from"):
+				return _from_METADATA;
 			default:
 				return null;
 		}
@@ -326,10 +379,12 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	public static final Field _text_METADATA = new Field("battleship.messages.Chat", "text", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-15556);
 	public static final Field _team_METADATA = new Field("battleship.messages.Chat", "team", battleship.state.Team._TYPE, null, (short)-1585);
+	public static final Field _from_METADATA = new Field("battleship.messages.Chat", "from", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-5380);
 
 	public static final short _text_ID = (short)-15556;
 	public static final short _team_ID = (short)-1585;
+	public static final short _from_ID = (short)-5380;
 
-	public static final Field[] _FIELDS = { _text_METADATA, _team_METADATA };
+	public static final Field[] _FIELDS = { _text_METADATA, _team_METADATA, _from_METADATA };
 
 }

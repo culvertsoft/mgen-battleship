@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -12,10 +12,9 @@ import se.culvertsoft.mgen.api.model.RuntimeEnumType;
 import se.culvertsoft.mgen.javapack.classes.MGenEnum;
 
 public enum Phase implements MGenEnum {
-	LOBBY_PREGAME(0, "LOBBY_PREGAME"),
+	LOBBY(0, "LOBBY"),
 	PLAYING(1, "PLAYING"),
-	LOBBY_POSTGAME(2, "LOBBY_POSTGAME"),
-	UNKNOWN(3, "UNKNOWN");
+	UNKNOWN(2, "UNKNOWN");
 
 	final int m_intValue;
 	final String m_stringValue;
@@ -40,12 +39,10 @@ public enum Phase implements MGenEnum {
 		@Override
 		public Enum<?> get(final String entryStringName) {
 			switch(entryStringName) {
-				case "LOBBY_PREGAME":
-					return LOBBY_PREGAME;
+				case "LOBBY":
+					return LOBBY;
 				case "PLAYING":
 					return PLAYING;
-				case "LOBBY_POSTGAME":
-					return LOBBY_POSTGAME;
 				case "UNKNOWN":
 					return UNKNOWN;
 				default:
@@ -57,12 +54,10 @@ public enum Phase implements MGenEnum {
 		public Enum<?> get(final int entryIntValue) {
 			switch(entryIntValue) {
 				case 0:
-					return LOBBY_PREGAME;
+					return LOBBY;
 				case 1:
 					return PLAYING;
 				case 2:
-					return LOBBY_POSTGAME;
-				case 3:
 					return UNKNOWN;
 				default:
 					return UNKNOWN;

@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -18,7 +18,7 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /*custom_imports_begin*//*custom_imports_end*/
 
-public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class GameOver extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private battleship.state.Team m_winner;
 	private String m_reason;
@@ -29,10 +29,8 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 		m_reason = null;
 	}
 
-	public GameOver(final battleship.state.Phase phase,
-				final battleship.state.Team winner,
+	public GameOver(final battleship.state.Team winner,
 				final String reason) {
-		super(phase);
 		m_winner = winner;
 		m_reason = reason;
 	}
@@ -53,11 +51,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 		return _isReasonSet(FieldSetDepth.SHALLOW);
 	}
 
-	public GameOver unsetPhase() {
-		_setPhaseSet(false, FieldSetDepth.SHALLOW);
-		return this;
-	}
-
 	public GameOver unsetWinner() {
 		_setWinnerSet(false, FieldSetDepth.SHALLOW);
 		return this;
@@ -65,11 +58,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 
 	public GameOver unsetReason() {
 		_setReasonSet(false, FieldSetDepth.SHALLOW);
-		return this;
-	}
-
-	public GameOver setPhase(final battleship.state.Phase phase) {
-		super.setPhase(phase);
 		return this;
 	}
 
@@ -94,7 +82,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1908808174;
-		result = _isPhaseSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getPhase(), _phase_METADATA.typ())) : result;
 		result = _isWinnerSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getWinner(), _winner_METADATA.typ())) : result;
 		result = _isReasonSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getReason(), _reason_METADATA.typ())) : result;
 		return result;
@@ -107,10 +94,8 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 		if (GameOver.class != other.getClass()) return false;
 		final GameOver o = (GameOver)other;
 		return true
-		  && (_isPhaseSet(FieldSetDepth.SHALLOW) == o._isPhaseSet(FieldSetDepth.SHALLOW))
 		  && (_isWinnerSet(FieldSetDepth.SHALLOW) == o._isWinnerSet(FieldSetDepth.SHALLOW))
 		  && (_isReasonSet(FieldSetDepth.SHALLOW) == o._isReasonSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getPhase(), o.getPhase(), _phase_METADATA.typ())
 		  && EqualityTester.areEqual(getWinner(), o.getWinner(), _winner_METADATA.typ())
 		  && EqualityTester.areEqual(getReason(), o.getReason(), _reason_METADATA.typ());
 	}
@@ -118,10 +103,8 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	@Override
 	public GameOver deepCopy() {
 		final GameOver out = new GameOver();
-		out.setPhase(DeepCopyer.deepCopy(getPhase(), _phase_METADATA.typ()));
 		out.setWinner(DeepCopyer.deepCopy(getWinner(), _winner_METADATA.typ()));
 		out.setReason(DeepCopyer.deepCopy(getReason(), _reason_METADATA.typ()));
-		out._setPhaseSet(_isPhaseSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		out._setWinnerSet(_isWinnerSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		out._setReasonSet(_isReasonSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
@@ -189,8 +172,7 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 3);
-				visitor.visit(getPhase(), _phase_METADATA);
+				visitor.beginVisit(this, 2);
 				visitor.visit(getWinner(), _winner_METADATA);
 				visitor.visit(getReason(), _reason_METADATA);
 				visitor.endVisit();
@@ -198,8 +180,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 			}
 			default /* case ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
-				if (_isPhaseSet(FieldSetDepth.SHALLOW))
-					visitor.visit(getPhase(), _phase_METADATA);
 				if (_isWinnerSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getWinner(), _winner_METADATA);
 				if (_isReasonSet(FieldSetDepth.SHALLOW))
@@ -215,9 +195,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	                         final Object context,
 	                         final Reader reader) throws java.io.IOException {
 		switch(fieldId) {
-			case (_phase_ID):
-				setPhase((battleship.state.Phase)reader.readEnumField(_phase_METADATA, context));
-				return true;
 			case (_winner_ID):
 				setWinner((battleship.state.Team)reader.readEnumField(_winner_METADATA, context));
 				return true;
@@ -245,8 +222,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
-			case (_phase_ID):
-				return _isPhaseSet(depth);
 			case (_winner_ID):
 				return _isWinnerSet(depth);
 			case (_reason_ID):
@@ -273,7 +248,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	}
 
 	public GameOver _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
-		_setPhaseSet(state, depth);
 		_setWinnerSet(state, depth);
 		_setReasonSet(state, depth);
 		return this;
@@ -290,7 +264,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	@Override
 	public int _nFieldsSet(final FieldSetDepth depth, final boolean includeTransient) {
 		int out = 0;
-		out += _isPhaseSet(depth) ? 1 : 0;
 		out += _isWinnerSet(depth) ? 1 : 0;
 		out += _isReasonSet(depth) ? 1 : 0;
 		return out;
@@ -299,8 +272,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	@Override
 	public Field _fieldById(final short fieldId) {
 		switch(fieldId) {
-			case (_phase_ID):
-				return _phase_METADATA;
 			case (_winner_ID):
 				return _winner_METADATA;
 			case (_reason_ID):
@@ -313,8 +284,6 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 	@Override
 	public Field _fieldByName(final String fieldName) {
 		switch(fieldName) {
-			case ("phase"):
-				return _phase_METADATA;
 			case ("winner"):
 				return _winner_METADATA;
 			case ("reason"):
@@ -339,30 +308,28 @@ public class GameOver extends PhaseChange /*custom_ifcs_begin*//*custom_ifcs_end
 
 	public static final long _TYPE_ID = 4978160568720679319L;
 
-	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInfo._TYPE_ID, battleship.messages.PhaseChange._TYPE_ID, battleship.messages.GameOver._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInfo._TYPE_ID, battleship.messages.GameOver._TYPE_ID };
 
 	public static final short _TYPE_ID_16BIT = -2120;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.PhaseChange._TYPE_ID_16BIT, battleship.messages.GameOver._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.GameOver._TYPE_ID_16BIT };
 
 	public static final String _TYPE_ID_16BIT_BASE64 = "97g";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64, battleship.messages.GameOver._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.GameOver._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.PhaseChange._TYPE_ID_16BIT_BASE64 + battleship.messages.GameOver._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.GameOver._TYPE_ID_16BIT_BASE64;
 
 	public static final String _TYPE_NAME = "battleship.messages.GameOver";
 
-	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.PhaseChange._TYPE_NAME, battleship.messages.GameOver._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.GameOver._TYPE_NAME };
 
-	public static final Field _phase_METADATA = new Field("battleship.messages.GameOver", "phase", battleship.state.Phase._TYPE, null, (short)7625);
 	public static final Field _winner_METADATA = new Field("battleship.messages.GameOver", "winner", battleship.state.Team._TYPE, null, (short)-7291);
 	public static final Field _reason_METADATA = new Field("battleship.messages.GameOver", "reason", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-15867);
 
-	public static final short _phase_ID = (short)7625;
 	public static final short _winner_ID = (short)-7291;
 	public static final short _reason_ID = (short)-15867;
 
-	public static final Field[] _FIELDS = { _phase_METADATA, _winner_METADATA, _reason_METADATA };
+	public static final Field[] _FIELDS = { _winner_METADATA, _reason_METADATA };
 
 }

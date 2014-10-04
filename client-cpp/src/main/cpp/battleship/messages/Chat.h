@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -21,31 +21,39 @@ class Chat : public Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	std::string m_text;
 	battleship::state::Team m_team;
+	std::string m_from;
 	bool _m_text_isSet;
 	bool _m_team_isSet;
+	bool _m_from_isSet;
 
 public:
 	Chat();
 	Chat(const std::string& text,
-			const battleship::state::Team& team);
+			const battleship::state::Team& team,
+			const std::string& from);
 	virtual ~Chat();
 
 	const std::string& getText() const;
 	const battleship::state::Team& getTeam() const;
+	const std::string& getFrom() const;
 
 	std::string& getTextMutable();
 	battleship::state::Team& getTeamMutable();
+	std::string& getFromMutable();
 
 	Chat& setText(const std::string& text);
 	Chat& setTeam(const battleship::state::Team& team);
+	Chat& setFrom(const std::string& from);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasText() const;
 	bool hasTeam() const;
+	bool hasFrom() const;
 
 	Chat& unsetText();
 	Chat& unsetTeam();
+	Chat& unsetFrom();
 
 	bool operator==(const Chat& other) const;
 	bool operator!=(const Chat& other) const;
@@ -72,6 +80,9 @@ public:
 		case _field_team_id:
 			reader.readField(_field_team_metadata(), context, getTeamMutable());
 			break;
+		case _field_from_id:
+			reader.readField(_field_from_metadata(), context, getFromMutable());
+			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
 			break;
@@ -82,9 +93,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getText(), _field_text_metadata());
 				visitor.visit(getTeam(), _field_team_metadata());
+				visitor.visit(getFrom(), _field_from_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -94,6 +106,8 @@ public:
 					visitor.visit(getText(), _field_text_metadata());
 				if (_isTeamSet(mgen::SHALLOW))
 					visitor.visit(getTeam(), _field_team_metadata());
+				if (_isFromSet(mgen::SHALLOW))
+					visitor.visit(getFrom(), _field_from_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -104,9 +118,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getTextMutable(), _field_text_metadata());
 				visitor.visit(getTeamMutable(), _field_team_metadata());
+				visitor.visit(getFromMutable(), _field_from_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -116,6 +131,8 @@ public:
 					visitor.visit(getTextMutable(), _field_text_metadata());
 				if (_isTeamSet(mgen::SHALLOW))
 					visitor.visit(getTeamMutable(), _field_team_metadata());
+				if (_isFromSet(mgen::SHALLOW))
+					visitor.visit(getFromMutable(), _field_from_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -141,6 +158,7 @@ public:
 
 	Chat& _setTextSet(const bool state, const mgen::FieldSetDepth depth);
 	Chat& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
+	Chat& _setFromSet(const bool state, const mgen::FieldSetDepth depth);
 
 	Chat& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
@@ -148,6 +166,7 @@ public:
 
 	bool _isTextSet(const mgen::FieldSetDepth depth) const;
 	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
+	bool _isFromSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
@@ -184,9 +203,11 @@ public:
 
 	static const mgen::Field& _field_text_metadata();
 	static const mgen::Field& _field_team_metadata();
+	static const mgen::Field& _field_from_metadata();
 
 	static const short _field_text_id = -15556;
 	static const short _field_team_id = -1585;
+	static const short _field_from_id = -5380;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 

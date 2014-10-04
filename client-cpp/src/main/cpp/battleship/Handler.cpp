@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -11,6 +11,7 @@
 #include "battleship/messages/Chat.h"
 #include "battleship/messages/Fire.h"
 #include "battleship/messages/FireResult.h"
+#include "battleship/messages/PhaseChange.h"
 #include "battleship/messages/Snapshot.h"
 #include "battleship/messages/Login.h"
 #include "battleship/messages/LoginReply.h"
@@ -22,7 +23,6 @@
 #include "battleship/messages/ShipPlacement.h"
 #include "battleship/messages/ShipPlacementReply.h"
 #include "battleship/messages/ShipSunk.h"
-#include "battleship/messages/SetReady.h"
 #include "battleship/messages/PlayerJoined.h"
 #include "battleship/messages/PlayerChangedTeam.h"
 #include "battleship/messages/IncorrectUsage.h"
@@ -96,7 +96,7 @@ void Handler::handle(battleship::messages::Resign& o) {
 }
 
 void Handler::handle(battleship::messages::GameOver& o) {
-	handle(static_cast<battleship::messages::PhaseChange&>(o));
+	handle(static_cast<battleship::messages::GameInfo&>(o));
 }
 
 void Handler::handle(battleship::messages::TeamSelect& o) {
@@ -121,10 +121,6 @@ void Handler::handle(battleship::messages::ShipPlacementReply& o) {
 
 void Handler::handle(battleship::messages::ShipSunk& o) {
 	handle(static_cast<battleship::messages::GameInfo&>(o));
-}
-
-void Handler::handle(battleship::messages::SetReady& o) {
-	handle(static_cast<battleship::messages::Connection&>(o));
 }
 
 void Handler::handle(battleship::messages::PlayerJoined& o) {

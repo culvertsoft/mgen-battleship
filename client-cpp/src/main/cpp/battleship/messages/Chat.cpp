@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -18,15 +18,19 @@ namespace messages {
 Chat::Chat() : 
 		m_team(battleship::state::Team_UNKNOWN),
 		_m_text_isSet(false),
-		_m_team_isSet(false) {
+		_m_team_isSet(false),
+		_m_from_isSet(false) {
 }
 
 Chat::Chat(const std::string& text, 
-			const battleship::state::Team& team) : 
+			const battleship::state::Team& team, 
+			const std::string& from) : 
 		m_text(text),
 		m_team(team),
+		m_from(from),
 		_m_text_isSet(true),
-		_m_team_isSet(true) {
+		_m_team_isSet(true),
+		_m_from_isSet(true) {
 }
 
 Chat::~Chat() {
@@ -40,6 +44,10 @@ const battleship::state::Team& Chat::getTeam() const {
 	return m_team;
 }
 
+const std::string& Chat::getFrom() const {
+	return m_from;
+}
+
 std::string& Chat::getTextMutable() {
 	_m_text_isSet = true;
 	return m_text;
@@ -48,6 +56,11 @@ std::string& Chat::getTextMutable() {
 battleship::state::Team& Chat::getTeamMutable() {
 	_m_team_isSet = true;
 	return m_team;
+}
+
+std::string& Chat::getFromMutable() {
+	_m_from_isSet = true;
+	return m_from;
 }
 
 Chat& Chat::setText(const std::string& text) {
@@ -62,6 +75,12 @@ Chat& Chat::setTeam(const battleship::state::Team& team) {
 	return *this;
 }
 
+Chat& Chat::setFrom(const std::string& from) {
+	m_from = from;
+	_m_from_isSet = true;
+	return *this;
+}
+
 /*custom_methods_begin*//*custom_methods_end*/
 
 bool Chat::hasText() const {
@@ -70,6 +89,10 @@ bool Chat::hasText() const {
 
 bool Chat::hasTeam() const {
 	return _isTeamSet(mgen::SHALLOW);
+}
+
+bool Chat::hasFrom() const {
+	return _isFromSet(mgen::SHALLOW);
 }
 
 Chat& Chat::unsetText() {
@@ -82,12 +105,19 @@ Chat& Chat::unsetTeam() {
 	return *this;
 }
 
+Chat& Chat::unsetFrom() {
+	_setFromSet(false, mgen::SHALLOW);
+	return *this;
+}
+
 bool Chat::operator==(const Chat& other) const {
 	return true
 		 && _isTextSet(mgen::SHALLOW) == other._isTextSet(mgen::SHALLOW)
 		 && _isTeamSet(mgen::SHALLOW) == other._isTeamSet(mgen::SHALLOW)
+		 && _isFromSet(mgen::SHALLOW) == other._isFromSet(mgen::SHALLOW)
 		 && getText() == other.getText()
-		 && getTeam() == other.getTeam();
+		 && getTeam() == other.getTeam()
+		 && getFrom() == other.getFrom();
 }
 
 bool Chat::operator!=(const Chat& other) const {
@@ -112,13 +142,15 @@ const mgen::Field * Chat::_fieldById(const short id) const {
 		return &_field_text_metadata();
 	case _field_team_id:
 		return &_field_team_metadata();
+	case _field_from_id:
+		return &_field_from_metadata();
 	default:
 		return 0;
 	}
 }
 
 const mgen::Field * Chat::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("text", &Chat::_field_text_metadata())("team", &Chat::_field_team_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("text", &Chat::_field_text_metadata())("team", &Chat::_field_team_metadata())("from", &Chat::_field_from_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -177,9 +209,17 @@ Chat& Chat::_setTeamSet(const bool state, const mgen::FieldSetDepth depth) {
 	return *this;
 }
 
+Chat& Chat::_setFromSet(const bool state, const mgen::FieldSetDepth depth) {
+	if (!state)
+		m_from = "";
+	_m_from_isSet = state;
+	return *this;
+}
+
 Chat& Chat::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
 	_setTextSet(state, depth);
 	_setTeamSet(state, depth);
+	_setFromSet(state, depth);
 	return *this;
 }
 
@@ -187,6 +227,7 @@ int Chat::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTrans
 	int out = 0;
 	out += _isTextSet(depth) ? 1 : 0;
 	out += _isTeamSet(depth) ? 1 : 0;
+	out += _isFromSet(depth) ? 1 : 0;
 	return out;
 }
 
@@ -196,6 +237,8 @@ bool Chat::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth
 			return _isTextSet(depth);
 		case (_field_team_id):
 			return _isTeamSet(depth);
+		case (_field_from_id):
+			return _isFromSet(depth);
 		default:
 			return false;
 	}
@@ -207,6 +250,10 @@ bool Chat::_isTextSet(const mgen::FieldSetDepth depth) const {
 
 bool Chat::_isTeamSet(const mgen::FieldSetDepth depth) const {
 	return _m_team_isSet;
+}
+
+bool Chat::_isFromSet(const mgen::FieldSetDepth depth) const {
+	return _m_from_isSet;
 }
 
 bool Chat::_validate(const mgen::FieldSetDepth depth) const { 
@@ -277,7 +324,7 @@ const std::string& Chat::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& Chat::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_text_metadata() << _field_team_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_text_metadata() << _field_team_metadata() << _field_from_metadata();
 	return out;
 }
 
@@ -288,6 +335,11 @@ const mgen::Field& Chat::_field_text_metadata() {
 
 const mgen::Field& Chat::_field_team_metadata() {
 	static const mgen::Field out(-1585, "team");
+	return out;
+}
+
+const mgen::Field& Chat::_field_from_metadata() {
+	static const mgen::Field out(-5380, "from");
 	return out;
 }
 

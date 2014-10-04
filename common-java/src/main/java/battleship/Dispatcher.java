@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -41,9 +41,6 @@ public class Dispatcher  {
 							case battleship.messages.TeamSelectReply._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.TeamSelectReply)o);
 								break;
-							case battleship.messages.SetReady._TYPE_ID_16BIT:
-								handler.handle((battleship.messages.SetReady)o);
-								break;
 							case battleship.messages.PlayerJoined._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.PlayerJoined)o);
 								break;
@@ -77,20 +74,16 @@ public class Dispatcher  {
 								handler.handle((battleship.messages.FireResult)o);
 								break;
 							case battleship.messages.PhaseChange._TYPE_ID_16BIT:
-								switch((i < ids.length ? (int)ids[i++] : 0xFFFFFFFF)) {
-									case battleship.messages.GameOver._TYPE_ID_16BIT:
-										handler.handle((battleship.messages.GameOver)o);
-										break;
-									default:
-										handler.handle((battleship.messages.PhaseChange)o);
-										break;
-								}
+								handler.handle((battleship.messages.PhaseChange)o);
 								break;
 							case battleship.messages.Snapshot._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.Snapshot)o);
 								break;
 							case battleship.messages.NextTurn._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.NextTurn)o);
+								break;
+							case battleship.messages.GameOver._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.GameOver)o);
 								break;
 							case battleship.messages.ShipPlacementReply._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.ShipPlacementReply)o);

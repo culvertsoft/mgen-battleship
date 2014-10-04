@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -11,6 +11,7 @@
 #define BATTLESHIP_MESSAGES_TEAMSELECTREPLY
 
 #include "battleship/messages/Connection.h"
+#include "battleship/state/Team.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
@@ -20,31 +21,39 @@ class TeamSelectReply : public Connection /*custom_ifcs_begin*//*custom_ifcs_end
 private:
 	bool m_result;
 	std::string m_failReason;
+	battleship::state::Team m_team;
 	bool _m_result_isSet;
 	bool _m_failReason_isSet;
+	bool _m_team_isSet;
 
 public:
 	TeamSelectReply();
 	TeamSelectReply(const bool& result,
-			const std::string& failReason);
+			const std::string& failReason,
+			const battleship::state::Team& team);
 	virtual ~TeamSelectReply();
 
 	const bool& getResult() const;
 	const std::string& getFailReason() const;
+	const battleship::state::Team& getTeam() const;
 
 	bool& getResultMutable();
 	std::string& getFailReasonMutable();
+	battleship::state::Team& getTeamMutable();
 
 	TeamSelectReply& setResult(const bool& result);
 	TeamSelectReply& setFailReason(const std::string& failReason);
+	TeamSelectReply& setTeam(const battleship::state::Team& team);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasResult() const;
 	bool hasFailReason() const;
+	bool hasTeam() const;
 
 	TeamSelectReply& unsetResult();
 	TeamSelectReply& unsetFailReason();
+	TeamSelectReply& unsetTeam();
 
 	bool operator==(const TeamSelectReply& other) const;
 	bool operator!=(const TeamSelectReply& other) const;
@@ -71,6 +80,9 @@ public:
 		case _field_failReason_id:
 			reader.readField(_field_failReason_metadata(), context, getFailReasonMutable());
 			break;
+		case _field_team_id:
+			reader.readField(_field_team_metadata(), context, getTeamMutable());
+			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
 			break;
@@ -81,9 +93,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getResult(), _field_result_metadata());
 				visitor.visit(getFailReason(), _field_failReason_metadata());
+				visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -93,6 +106,8 @@ public:
 					visitor.visit(getResult(), _field_result_metadata());
 				if (_isFailReasonSet(mgen::SHALLOW))
 					visitor.visit(getFailReason(), _field_failReason_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -103,9 +118,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getResultMutable(), _field_result_metadata());
 				visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -115,6 +131,8 @@ public:
 					visitor.visit(getResultMutable(), _field_result_metadata());
 				if (_isFailReasonSet(mgen::SHALLOW))
 					visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -140,6 +158,7 @@ public:
 
 	TeamSelectReply& _setResultSet(const bool state, const mgen::FieldSetDepth depth);
 	TeamSelectReply& _setFailReasonSet(const bool state, const mgen::FieldSetDepth depth);
+	TeamSelectReply& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
 
 	TeamSelectReply& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
@@ -147,6 +166,7 @@ public:
 
 	bool _isResultSet(const mgen::FieldSetDepth depth) const;
 	bool _isFailReasonSet(const mgen::FieldSetDepth depth) const;
+	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
@@ -183,9 +203,11 @@ public:
 
 	static const mgen::Field& _field_result_metadata();
 	static const mgen::Field& _field_failReason_metadata();
+	static const mgen::Field& _field_team_metadata();
 
 	static const short _field_result_id = 24642;
 	static const short _field_failReason_id = 1610;
+	static const short _field_team_id = -1585;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 

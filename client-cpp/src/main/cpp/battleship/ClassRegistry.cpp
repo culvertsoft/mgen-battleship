@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -27,7 +27,6 @@
 #include "battleship/messages/ShipPlacement.cpp"
 #include "battleship/messages/ShipPlacementReply.cpp"
 #include "battleship/messages/ShipSunk.cpp"
-#include "battleship/messages/SetReady.cpp"
 #include "battleship/messages/PlayerJoined.cpp"
 #include "battleship/messages/PlayerChangedTeam.cpp"
 #include "battleship/messages/IncorrectUsage.cpp"
@@ -65,7 +64,6 @@ ClassRegistry::ClassRegistry() {
 	add<battleship::messages::ShipPlacement>();
 	add<battleship::messages::ShipPlacementReply>();
 	add<battleship::messages::ShipSunk>();
-	add<battleship::messages::SetReady>();
 	add<battleship::messages::PlayerJoined>();
 	add<battleship::messages::PlayerChangedTeam>();
 	add<battleship::messages::IncorrectUsage>();
@@ -101,7 +99,6 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacement(battleship::messages::ShipPlacement::_type_ids(), battleship::messages::ShipPlacement::_type_name(), battleship::messages::ShipPlacement::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_ShipPlacementReply(battleship::messages::ShipPlacementReply::_type_ids(), battleship::messages::ShipPlacementReply::_type_name(), battleship::messages::ShipPlacementReply::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_ShipSunk(battleship::messages::ShipSunk::_type_ids(), battleship::messages::ShipSunk::_type_name(), battleship::messages::ShipSunk::_newInstance);
-	static const mgen::ClassRegistryEntry battleship_messages_SetReady(battleship::messages::SetReady::_type_ids(), battleship::messages::SetReady::_type_name(), battleship::messages::SetReady::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_PlayerJoined(battleship::messages::PlayerJoined::_type_ids(), battleship::messages::PlayerJoined::_type_name(), battleship::messages::PlayerJoined::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_PlayerChangedTeam(battleship::messages::PlayerChangedTeam::_type_ids(), battleship::messages::PlayerChangedTeam::_type_name(), battleship::messages::PlayerChangedTeam::_newInstance);
 	static const mgen::ClassRegistryEntry battleship_messages_IncorrectUsage(battleship::messages::IncorrectUsage::_type_ids(), battleship::messages::IncorrectUsage::_type_name(), battleship::messages::IncorrectUsage::_newInstance);
@@ -133,9 +130,6 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 							break;
 						case battleship::messages::TeamSelectReply::_type_id_16bit:
 							return &battleship_messages_TeamSelectReply;
-							break;
-						case battleship::messages::SetReady::_type_id_16bit:
-							return &battleship_messages_SetReady;
 							break;
 						case battleship::messages::PlayerJoined::_type_id_16bit:
 							return &battleship_messages_PlayerJoined;
@@ -170,20 +164,16 @@ const mgen::ClassRegistryEntry * battleship::ClassRegistry::getByIds(const std::
 							return &battleship_messages_FireResult;
 							break;
 						case battleship::messages::PhaseChange::_type_id_16bit:
-							switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-								case battleship::messages::GameOver::_type_id_16bit:
-									return &battleship_messages_GameOver;
-									break;
-								default:
-									return &battleship_messages_PhaseChange;
-									break;
-							}
+							return &battleship_messages_PhaseChange;
 							break;
 						case battleship::messages::Snapshot::_type_id_16bit:
 							return &battleship_messages_Snapshot;
 							break;
 						case battleship::messages::NextTurn::_type_id_16bit:
 							return &battleship_messages_NextTurn;
+							break;
+						case battleship::messages::GameOver::_type_id_16bit:
+							return &battleship_messages_GameOver;
 							break;
 						case battleship::messages::ShipPlacementReply::_type_id_16bit:
 							return &battleship_messages_ShipPlacementReply;

@@ -6,9 +6,8 @@
             <OBSERVERS> </OBSERVERS>
         </Team>
         <Phase>
-            <LOBBY_PREGAME> </LOBBY_PREGAME>
+            <LOBBY> </LOBBY>
             <PLAYING> </PLAYING>
-            <LOBBY_POSTGAME> </LOBBY_POSTGAME>
         </Phase>
     </Enums>
     <Types>
@@ -27,7 +26,6 @@
             <uuid type="string"/>
             <name type="string"/>
             <team type="Team"/>
-            <ready type="bool"/>
             <shots type="list[Shot]"/>
         </Player>
         <Game>
@@ -38,7 +36,6 @@
             <blueMap type="Map"/>
             <phase type="Phase"/>
             <currentTeam type="Team"/>
-            <timeLastMove type="float64"/>
         </Game>
         <Vec2>
             <x type="int32"/>

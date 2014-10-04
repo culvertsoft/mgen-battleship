@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -67,7 +67,7 @@ public class Handler  {
 	}
 
 	protected void handle(battleship.messages.GameOver o) {
-		handle((battleship.messages.PhaseChange)o);
+		handle((battleship.messages.GameInfo)o);
 	}
 
 	protected void handle(battleship.messages.TeamSelect o) {
@@ -92,10 +92,6 @@ public class Handler  {
 
 	protected void handle(battleship.messages.ShipSunk o) {
 		handle((battleship.messages.GameInfo)o);
-	}
-
-	protected void handle(battleship.messages.SetReady o) {
-		handle((battleship.messages.Connection)o);
 	}
 
 	protected void handle(battleship.messages.PlayerJoined o) {

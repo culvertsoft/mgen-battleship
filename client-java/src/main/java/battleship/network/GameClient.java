@@ -9,7 +9,6 @@ import battleship.messages.Fire;
 import battleship.messages.Login;
 import battleship.messages.Message;
 import battleship.messages.Resign;
-import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.TeamSelect;
 import battleship.state.Ship;
@@ -18,7 +17,10 @@ import battleship.state.Vec2;
 
 public class GameClient {
 
-	public GameClient(final String nickName, final GameClientListener listener, final NetworkClient network) {
+	public GameClient(
+			final String nickName,
+			final GameClientListener listener,
+			final NetworkClient network) {
 		m_nickName = nickName;
 		m_network = network;
 		m_listener = listener;
@@ -78,7 +80,7 @@ public class GameClient {
 	 *            The team to talk to (null implies broadcast)
 	 */
 	public void chat(final String message, final Team team) {
-		m_network.sendMessage(new Chat(message, team));
+		m_network.sendMessage(new Chat(message, team, m_nickName));
 	}
 
 	/**
@@ -96,16 +98,6 @@ public class GameClient {
 	 */
 	public void placeShips(final List<Ship> ships) {
 		m_network.sendMessage(new ShipPlacement(new ArrayList<>(ships)));
-	}
-
-	/**
-	 * Sends a message that we are ready to start the game
-	 * 
-	 * @param ready
-	 *            If we are ready to start the game
-	 */
-	public void setReady(final boolean ready) {
-		m_network.sendMessage(new SetReady(ready));
 	}
 
 	// /////////////////////////////////////////////////////// //

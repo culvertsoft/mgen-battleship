@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -18,15 +18,13 @@ namespace state {
 Game::Game() : 
 		m_phase(Phase_UNKNOWN),
 		m_currentTeam(Team_UNKNOWN),
-		m_timeLastMove(0.0),
 		_m_redPlayer_isSet(false),
 		_m_bluePlayer_isSet(false),
 		_m_observers_isSet(false),
 		_m_redMap_isSet(false),
 		_m_blueMap_isSet(false),
 		_m_phase_isSet(false),
-		_m_currentTeam_isSet(false),
-		_m_timeLastMove_isSet(false) {
+		_m_currentTeam_isSet(false) {
 }
 
 Game::Game(const Player& redPlayer, 
@@ -35,8 +33,7 @@ Game::Game(const Player& redPlayer,
 			const Map& redMap, 
 			const Map& blueMap, 
 			const Phase& phase, 
-			const Team& currentTeam, 
-			const double& timeLastMove) : 
+			const Team& currentTeam) : 
 		m_redPlayer(redPlayer),
 		m_bluePlayer(bluePlayer),
 		m_observers(observers),
@@ -44,15 +41,13 @@ Game::Game(const Player& redPlayer,
 		m_blueMap(blueMap),
 		m_phase(phase),
 		m_currentTeam(currentTeam),
-		m_timeLastMove(timeLastMove),
 		_m_redPlayer_isSet(true),
 		_m_bluePlayer_isSet(true),
 		_m_observers_isSet(true),
 		_m_redMap_isSet(true),
 		_m_blueMap_isSet(true),
 		_m_phase_isSet(true),
-		_m_currentTeam_isSet(true),
-		_m_timeLastMove_isSet(true) {
+		_m_currentTeam_isSet(true) {
 }
 
 Game::~Game() {
@@ -84,10 +79,6 @@ const Phase& Game::getPhase() const {
 
 const Team& Game::getCurrentTeam() const {
 	return m_currentTeam;
-}
-
-const double& Game::getTimeLastMove() const {
-	return m_timeLastMove;
 }
 
 Player& Game::getRedPlayerMutable() {
@@ -123,11 +114,6 @@ Phase& Game::getPhaseMutable() {
 Team& Game::getCurrentTeamMutable() {
 	_m_currentTeam_isSet = true;
 	return m_currentTeam;
-}
-
-double& Game::getTimeLastMoveMutable() {
-	_m_timeLastMove_isSet = true;
-	return m_timeLastMove;
 }
 
 Game& Game::setRedPlayer(const Player& redPlayer) {
@@ -172,12 +158,6 @@ Game& Game::setCurrentTeam(const Team& currentTeam) {
 	return *this;
 }
 
-Game& Game::setTimeLastMove(const double& timeLastMove) {
-	m_timeLastMove = timeLastMove;
-	_m_timeLastMove_isSet = true;
-	return *this;
-}
-
 /*custom_methods_begin*//*custom_methods_end*/
 
 bool Game::hasRedPlayer() const {
@@ -206,10 +186,6 @@ bool Game::hasPhase() const {
 
 bool Game::hasCurrentTeam() const {
 	return _isCurrentTeamSet(mgen::SHALLOW);
-}
-
-bool Game::hasTimeLastMove() const {
-	return _isTimeLastMoveSet(mgen::SHALLOW);
 }
 
 Game& Game::unsetRedPlayer() {
@@ -247,11 +223,6 @@ Game& Game::unsetCurrentTeam() {
 	return *this;
 }
 
-Game& Game::unsetTimeLastMove() {
-	_setTimeLastMoveSet(false, mgen::SHALLOW);
-	return *this;
-}
-
 bool Game::operator==(const Game& other) const {
 	return true
 		 && _isRedPlayerSet(mgen::SHALLOW) == other._isRedPlayerSet(mgen::SHALLOW)
@@ -261,15 +232,13 @@ bool Game::operator==(const Game& other) const {
 		 && _isBlueMapSet(mgen::SHALLOW) == other._isBlueMapSet(mgen::SHALLOW)
 		 && _isPhaseSet(mgen::SHALLOW) == other._isPhaseSet(mgen::SHALLOW)
 		 && _isCurrentTeamSet(mgen::SHALLOW) == other._isCurrentTeamSet(mgen::SHALLOW)
-		 && _isTimeLastMoveSet(mgen::SHALLOW) == other._isTimeLastMoveSet(mgen::SHALLOW)
 		 && getRedPlayer() == other.getRedPlayer()
 		 && getBluePlayer() == other.getBluePlayer()
 		 && getObservers() == other.getObservers()
 		 && getRedMap() == other.getRedMap()
 		 && getBlueMap() == other.getBlueMap()
 		 && getPhase() == other.getPhase()
-		 && getCurrentTeam() == other.getCurrentTeam()
-		 && getTimeLastMove() == other.getTimeLastMove();
+		 && getCurrentTeam() == other.getCurrentTeam();
 }
 
 bool Game::operator!=(const Game& other) const {
@@ -304,15 +273,13 @@ const mgen::Field * Game::_fieldById(const short id) const {
 		return &_field_phase_metadata();
 	case _field_currentTeam_id:
 		return &_field_currentTeam_metadata();
-	case _field_timeLastMove_id:
-		return &_field_timeLastMove_metadata();
 	default:
 		return 0;
 	}
 }
 
 const mgen::Field * Game::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("redPlayer", &Game::_field_redPlayer_metadata())("bluePlayer", &Game::_field_bluePlayer_metadata())("observers", &Game::_field_observers_metadata())("redMap", &Game::_field_redMap_metadata())("blueMap", &Game::_field_blueMap_metadata())("phase", &Game::_field_phase_metadata())("currentTeam", &Game::_field_currentTeam_metadata())("timeLastMove", &Game::_field_timeLastMove_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("redPlayer", &Game::_field_redPlayer_metadata())("bluePlayer", &Game::_field_bluePlayer_metadata())("observers", &Game::_field_observers_metadata())("redMap", &Game::_field_redMap_metadata())("blueMap", &Game::_field_blueMap_metadata())("phase", &Game::_field_phase_metadata())("currentTeam", &Game::_field_currentTeam_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -408,13 +375,6 @@ Game& Game::_setCurrentTeamSet(const bool state, const mgen::FieldSetDepth depth
 	return *this;
 }
 
-Game& Game::_setTimeLastMoveSet(const bool state, const mgen::FieldSetDepth depth) {
-	if (!state)
-		m_timeLastMove = 0.0;
-	_m_timeLastMove_isSet = state;
-	return *this;
-}
-
 Game& Game::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
 	_setRedPlayerSet(state, depth);
 	_setBluePlayerSet(state, depth);
@@ -423,7 +383,6 @@ Game& Game::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) 
 	_setBlueMapSet(state, depth);
 	_setPhaseSet(state, depth);
 	_setCurrentTeamSet(state, depth);
-	_setTimeLastMoveSet(state, depth);
 	return *this;
 }
 
@@ -436,7 +395,6 @@ int Game::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTrans
 	out += _isBlueMapSet(depth) ? 1 : 0;
 	out += _isPhaseSet(depth) ? 1 : 0;
 	out += _isCurrentTeamSet(depth) ? 1 : 0;
-	out += _isTimeLastMoveSet(depth) ? 1 : 0;
 	return out;
 }
 
@@ -456,8 +414,6 @@ bool Game::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth
 			return _isPhaseSet(depth);
 		case (_field_currentTeam_id):
 			return _isCurrentTeamSet(depth);
-		case (_field_timeLastMove_id):
-			return _isTimeLastMoveSet(depth);
 		default:
 			return false;
 	}
@@ -509,10 +465,6 @@ bool Game::_isPhaseSet(const mgen::FieldSetDepth depth) const {
 
 bool Game::_isCurrentTeamSet(const mgen::FieldSetDepth depth) const {
 	return _m_currentTeam_isSet;
-}
-
-bool Game::_isTimeLastMoveSet(const mgen::FieldSetDepth depth) const {
-	return _m_timeLastMove_isSet;
 }
 
 bool Game::_validate(const mgen::FieldSetDepth depth) const { 
@@ -588,7 +540,7 @@ const std::string& Game::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& Game::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_redPlayer_metadata() << _field_bluePlayer_metadata() << _field_observers_metadata() << _field_redMap_metadata() << _field_blueMap_metadata() << _field_phase_metadata() << _field_currentTeam_metadata() << _field_timeLastMove_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_redPlayer_metadata() << _field_bluePlayer_metadata() << _field_observers_metadata() << _field_redMap_metadata() << _field_blueMap_metadata() << _field_phase_metadata() << _field_currentTeam_metadata();
 	return out;
 }
 
@@ -624,11 +576,6 @@ const mgen::Field& Game::_field_phase_metadata() {
 
 const mgen::Field& Game::_field_currentTeam_metadata() {
 	static const mgen::Field out(-14726, "currentTeam");
-	return out;
-}
-
-const mgen::Field& Game::_field_timeLastMove_metadata() {
-	static const mgen::Field out(22636, "timeLastMove");
 	return out;
 }
 

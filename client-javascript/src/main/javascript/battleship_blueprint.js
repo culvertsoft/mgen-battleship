@@ -26,6 +26,11 @@
 			"flags": [],
 			"type": "enum:RED, BLUE, OBSERVERS",
 			"hash": "+c8"
+		},
+		"from": {
+			"flags": [],
+			"type": "string",
+			"hash": "6vw"
 		}
 	};
 	blueprint.classes["battleship.messages.Fire"] =  {
@@ -58,7 +63,7 @@
 		"__t": "bsYrCw3mc",
 		"phase": {
 			"flags": [],
-			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
+			"type": "enum:LOBBY, PLAYING",
 			"hash": "Hck"
 		}
 	};
@@ -94,6 +99,11 @@
 			"flags": [],
 			"type": "string",
 			"hash": "Bko"
+		},
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
 		}
 	};
 	blueprint.classes["battleship.messages.NextTurn"] =  {
@@ -113,12 +123,7 @@
 		"__t": "bsYew4A6Q",
 	};
 	blueprint.classes["battleship.messages.GameOver"] =  {
-		"__t": "bsYrCw3mc97g",
-		"phase": {
-			"flags": [],
-			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
-			"hash": "Hck"
-		},
+		"__t": "bsYrCw97g",
 		"winner": {
 			"flags": [],
 			"type": "enum:RED, BLUE, OBSERVERS",
@@ -149,6 +154,11 @@
 			"flags": [],
 			"type": "string",
 			"hash": "Bko"
+		},
+		"team": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "+c8"
 		}
 	};
 	blueprint.classes["battleship.messages.Message"] =  {
@@ -186,14 +196,6 @@
 			"flags": [],
 			"type": "enum:RED, BLUE, OBSERVERS",
 			"hash": "+c8"
-		}
-	};
-	blueprint.classes["battleship.messages.SetReady"] =  {
-		"__t": "bsYLWcJrc",
-		"isReady": {
-			"flags": [],
-			"type": "boolean",
-			"hash": "0kk"
 		}
 	};
 	blueprint.classes["battleship.messages.PlayerJoined"] =  {
@@ -271,11 +273,6 @@
 			"type": "enum:RED, BLUE, OBSERVERS",
 			"hash": "+c8"
 		},
-		"ready": {
-			"flags": [],
-			"type": "boolean",
-			"hash": "KZU"
-		},
 		"shots": {
 			"flags": [],
 			"type": "list:battleship.state.Shot",
@@ -311,18 +308,13 @@
 		},
 		"phase": {
 			"flags": [],
-			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
+			"type": "enum:LOBBY, PLAYING",
 			"hash": "Hck"
 		},
 		"currentTeam": {
 			"flags": [],
 			"type": "enum:RED, BLUE, OBSERVERS",
 			"hash": "xno"
-		},
-		"timeLastMove": {
-			"flags": [],
-			"type": "float64",
-			"hash": "WGw"
 		}
 	};
 	blueprint.classes["battleship.state.Vec2"] =  {
@@ -368,8 +360,6 @@
 								return "battleship.messages.TeamSelect";
 							case "28g":
 								return "battleship.messages.TeamSelectReply";
-							case "Jrc":
-								return "battleship.messages.SetReady";
 							case "gP4":
 								return "battleship.messages.PlayerJoined";
 							case "r90":
@@ -391,15 +381,13 @@
 							case "efw":
 								return "battleship.messages.FireResult";
 							case "3mc":
-								switch( t[3] )  {
-									case "97g":
-										return "battleship.messages.GameOver";
-								}
 								return "battleship.messages.PhaseChange";
 							case "19I":
 								return "battleship.messages.Snapshot";
 							case "jUg":
 								return "battleship.messages.NextTurn";
+							case "97g":
+								return "battleship.messages.GameOver";
 							case "hKE":
 								return "battleship.messages.ShipPlacementReply";
 							case "nSY":

@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -30,7 +30,6 @@
 #include "battleship/messages/ShipPlacement.h"
 #include "battleship/messages/ShipPlacementReply.h"
 #include "battleship/messages/ShipSunk.h"
-#include "battleship/messages/SetReady.h"
 #include "battleship/messages/PlayerJoined.h"
 #include "battleship/messages/PlayerChangedTeam.h"
 #include "battleship/messages/IncorrectUsage.h"
@@ -76,9 +75,6 @@ public:
 							case battleship::messages::TeamSelectReply::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::TeamSelectReply&>(o), context);
 								break;
-							case battleship::messages::SetReady::_type_id_16bit:
-								reader.readFields(static_cast<battleship::messages::SetReady&>(o), context);
-								break;
 							case battleship::messages::PlayerJoined::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::PlayerJoined&>(o), context);
 								break;
@@ -112,20 +108,16 @@ public:
 								reader.readFields(static_cast<battleship::messages::FireResult&>(o), context);
 								break;
 							case battleship::messages::PhaseChange::_type_id_16bit:
-								switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-									case battleship::messages::GameOver::_type_id_16bit:
-										reader.readFields(static_cast<battleship::messages::GameOver&>(o), context);
-										break;
-									default:
-										reader.readFields(static_cast<battleship::messages::PhaseChange&>(o), context);
-										break;
-								}
+								reader.readFields(static_cast<battleship::messages::PhaseChange&>(o), context);
 								break;
 							case battleship::messages::Snapshot::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::Snapshot&>(o), context);
 								break;
 							case battleship::messages::NextTurn::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::NextTurn&>(o), context);
+								break;
+							case battleship::messages::GameOver::_type_id_16bit:
+								reader.readFields(static_cast<battleship::messages::GameOver&>(o), context);
 								break;
 							case battleship::messages::ShipPlacementReply::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::ShipPlacementReply&>(o), context);
@@ -200,9 +192,6 @@ public:
 							case battleship::messages::TeamSelectReply::_type_id_16bit:
 								static_cast<battleship::messages::TeamSelectReply&>(o)._accept<VisitorType>(visitor, selection);
 								break;
-							case battleship::messages::SetReady::_type_id_16bit:
-								static_cast<battleship::messages::SetReady&>(o)._accept<VisitorType>(visitor, selection);
-								break;
 							case battleship::messages::PlayerJoined::_type_id_16bit:
 								static_cast<battleship::messages::PlayerJoined&>(o)._accept<VisitorType>(visitor, selection);
 								break;
@@ -236,20 +225,16 @@ public:
 								static_cast<battleship::messages::FireResult&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::PhaseChange::_type_id_16bit:
-								switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-									case battleship::messages::GameOver::_type_id_16bit:
-										static_cast<battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
-										break;
-									default:
-										static_cast<battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
-										break;
-								}
+								static_cast<battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::Snapshot::_type_id_16bit:
 								static_cast<battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::NextTurn::_type_id_16bit:
 								static_cast<battleship::messages::NextTurn&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::GameOver::_type_id_16bit:
+								static_cast<battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::ShipPlacementReply::_type_id_16bit:
 								static_cast<battleship::messages::ShipPlacementReply&>(o)._accept<VisitorType>(visitor, selection);
@@ -324,9 +309,6 @@ public:
 							case battleship::messages::TeamSelectReply::_type_id_16bit:
 								static_cast<const battleship::messages::TeamSelectReply&>(o)._accept<VisitorType>(visitor, selection);
 								break;
-							case battleship::messages::SetReady::_type_id_16bit:
-								static_cast<const battleship::messages::SetReady&>(o)._accept<VisitorType>(visitor, selection);
-								break;
 							case battleship::messages::PlayerJoined::_type_id_16bit:
 								static_cast<const battleship::messages::PlayerJoined&>(o)._accept<VisitorType>(visitor, selection);
 								break;
@@ -360,20 +342,16 @@ public:
 								static_cast<const battleship::messages::FireResult&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::PhaseChange::_type_id_16bit:
-								switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-									case battleship::messages::GameOver::_type_id_16bit:
-										static_cast<const battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
-										break;
-									default:
-										static_cast<const battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
-										break;
-								}
+								static_cast<const battleship::messages::PhaseChange&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::Snapshot::_type_id_16bit:
 								static_cast<const battleship::messages::Snapshot&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::NextTurn::_type_id_16bit:
 								static_cast<const battleship::messages::NextTurn&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::GameOver::_type_id_16bit:
+								static_cast<const battleship::messages::GameOver&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							case battleship::messages::ShipPlacementReply::_type_id_16bit:
 								static_cast<const battleship::messages::ShipPlacementReply&>(o)._accept<VisitorType>(visitor, selection);

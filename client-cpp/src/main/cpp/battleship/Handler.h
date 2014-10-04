@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -40,7 +40,6 @@ class Handler  {
 	virtual void handle(battleship::messages::ShipPlacement& o);
 	virtual void handle(battleship::messages::ShipPlacementReply& o);
 	virtual void handle(battleship::messages::ShipSunk& o);
-	virtual void handle(battleship::messages::SetReady& o);
 	virtual void handle(battleship::messages::PlayerJoined& o);
 	virtual void handle(battleship::messages::PlayerChangedTeam& o);
 	virtual void handle(battleship::messages::IncorrectUsage& o);

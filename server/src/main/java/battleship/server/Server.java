@@ -20,7 +20,6 @@ import battleship.messages.PhaseChange;
 import battleship.messages.PlayerChangedTeam;
 import battleship.messages.PlayerJoined;
 import battleship.messages.Resign;
-import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.ShipPlacementReply;
 import battleship.messages.ShipSunk;
@@ -85,7 +84,7 @@ public class Server {
 		@Override
 		public void onJoin(final Player player) {
 			m_players.put(m_sendingClient, player);
-			reply(new LoginReply(player.getUuid(), true, null));
+			reply(new LoginReply(player.getUuid(), true, null, player.getTeam()));
 			broadcastSnapshot();
 			broadcast(new PlayerJoined(player.getUuid()));
 		}
@@ -174,7 +173,7 @@ public class Server {
 					onJoin(createPlayer(o.getName()));
 				}
 			} else {
-				reply(new LoginReply(null, false, "Game has already started"));
+				reply(new LoginReply(null, false, "Game has already started", null));
 			}
 		}
 
@@ -187,38 +186,20 @@ public class Server {
 		}
 
 		@Override
-		public void handle(final SetReady o) {
-			final Player player = sendingPlayer();
-			if (player != null) {
-				player.setReady(o.getIsReady());
-				if (playersReady()) {
-					if (isPreGame()) {
-						startGame();
-					} else if (isPostGame()) {
-						resetToPreGameLobby();
-					}
-					setPlayersNotReady();
-				}
-			}
-		}
-
-		@Override
 		public void handle(final TeamSelect o) {
 			final Player player = sendingPlayer();
 			final Team newTeam = o.getTeam();
-			if (isPreGame() && player != null) {
+			if (isInLobby() && player != null) {
 				final Team oldTeam = player.getTeam();
 				if (newTeam != oldTeam) {
 					if (isTeamFree(newTeam)) {
 						setPlayerTeam(player, newTeam, oldTeam);
-						reply(new TeamSelectReply(true, null));
+						reply(new TeamSelectReply(true, null, newTeam));
 						broadcast(new PlayerChangedTeam(player.getUuid()));
 						broadcastSnapshot();
 					} else {
-						reply(new TeamSelectReply(false, "Team is full"));
+						reply(new TeamSelectReply(false, "Team is full", oldTeam));
 					}
-				} else {
-					incorrectUsage("You're already on that team");
 				}
 			}
 		}
@@ -226,10 +207,13 @@ public class Server {
 		@Override
 		public void handle(final ShipPlacement o) {
 			final Player player = sendingPlayer();
-			if (isPreGame() && player != null && !isObserver(player)) {
+			if (isInLobby() && player != null && !isObserver(player)) {
 				if (validateShipPlacement(o.getShips())) {
 					setShips(player.getTeam(), o.getShips());
 					reply(new ShipPlacementReply(true, null));
+					if (playersReady()) {
+						startGame();
+					}
 				} else {
 					reply(new ShipPlacementReply(false, "Illegal ship placement"));
 				}
@@ -275,9 +259,15 @@ public class Server {
 	// ////////////////////////////////////////////////////////////// //
 
 	private void handleGameOver(final Team winner, final String reason) {
-		broadcast(new GameOver(Phase.LOBBY_POSTGAME, winner, reason));
-		setPhase(Phase.LOBBY_POSTGAME);
+		broadcast(new GameOver(winner, reason));
+		setPhase(Phase.LOBBY);
 		broadcastSnapshot();
+		clearPlayersShips();
+	}
+
+	private void clearPlayersShips() {
+		game().setRedMap(createMap());
+		game().setBlueMap(createMap());
 	}
 
 	private void setPlayerTeam(final Player player, final Team newTeam, final Team oldTeam) {
@@ -287,9 +277,11 @@ public class Server {
 		switch (oldTeam) {
 		case RED:
 			game().unsetRedPlayer();
+			game().setRedMap(createMap());
 			break;
 		case BLUE:
 			game().unsetBluePlayer();
+			game().setBlueMap(createMap());
 			break;
 		default:
 			game().getObservers().remove(player);
@@ -299,9 +291,11 @@ public class Server {
 		switch (newTeam) {
 		case RED:
 			game().setRedPlayer(player);
+			game().setRedMap(createMap());
 			break;
 		case BLUE:
 			game().setBluePlayer(player);
+			game().setBlueMap(createMap());
 			break;
 		default:
 			game().getObservers().add(player);
@@ -309,31 +303,13 @@ public class Server {
 		}
 	}
 
-	private void resetToPreGameLobby() {
-		setPhase(Phase.LOBBY_PREGAME);
-	}
-
 	private void startGame() {
 		setPhase(Phase.PLAYING);
 	}
 
-	private void setPlayersNotReady() {
-		final Player red = game().getRedPlayer();
-		final Player blue = game().getBluePlayer();
-		if (red != null) {
-			red.setReady(false);
-		}
-		if (blue != null) {
-			blue.setReady(false);
-		}
-		for (final Player observer : game().getObservers()) {
-			observer.setReady(false);
-		}
-	}
-
 	private boolean playersReady() {
-		return game().hasBluePlayer() && game().hasRedPlayer() && game().getBluePlayer().getReady()
-				&& game().getRedPlayer().getReady();
+		return game().hasBluePlayer() && game().hasRedPlayer() && game().getBlueMap().hasShips()
+				&& game().getRedMap().hasShips();
 	}
 
 	private void setShips(final Team team, final ArrayList<Ship> ships) {
@@ -503,10 +479,12 @@ public class Server {
 	private void broadcast(final Message message, final Team team) {
 
 		// Filter out information players shouldn't know
-		if (!isPostGame() && message instanceof Snapshot) {
-			final Game game = ((Snapshot) message).getState();
+		if (message instanceof Snapshot) {
+			final Snapshot snapshot = ((Snapshot) message);
+			final Game game = snapshot.getState().deepCopy();
 			game.getRedMap().getShips().clear();
 			game.getBlueMap().getShips().clear();
+			snapshot.setState(game);
 		}
 
 		for (final Client client : m_players.keySet()) {
@@ -525,16 +503,8 @@ public class Server {
 		return m_game.getPhase();
 	}
 
-	private boolean isPreGame() {
-		return phase() == Phase.LOBBY_PREGAME;
-	}
-
-	private boolean isPostGame() {
-		return phase() == Phase.LOBBY_POSTGAME;
-	}
-
 	private boolean isInLobby() {
-		return isPreGame() || isPostGame();
+		return phase() == Phase.LOBBY;
 	}
 
 	private Team freeSlot() {
@@ -548,12 +518,7 @@ public class Server {
 	}
 
 	private Player createPlayer(final String name) {
-		return new Player(
-				UUID.randomUUID().toString(),
-				name,
-				freeSlot(),
-				false,
-				new ArrayList<Shot>());
+		return new Player(UUID.randomUUID().toString(), name, freeSlot(), new ArrayList<Shot>());
 	}
 
 	private List<Integer> properShipLengths() {
@@ -582,10 +547,8 @@ public class Server {
 				prevObservers, // observers
 				createMap(), // redmap
 				createMap(), // bluemap
-				Phase.LOBBY_PREGAME, // phase
-				Team.RED, // teamThisTurn
-				0.0 // tLastMove
-		);
+				Phase.LOBBY, // phase
+				Team.RED);
 	}
 
 	private Game m_game = createGame();

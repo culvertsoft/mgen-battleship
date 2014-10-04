@@ -1,10 +1,13 @@
 package battleship;
 
+import java.util.List;
+
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
 import battleship.messages.ShipSunk;
 import battleship.state.Game;
 import battleship.state.Phase;
+import battleship.state.Ship;
 import battleship.state.Shot;
 import battleship.state.Team;
 
@@ -20,6 +23,15 @@ public interface AI {
 	 * @return The name you want to play as.
 	 */
 	String selectName();
+
+	/**
+	 * Called when you should place your ships. Returning a bad value will cause
+	 * you to auto resign.
+	 * 
+	 * @return
+	 * 	The placement of your ships
+	 */
+	List<Ship> placeShips();
 
 	/**
 	 * Called when you should select a team. Note that the team may be full, and

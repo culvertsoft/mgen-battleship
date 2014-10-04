@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -11,6 +11,7 @@
 #define BATTLESHIP_MESSAGES_LOGINREPLY
 
 #include "battleship/messages/Connection.h"
+#include "battleship/state/Team.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
@@ -21,38 +22,46 @@ private:
 	std::string m_uuid;
 	bool m_result;
 	std::string m_failReason;
+	battleship::state::Team m_team;
 	bool _m_uuid_isSet;
 	bool _m_result_isSet;
 	bool _m_failReason_isSet;
+	bool _m_team_isSet;
 
 public:
 	LoginReply();
 	LoginReply(const std::string& uuid,
 			const bool& result,
-			const std::string& failReason);
+			const std::string& failReason,
+			const battleship::state::Team& team);
 	virtual ~LoginReply();
 
 	const std::string& getUuid() const;
 	const bool& getResult() const;
 	const std::string& getFailReason() const;
+	const battleship::state::Team& getTeam() const;
 
 	std::string& getUuidMutable();
 	bool& getResultMutable();
 	std::string& getFailReasonMutable();
+	battleship::state::Team& getTeamMutable();
 
 	LoginReply& setUuid(const std::string& uuid);
 	LoginReply& setResult(const bool& result);
 	LoginReply& setFailReason(const std::string& failReason);
+	LoginReply& setTeam(const battleship::state::Team& team);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasUuid() const;
 	bool hasResult() const;
 	bool hasFailReason() const;
+	bool hasTeam() const;
 
 	LoginReply& unsetUuid();
 	LoginReply& unsetResult();
 	LoginReply& unsetFailReason();
+	LoginReply& unsetTeam();
 
 	bool operator==(const LoginReply& other) const;
 	bool operator!=(const LoginReply& other) const;
@@ -82,6 +91,9 @@ public:
 		case _field_failReason_id:
 			reader.readField(_field_failReason_metadata(), context, getFailReasonMutable());
 			break;
+		case _field_team_id:
+			reader.readField(_field_team_metadata(), context, getTeamMutable());
+			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
 			break;
@@ -92,10 +104,11 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 3);
+				visitor.beginVisit(*this, 4);
 				visitor.visit(getUuid(), _field_uuid_metadata());
 				visitor.visit(getResult(), _field_result_metadata());
 				visitor.visit(getFailReason(), _field_failReason_metadata());
+				visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -107,6 +120,8 @@ public:
 					visitor.visit(getResult(), _field_result_metadata());
 				if (_isFailReasonSet(mgen::SHALLOW))
 					visitor.visit(getFailReason(), _field_failReason_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeam(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -117,10 +132,11 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 3);
+				visitor.beginVisit(*this, 4);
 				visitor.visit(getUuidMutable(), _field_uuid_metadata());
 				visitor.visit(getResultMutable(), _field_result_metadata());
 				visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -132,6 +148,8 @@ public:
 					visitor.visit(getResultMutable(), _field_result_metadata());
 				if (_isFailReasonSet(mgen::SHALLOW))
 					visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				if (_isTeamSet(mgen::SHALLOW))
+					visitor.visit(getTeamMutable(), _field_team_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -158,6 +176,7 @@ public:
 	LoginReply& _setUuidSet(const bool state, const mgen::FieldSetDepth depth);
 	LoginReply& _setResultSet(const bool state, const mgen::FieldSetDepth depth);
 	LoginReply& _setFailReasonSet(const bool state, const mgen::FieldSetDepth depth);
+	LoginReply& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
 
 	LoginReply& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
@@ -166,6 +185,7 @@ public:
 	bool _isUuidSet(const mgen::FieldSetDepth depth) const;
 	bool _isResultSet(const mgen::FieldSetDepth depth) const;
 	bool _isFailReasonSet(const mgen::FieldSetDepth depth) const;
+	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
@@ -203,10 +223,12 @@ public:
 	static const mgen::Field& _field_uuid_metadata();
 	static const mgen::Field& _field_result_metadata();
 	static const mgen::Field& _field_failReason_metadata();
+	static const mgen::Field& _field_team_metadata();
 
 	static const short _field_uuid_id = -11112;
 	static const short _field_result_id = 24642;
 	static const short _field_failReason_id = 1610;
+	static const short _field_team_id = -1585;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 

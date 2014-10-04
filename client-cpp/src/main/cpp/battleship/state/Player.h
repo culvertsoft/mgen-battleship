@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -23,12 +23,10 @@ private:
 	std::string m_uuid;
 	std::string m_name;
 	Team m_team;
-	bool m_ready;
 	std::vector<Shot>  m_shots;
 	bool _m_uuid_isSet;
 	bool _m_name_isSet;
 	bool _m_team_isSet;
-	bool _m_ready_isSet;
 	bool _m_shots_isSet;
 
 public:
@@ -36,26 +34,22 @@ public:
 	Player(const std::string& uuid,
 			const std::string& name,
 			const Team& team,
-			const bool& ready,
 			const std::vector<Shot> & shots);
 	virtual ~Player();
 
 	const std::string& getUuid() const;
 	const std::string& getName() const;
 	const Team& getTeam() const;
-	const bool& getReady() const;
 	const std::vector<Shot> & getShots() const;
 
 	std::string& getUuidMutable();
 	std::string& getNameMutable();
 	Team& getTeamMutable();
-	bool& getReadyMutable();
 	std::vector<Shot> & getShotsMutable();
 
 	Player& setUuid(const std::string& uuid);
 	Player& setName(const std::string& name);
 	Player& setTeam(const Team& team);
-	Player& setReady(const bool& ready);
 	Player& setShots(const std::vector<Shot> & shots);
 
 	/*custom_methods_begin*//*custom_methods_end*/
@@ -63,13 +57,11 @@ public:
 	bool hasUuid() const;
 	bool hasName() const;
 	bool hasTeam() const;
-	bool hasReady() const;
 	bool hasShots() const;
 
 	Player& unsetUuid();
 	Player& unsetName();
 	Player& unsetTeam();
-	Player& unsetReady();
 	Player& unsetShots();
 
 	bool operator==(const Player& other) const;
@@ -100,9 +92,6 @@ public:
 		case _field_team_id:
 			reader.readField(_field_team_metadata(), context, getTeamMutable());
 			break;
-		case _field_ready_id:
-			reader.readField(_field_ready_metadata(), context, getReadyMutable());
-			break;
 		case _field_shots_id:
 			reader.readField(_field_shots_metadata(), context, getShotsMutable());
 			break;
@@ -116,11 +105,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 5);
+				visitor.beginVisit(*this, 4);
 				visitor.visit(getUuid(), _field_uuid_metadata());
 				visitor.visit(getName(), _field_name_metadata());
 				visitor.visit(getTeam(), _field_team_metadata());
-				visitor.visit(getReady(), _field_ready_metadata());
 				visitor.visit(getShots(), _field_shots_metadata());
 				visitor.endVisit();
 				break;
@@ -133,8 +121,6 @@ public:
 					visitor.visit(getName(), _field_name_metadata());
 				if (_isTeamSet(mgen::SHALLOW))
 					visitor.visit(getTeam(), _field_team_metadata());
-				if (_isReadySet(mgen::SHALLOW))
-					visitor.visit(getReady(), _field_ready_metadata());
 				if (_isShotsSet(mgen::SHALLOW))
 					visitor.visit(getShots(), _field_shots_metadata());
 				visitor.endVisit();
@@ -147,11 +133,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 5);
+				visitor.beginVisit(*this, 4);
 				visitor.visit(getUuidMutable(), _field_uuid_metadata());
 				visitor.visit(getNameMutable(), _field_name_metadata());
 				visitor.visit(getTeamMutable(), _field_team_metadata());
-				visitor.visit(getReadyMutable(), _field_ready_metadata());
 				visitor.visit(getShotsMutable(), _field_shots_metadata());
 				visitor.endVisit();
 				break;
@@ -164,8 +149,6 @@ public:
 					visitor.visit(getNameMutable(), _field_name_metadata());
 				if (_isTeamSet(mgen::SHALLOW))
 					visitor.visit(getTeamMutable(), _field_team_metadata());
-				if (_isReadySet(mgen::SHALLOW))
-					visitor.visit(getReadyMutable(), _field_ready_metadata());
 				if (_isShotsSet(mgen::SHALLOW))
 					visitor.visit(getShotsMutable(), _field_shots_metadata());
 				visitor.endVisit();
@@ -194,7 +177,6 @@ public:
 	Player& _setUuidSet(const bool state, const mgen::FieldSetDepth depth);
 	Player& _setNameSet(const bool state, const mgen::FieldSetDepth depth);
 	Player& _setTeamSet(const bool state, const mgen::FieldSetDepth depth);
-	Player& _setReadySet(const bool state, const mgen::FieldSetDepth depth);
 	Player& _setShotsSet(const bool state, const mgen::FieldSetDepth depth);
 
 	Player& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
@@ -204,7 +186,6 @@ public:
 	bool _isUuidSet(const mgen::FieldSetDepth depth) const;
 	bool _isNameSet(const mgen::FieldSetDepth depth) const;
 	bool _isTeamSet(const mgen::FieldSetDepth depth) const;
-	bool _isReadySet(const mgen::FieldSetDepth depth) const;
 	bool _isShotsSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
@@ -243,13 +224,11 @@ public:
 	static const mgen::Field& _field_uuid_metadata();
 	static const mgen::Field& _field_name_metadata();
 	static const mgen::Field& _field_team_metadata();
-	static const mgen::Field& _field_ready_metadata();
 	static const mgen::Field& _field_shots_metadata();
 
 	static const short _field_uuid_id = -11112;
 	static const short _field_name_id = -28058;
 	static const short _field_team_id = -1585;
-	static const short _field_ready_id = 10645;
 	static const short _field_shots_id = 890;
 
 	static const std::vector<mgen::Field>& _field_metadatas();

@@ -7,6 +7,7 @@
         <Chat extends="Connection">
             <text type="string"/>
             <team type="battleship.state.Team"/>
+            <from type="string"/>
         </Chat>
         <Fire extends="GameInput">
             <position type="battleship.state.Vec2"/>
@@ -29,13 +30,14 @@
             <uuid type="string"/>
             <result type="bool"/>
             <failReason type="string"/>
+            <team type="battleship.state.Team"/>
         </LoginReply>
         <NextTurn extends="GameInfo">
             <team type="battleship.state.Team"/>
             <maxTime type="float64"/>
         </NextTurn>
         <Resign extends="GameInput"> </Resign>
-        <GameOver extends="PhaseChange">
+        <GameOver extends="GameInfo">
             <winner type="battleship.state.Team"/>
             <reason type="string"/>
         </GameOver>
@@ -45,6 +47,7 @@
         <TeamSelectReply extends="Connection">
             <result type="bool"/>
             <failReason type="string"/>
+            <team type="battleship.state.Team"/>
         </TeamSelectReply>
         <Message> </Message>
         <ShipPlacement extends="GameInput">
@@ -58,9 +61,6 @@
             <ship type="battleship.state.Ship"/>
             <team type="battleship.state.Team"/>
         </ShipSunk>
-        <SetReady extends="Connection">
-            <isReady type="bool"/>
-        </SetReady>
         <PlayerJoined extends="Connection">
             <playerId type="string" id="6798"/>
         </PlayerJoined>

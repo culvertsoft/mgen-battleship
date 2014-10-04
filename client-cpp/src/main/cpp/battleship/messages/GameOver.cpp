@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -21,10 +21,8 @@ GameOver::GameOver() :
 		_m_reason_isSet(false) {
 }
 
-GameOver::GameOver(const battleship::state::Phase& phase, 
-			const battleship::state::Team& winner, 
+GameOver::GameOver(const battleship::state::Team& winner, 
 			const std::string& reason) : 
-		PhaseChange(phase),
 		m_winner(winner),
 		m_reason(reason),
 		_m_winner_isSet(true),
@@ -52,11 +50,6 @@ std::string& GameOver::getReasonMutable() {
 	return m_reason;
 }
 
-GameOver& GameOver::setPhase(const battleship::state::Phase& phase) {
-	PhaseChange::setPhase(phase);
-	return *this;
-}
-
 GameOver& GameOver::setWinner(const battleship::state::Team& winner) {
 	m_winner = winner;
 	_m_winner_isSet = true;
@@ -79,11 +72,6 @@ bool GameOver::hasReason() const {
 	return _isReasonSet(mgen::SHALLOW);
 }
 
-GameOver& GameOver::unsetPhase() {
-	_setPhaseSet(false, mgen::SHALLOW);
-	return *this;
-}
-
 GameOver& GameOver::unsetWinner() {
 	_setWinnerSet(false, mgen::SHALLOW);
 	return *this;
@@ -96,10 +84,8 @@ GameOver& GameOver::unsetReason() {
 
 bool GameOver::operator==(const GameOver& other) const {
 	return true
-		 && _isPhaseSet(mgen::SHALLOW) == other._isPhaseSet(mgen::SHALLOW)
 		 && _isWinnerSet(mgen::SHALLOW) == other._isWinnerSet(mgen::SHALLOW)
 		 && _isReasonSet(mgen::SHALLOW) == other._isReasonSet(mgen::SHALLOW)
-		 && getPhase() == other.getPhase()
 		 && getWinner() == other.getWinner()
 		 && getReason() == other.getReason();
 }
@@ -122,8 +108,6 @@ bool GameOver::operator!=(const GameOver& other) const {
 		  
 const mgen::Field * GameOver::_fieldById(const short id) const {
 	switch (id) {
-	case _field_phase_id:
-		return &_field_phase_metadata();
 	case _field_winner_id:
 		return &_field_winner_metadata();
 	case _field_reason_id:
@@ -134,7 +118,7 @@ const mgen::Field * GameOver::_fieldById(const short id) const {
 }
 
 const mgen::Field * GameOver::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("phase", &GameOver::_field_phase_metadata())("winner", &GameOver::_field_winner_metadata())("reason", &GameOver::_field_reason_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("winner", &GameOver::_field_winner_metadata())("reason", &GameOver::_field_reason_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -194,7 +178,6 @@ GameOver& GameOver::_setReasonSet(const bool state, const mgen::FieldSetDepth de
 }
 
 GameOver& GameOver::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
-	_setPhaseSet(state, depth);
 	_setWinnerSet(state, depth);
 	_setReasonSet(state, depth);
 	return *this;
@@ -202,7 +185,6 @@ GameOver& GameOver::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth
 
 int GameOver::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const {
 	int out = 0;
-	out += _isPhaseSet(depth) ? 1 : 0;
 	out += _isWinnerSet(depth) ? 1 : 0;
 	out += _isReasonSet(depth) ? 1 : 0;
 	return out;
@@ -210,8 +192,6 @@ int GameOver::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeT
 
 bool GameOver::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const {
 	switch(field.id()) {
-		case (_field_phase_id):
-			return _isPhaseSet(depth);
 		case (_field_winner_id):
 			return _isWinnerSet(depth);
 		case (_field_reason_id):
@@ -267,27 +247,27 @@ const std::string& GameOver::_type_name() {
 }
 
 const std::vector<long long>& GameOver::_type_ids() {
-	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 6310518169450536016LL << 4978160568720679319LL;
+	static const std::vector<long long> out = mgen::make_vector<long long>() << 5193397973584545788LL << 3660020118300555442LL << 4978160568720679319LL;
 	return out;
 }
 
 const std::vector<short>& GameOver::_type_ids_16bit() {
-	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << -8601 << -2120;
+	static const std::vector<short> out = mgen::make_vector<short>() << 28358 << -21460 << -2120;
 	return out;
 }
 
 const std::vector<std::string>& GameOver::_type_names() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.PhaseChange" << "battleship.messages.GameOver";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "battleship.messages.Message" << "battleship.messages.GameInfo" << "battleship.messages.GameOver";
 	return out;
 }
 
 const std::vector<std::string>& GameOver::_type_ids_16bit_base64() {
-	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "3mc" << "97g";
+	static const std::vector<std::string> out = mgen::make_vector<std::string>() << "bsY" << "rCw" << "97g";
 	return out;
 }
 
 const std::string& GameOver::_type_ids_16bit_base64_string() {
-	static const std::string out("bsYrCw3mc97g");
+	static const std::string out("bsYrCw97g");
 	return out;
 }
 
@@ -297,7 +277,7 @@ const std::string& GameOver::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& GameOver::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_phase_metadata() << _field_winner_metadata() << _field_reason_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_winner_metadata() << _field_reason_metadata();
 	return out;
 }
 

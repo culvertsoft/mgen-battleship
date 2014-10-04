@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-09-11 17:52:12 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -34,9 +34,6 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 							break;
 						case battleship::messages::TeamSelectReply::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::TeamSelectReply&>(object));
-							break;
-						case battleship::messages::SetReady::_type_id_16bit:
-							handler.handle(static_cast<battleship::messages::SetReady&>(object));
 							break;
 						case battleship::messages::PlayerJoined::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::PlayerJoined&>(object));
@@ -71,20 +68,16 @@ void dispatch(mgen::MGenBase& object, battleship::Handler& handler) {
 							handler.handle(static_cast<battleship::messages::FireResult&>(object));
 							break;
 						case battleship::messages::PhaseChange::_type_id_16bit:
-							switch(i < ids.size() ? ids[i++] : mgen::ClassRegistryBase::INVALID_16BIT_ID) {
-								case battleship::messages::GameOver::_type_id_16bit:
-									handler.handle(static_cast<battleship::messages::GameOver&>(object));
-									break;
-								default:
-									handler.handle(static_cast<battleship::messages::PhaseChange&>(object));
-									break;
-							}
+							handler.handle(static_cast<battleship::messages::PhaseChange&>(object));
 							break;
 						case battleship::messages::Snapshot::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::Snapshot&>(object));
 							break;
 						case battleship::messages::NextTurn::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::NextTurn&>(object));
+							break;
+						case battleship::messages::GameOver::_type_id_16bit:
+							handler.handle(static_cast<battleship::messages::GameOver&>(object));
 							break;
 						case battleship::messages::ShipPlacementReply::_type_id_16bit:
 							handler.handle(static_cast<battleship::messages::ShipPlacementReply&>(object));

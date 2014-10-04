@@ -5,7 +5,6 @@ import battleship.messages.Chat;
 import battleship.messages.Fire;
 import battleship.messages.Login;
 import battleship.messages.Resign;
-import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.TeamSelect;
 import battleship.state.Player;
@@ -30,12 +29,6 @@ public abstract class GameServerListener extends Handler {
 
 	@Override
 	protected void handle(Login o) {
-		// TODO Auto-generated method stub
-		super.handle(o);
-	}
-
-	@Override
-	protected void handle(final SetReady o) {
 		// TODO Auto-generated method stub
 		super.handle(o);
 	}
