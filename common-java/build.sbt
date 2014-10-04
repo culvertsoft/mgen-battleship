@@ -5,7 +5,7 @@ name := "mgen-battleship-javacommon"
 
 organization := "se.culvertsoft"
 
-version := scala.util.Properties.envOrElse("MGEN_BATTLESHIP_JAVASCOMMON_VERSION", "SNAPSHOT")
+version := scala.util.Properties.envOrElse("MGEN_BATTLESHIP_VERSION", "SNAPSHOT")
 
 isSnapshot := version.value.contains("SNAPSHOT")
 

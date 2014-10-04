@@ -1,7 +1,7 @@
 
 // Remember, sbt needs empty lines between active settings
 
-name := "mgen-battleship-javaclient"
+name := "mgen-battleship-testjava"
 
 organization := "se.culvertsoft"
 
@@ -19,8 +19,11 @@ libraryDependencies += "se.culvertsoft" % "mnet-client" % "SNAPSHOT"
 
 libraryDependencies += "se.culvertsoft" % "mgen-battleship-javacommon" % version.value
 
+libraryDependencies += "se.culvertsoft" % "mgen-battleship-javaclient" % version.value
+
+libraryDependencies += "se.culvertsoft" % "mgen-battleship-server" % version.value
+
+libraryDependencies += "com.novocode" % "junit-interface" % "0.10" % Test
+
 EclipseKeys.withSource := true
 
-// Doesn't work, since MNet requires scala
-// autoScalaLibrary := false
-// EclipseKeys.projectFlavor := EclipseProjectFlavor.Java
