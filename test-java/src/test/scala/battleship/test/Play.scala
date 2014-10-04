@@ -20,7 +20,7 @@ class Play {
     Thread.sleep(100)
     
     val g1Network = new MNetNetworkClient("localhost", port)
-    val p1 = new GameClient
+    //val p1 = new GameClient
     
     
     server.close()    

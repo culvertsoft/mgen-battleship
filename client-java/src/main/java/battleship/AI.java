@@ -4,6 +4,7 @@ import battleship.messages.FireResult;
 import battleship.messages.GameOver;
 import battleship.messages.ShipSunk;
 import battleship.state.Game;
+import battleship.state.Phase;
 import battleship.state.Shot;
 import battleship.state.Team;
 
@@ -14,7 +15,16 @@ public interface AI {
 	// ///////////////////////////////////////////////// //
 
 	/**
-	 * Called when you should select a team.
+	 * Called when you should select a name.
+	 * 
+	 * @return The name you want to play as.
+	 */
+	String selectName();
+
+	/**
+	 * Called when you should select a team. Note that the team may be full, and
+	 * you must wait for the assignedTeam(..) callback below to see what team
+	 * you are actually assigned to.
 	 * 
 	 * @return The team you want to play as. If that slot is already taken, you
 	 *         will be called again. Failing too many times will get you kicked.
@@ -45,7 +55,8 @@ public interface AI {
 	/**
 	 * Called when you are assigned to a team.
 	 * 
-	 * @return The team you will play as (or if observer: Team.OBSERVERS).
+	 * @param team
+	 *            The team you will play as (or if observer: Team.OBSERVERS).
 	 */
 	void assignedTeam(final Team team);
 
@@ -54,25 +65,32 @@ public interface AI {
 	 * who fired the shot. Will be followed by a call to shipSunk(..) if this
 	 * also sunk a ship.
 	 * 
-	 * @param shot
+	 * @param shotResultMsg
 	 *            The shot
 	 */
-	void shotFired(final FireResult shot);
+	void shotFired(final FireResult shotResultMsg);
 
 	/**
 	 * Called when a ship is sunk.
 	 * 
-	 * @param sink
+	 * @param sinkMsg
 	 *            A message containing the information about the sunk ship
 	 */
-	void shipSunk(final ShipSunk sink);
+	void shipSunk(final ShipSunk sinkMsg);
 
 	/**
 	 * Notifies you that the game is over and who won.
 	 * 
-	 * @param gameState
 	 * @param gameOverMsg
 	 */
-	void gameOver(final Game gameState, final GameOver gameOverMsg);
+	void gameOver(final GameOver gameOverMsg);
+
+	/**
+	 * Notifies you that the game has entered a new phase
+	 * 
+	 * @param newPhase
+	 *            The new phase of the game
+	 */
+	void gamePhaseChanged(final Phase newPhase);
 
 }
