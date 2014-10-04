@@ -155,7 +155,7 @@ public class Server {
 				for (final Segment segment : enemyShip.getPoints()) {
 					if (segment.getPos().equals(o.getPosition())) {
 						segment.setAlive(false);
-						broadcast(new FireResult(true, o.getPosition()));
+						broadcast(new FireResult(true, o.getPosition(), player.getTeam()));
 						if (enemyShip.isSunk()) {
 							broadcast(new ShipSunk(enemyShip, opposingTeam(player)));
 							
@@ -164,12 +164,13 @@ public class Server {
 							}
 							
 						}
+						broadcastSnapshot();
 						return;
 					}
 				}
 			}
 
-			broadcast(new FireResult(false, o.getPosition()));
+			broadcast(new FireResult(false, o.getPosition(), player.getTeam()));
 
 		}
 

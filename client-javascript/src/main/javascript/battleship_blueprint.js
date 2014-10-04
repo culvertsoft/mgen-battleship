@@ -47,6 +47,11 @@
 			"flags": [],
 			"type": "battleship.state.Vec2",
 			"hash": "mR8"
+		},
+		"firingTeam": {
+			"flags": [],
+			"type": "enum:RED, BLUE, OBSERVERS",
+			"hash": "r+Y"
 		}
 	};
 	blueprint.classes["battleship.messages.PhaseChange"] =  {

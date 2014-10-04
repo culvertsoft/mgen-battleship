@@ -24,19 +24,23 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 
 	private boolean m_hit;
 	private battleship.state.Vec2 m_position;
+	private battleship.state.Team m_firingTeam;
 	private boolean _m_hit_isSet;
 
 	public FireResult() {
 		super();
 		m_hit = false;
 		m_position = null;
+		m_firingTeam = null;
 		_m_hit_isSet = false;
 	}
 
 	public FireResult(final boolean hit,
-				final battleship.state.Vec2 position) {
+				final battleship.state.Vec2 position,
+				final battleship.state.Team firingTeam) {
 		m_hit = hit;
 		m_position = position;
+		m_firingTeam = firingTeam;
 		_m_hit_isSet = true;
 	}
 
@@ -48,12 +52,20 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		return m_position;
 	}
 
+	public battleship.state.Team getFiringTeam() {
+		return m_firingTeam;
+	}
+
 	public boolean hasHit() {
 		return _isHitSet(FieldSetDepth.SHALLOW);
 	}
 
 	public boolean hasPosition() {
 		return _isPositionSet(FieldSetDepth.SHALLOW);
+	}
+
+	public boolean hasFiringTeam() {
+		return _isFiringTeamSet(FieldSetDepth.SHALLOW);
 	}
 
 	public FireResult unsetHit() {
@@ -66,6 +78,11 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		return this;
 	}
 
+	public FireResult unsetFiringTeam() {
+		_setFiringTeamSet(false, FieldSetDepth.SHALLOW);
+		return this;
+	}
+
 	public FireResult setHit(final boolean hit) {
 		m_hit = hit;
 		_m_hit_isSet = true;
@@ -74,6 +91,11 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 
 	public FireResult setPosition(final battleship.state.Vec2 position) {
 		m_position = position;
+		return this;
+	}
+
+	public FireResult setFiringTeam(final battleship.state.Team firingTeam) {
+		m_firingTeam = firingTeam;
 		return this;
 	}
 
@@ -90,6 +112,7 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		int result = -769872389;
 		result = _isHitSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getHit(), _hit_METADATA.typ())) : result;
 		result = _isPositionSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getPosition(), _position_METADATA.typ())) : result;
+		result = _isFiringTeamSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getFiringTeam(), _firingTeam_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -102,8 +125,10 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		return true
 		  && (_isHitSet(FieldSetDepth.SHALLOW) == o._isHitSet(FieldSetDepth.SHALLOW))
 		  && (_isPositionSet(FieldSetDepth.SHALLOW) == o._isPositionSet(FieldSetDepth.SHALLOW))
+		  && (_isFiringTeamSet(FieldSetDepth.SHALLOW) == o._isFiringTeamSet(FieldSetDepth.SHALLOW))
 		  && EqualityTester.areEqual(getHit(), o.getHit(), _hit_METADATA.typ())
-		  && EqualityTester.areEqual(getPosition(), o.getPosition(), _position_METADATA.typ());
+		  && EqualityTester.areEqual(getPosition(), o.getPosition(), _position_METADATA.typ())
+		  && EqualityTester.areEqual(getFiringTeam(), o.getFiringTeam(), _firingTeam_METADATA.typ());
 	}
 
 	@Override
@@ -111,8 +136,10 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		final FireResult out = new FireResult();
 		out.setHit(DeepCopyer.deepCopy(getHit(), _hit_METADATA.typ()));
 		out.setPosition(DeepCopyer.deepCopy(getPosition(), _position_METADATA.typ()));
+		out.setFiringTeam(DeepCopyer.deepCopy(getFiringTeam(), _firingTeam_METADATA.typ()));
 		out._setHitSet(_isHitSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		out._setPositionSet(_isPositionSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		out._setFiringTeamSet(_isFiringTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -178,9 +205,10 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 2);
+				visitor.beginVisit(this, 3);
 				visitor.visit(getHit(), _hit_METADATA);
 				visitor.visit(getPosition(), _position_METADATA);
+				visitor.visit(getFiringTeam(), _firingTeam_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -190,6 +218,8 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 					visitor.visit(getHit(), _hit_METADATA);
 				if (_isPositionSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getPosition(), _position_METADATA);
+				if (_isFiringTeamSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getFiringTeam(), _firingTeam_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -206,6 +236,9 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 				return true;
 			case (_position_ID):
 				setPosition((battleship.state.Vec2)reader.readMgenObjectField(_position_METADATA, context));
+				return true;
+			case (_firingTeam_ID):
+				setFiringTeam((battleship.state.Team)reader.readEnumField(_firingTeam_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -230,12 +263,18 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		}
 	}
 
+	public boolean _isFiringTeamSet(final FieldSetDepth fieldSetDepth) {
+		return m_firingTeam != null;
+	}
+
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
 			case (_hit_ID):
 				return _isHitSet(depth);
 			case (_position_ID):
 				return _isPositionSet(depth);
+			case (_firingTeam_ID):
+				return _isFiringTeamSet(depth);
 			default:
 				return false;
 		}
@@ -258,9 +297,18 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		return this;
 	}
 
+	public FireResult _setFiringTeamSet(final boolean state, final FieldSetDepth depth) {
+		if (state)
+			m_firingTeam = m_firingTeam != null ? m_firingTeam : battleship.state.Team.UNKNOWN;
+		else
+			m_firingTeam = null;
+		return this;
+	}
+
 	public FireResult _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setHitSet(state, depth);
 		_setPositionSet(state, depth);
+		_setFiringTeamSet(state, depth);
 		return this;
 	}
 
@@ -278,6 +326,7 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 		int out = 0;
 		out += _isHitSet(depth) ? 1 : 0;
 		out += _isPositionSet(depth) ? 1 : 0;
+		out += _isFiringTeamSet(depth) ? 1 : 0;
 		return out;
 	}
 
@@ -288,6 +337,8 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 				return _hit_METADATA;
 			case (_position_ID):
 				return _position_METADATA;
+			case (_firingTeam_ID):
+				return _firingTeam_METADATA;
 			default:
 				return null;
 		}
@@ -300,6 +351,8 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 				return _hit_METADATA;
 			case ("position"):
 				return _position_METADATA;
+			case ("firingTeam"):
+				return _firingTeam_METADATA;
 			default:
 				return null;
 		}
@@ -338,10 +391,12 @@ public class FireResult extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*
 
 	public static final Field _hit_METADATA = new Field("battleship.messages.FireResult", "hit", se.culvertsoft.mgen.api.model.BoolType.INSTANCE, null, (short)29175);
 	public static final Field _position_METADATA = new Field("battleship.messages.FireResult", "position", new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Vec2", 6453467209109281982L), null, (short)-26337);
+	public static final Field _firingTeam_METADATA = new Field("battleship.messages.FireResult", "firingTeam", battleship.state.Team._TYPE, null, (short)-20506);
 
 	public static final short _hit_ID = (short)29175;
 	public static final short _position_ID = (short)-26337;
+	public static final short _firingTeam_ID = (short)-20506;
 
-	public static final Field[] _FIELDS = { _hit_METADATA, _position_METADATA };
+	public static final Field[] _FIELDS = { _hit_METADATA, _position_METADATA, _firingTeam_METADATA };
 
 }

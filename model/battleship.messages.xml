@@ -14,6 +14,7 @@
         <FireResult extends="GameInfo">
             <hit type="bool"/>
             <position type="battleship.state.Vec2"/>
+            <firingTeam type="battleship.state.Team"/>
         </FireResult>
         <PhaseChange extends="GameInfo">
             <phase type="battleship.state.Phase"/>

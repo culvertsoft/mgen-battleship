@@ -11,6 +11,7 @@
 #define BATTLESHIP_MESSAGES_FIRERESULT
 
 #include "battleship/messages/GameInfo.h"
+#include "battleship/state/Team.h"
 #include "battleship/state/Vec2.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
@@ -21,31 +22,39 @@ class FireResult : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	bool m_hit;
 	battleship::state::Vec2 m_position;
+	battleship::state::Team m_firingTeam;
 	bool _m_hit_isSet;
 	bool _m_position_isSet;
+	bool _m_firingTeam_isSet;
 
 public:
 	FireResult();
 	FireResult(const bool& hit,
-			const battleship::state::Vec2& position);
+			const battleship::state::Vec2& position,
+			const battleship::state::Team& firingTeam);
 	virtual ~FireResult();
 
 	const bool& getHit() const;
 	const battleship::state::Vec2& getPosition() const;
+	const battleship::state::Team& getFiringTeam() const;
 
 	bool& getHitMutable();
 	battleship::state::Vec2& getPositionMutable();
+	battleship::state::Team& getFiringTeamMutable();
 
 	FireResult& setHit(const bool& hit);
 	FireResult& setPosition(const battleship::state::Vec2& position);
+	FireResult& setFiringTeam(const battleship::state::Team& firingTeam);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
 	bool hasHit() const;
 	bool hasPosition() const;
+	bool hasFiringTeam() const;
 
 	FireResult& unsetHit();
 	FireResult& unsetPosition();
+	FireResult& unsetFiringTeam();
 
 	bool operator==(const FireResult& other) const;
 	bool operator!=(const FireResult& other) const;
@@ -72,6 +81,9 @@ public:
 		case _field_position_id:
 			reader.readField(_field_position_metadata(), context, getPositionMutable());
 			break;
+		case _field_firingTeam_id:
+			reader.readField(_field_firingTeam_metadata(), context, getFiringTeamMutable());
+			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
 			break;
@@ -82,9 +94,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getHit(), _field_hit_metadata());
 				visitor.visit(getPosition(), _field_position_metadata());
+				visitor.visit(getFiringTeam(), _field_firingTeam_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -94,6 +107,8 @@ public:
 					visitor.visit(getHit(), _field_hit_metadata());
 				if (_isPositionSet(mgen::SHALLOW))
 					visitor.visit(getPosition(), _field_position_metadata());
+				if (_isFiringTeamSet(mgen::SHALLOW))
+					visitor.visit(getFiringTeam(), _field_firingTeam_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -104,9 +119,10 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 2);
+				visitor.beginVisit(*this, 3);
 				visitor.visit(getHitMutable(), _field_hit_metadata());
 				visitor.visit(getPositionMutable(), _field_position_metadata());
+				visitor.visit(getFiringTeamMutable(), _field_firingTeam_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -116,6 +132,8 @@ public:
 					visitor.visit(getHitMutable(), _field_hit_metadata());
 				if (_isPositionSet(mgen::SHALLOW))
 					visitor.visit(getPositionMutable(), _field_position_metadata());
+				if (_isFiringTeamSet(mgen::SHALLOW))
+					visitor.visit(getFiringTeamMutable(), _field_firingTeam_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -141,6 +159,7 @@ public:
 
 	FireResult& _setHitSet(const bool state, const mgen::FieldSetDepth depth);
 	FireResult& _setPositionSet(const bool state, const mgen::FieldSetDepth depth);
+	FireResult& _setFiringTeamSet(const bool state, const mgen::FieldSetDepth depth);
 
 	FireResult& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
@@ -148,6 +167,7 @@ public:
 
 	bool _isHitSet(const mgen::FieldSetDepth depth) const;
 	bool _isPositionSet(const mgen::FieldSetDepth depth) const;
+	bool _isFiringTeamSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
@@ -184,9 +204,11 @@ public:
 
 	static const mgen::Field& _field_hit_metadata();
 	static const mgen::Field& _field_position_metadata();
+	static const mgen::Field& _field_firingTeam_metadata();
 
 	static const short _field_hit_id = 29175;
 	static const short _field_position_id = -26337;
+	static const short _field_firingTeam_id = -20506;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 
