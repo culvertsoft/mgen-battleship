@@ -8,8 +8,6 @@
  ********************************************************************************************************************/
 package battleship.state;
 
-import battleship.messages.FireResult;
-import battleship.messages.ShipSunk;
 import se.culvertsoft.mgen.api.model.Field;
 import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
@@ -363,6 +361,5 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_
 	public static final short _size_ID = (short)-31998;
 
 	public static final Field[] _FIELDS = { _ships_METADATA, _size_METADATA };
-
 
 }

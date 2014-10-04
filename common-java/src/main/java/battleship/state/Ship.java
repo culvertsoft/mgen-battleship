@@ -1,9 +1,9 @@
 /********************************************************************************************************************
  ********************************************************************************************************************
  ********************************************************************************************************************
- *****                                                                                      *****
- *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
- *****                                                                                      *****		
+           *****                                                                                      *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
 package battleship.state;
@@ -25,7 +25,7 @@ import java.util.Collections;
 
 /*custom_imports_end*/
 
-public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */{
+public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private java.util.ArrayList<Segment> m_points;
 
@@ -56,7 +56,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		return this;
 	}
 
-	/* custom_methods_begin */
+	/*custom_methods_begin*/
 
 	public Ship(final int x0, final int y0, final int len, final boolean horizontal) {
 		this(new ArrayList<Segment>());
@@ -165,7 +165,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		return Collections.min(allY()) == Collections.max(allY());
 	}
 
-	/* custom_methods_end */
+	/*custom_methods_end*/
 
 	@Override
 	public String toString() {
@@ -176,24 +176,19 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 	public int hashCode() {
 		final int prime = 31;
 		int result = -498342701;
-		result = _isPointsSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(
-				getPoints(),
-				_points_METADATA.typ())) : result;
+		result = _isPointsSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getPoints(), _points_METADATA.typ())) : result;
 		return result;
 	}
 
 	@Override
 	public boolean equals(final Object other) {
-		if (other == null)
-			return false;
-		if (other == this)
-			return true;
-		if (Ship.class != other.getClass())
-			return false;
-		final Ship o = (Ship) other;
+		if (other == null) return false;
+		if (other == this) return true;
+		if (Ship.class != other.getClass()) return false;
+		final Ship o = (Ship)other;
 		return true
-				&& (_isPointsSet(FieldSetDepth.SHALLOW) == o._isPointsSet(FieldSetDepth.SHALLOW))
-				&& EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ());
+		  && (_isPointsSet(FieldSetDepth.SHALLOW) == o._isPointsSet(FieldSetDepth.SHALLOW))
+		  && EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ());
 	}
 
 	@Override
@@ -204,13 +199,18 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		return out;
 	}
 
-	/********************************************************************************************************************
-	 ******************************************************************************************************************** 
-	 ******************************************************************************************************************** 
-	 ***** ***** TYPE METADATA ACCESS AND SERIALIZATION METHODS ***** (accessed
-	 * primarily by (de-)serializers and for ORM functionality) ***** *****
-	 ******************************************************************************************************************** 
-	 ********************************************************************************************************************/
+
+							
+/********************************************************************************************************************
+ ********************************************************************************************************************
+ ********************************************************************************************************************
+           *****                                                                                      *****
+           *****                    TYPE METADATA ACCESS AND SERIALIZATION METHODS                    *****
+           *****          (accessed primarily by (de-)serializers and for ORM functionality)          *****	
+           *****                                                                                      *****		
+ ********************************************************************************************************************
+ ********************************************************************************************************************/	 		  
+		  
 
 	@Override
 	public long _typeId() {
@@ -258,37 +258,36 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 	}
 
 	@Override
-	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection)
-			throws java.io.IOException {
-		switch (selection) {
-		case ALL: {
-			visitor.beginVisit(this, 1);
-			visitor.visit(getPoints(), _points_METADATA);
-			visitor.endVisit();
-			break;
-		}
-		default /* case ALL_SET_NONTRANSIENT */: {
-			visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
-			if (_isPointsSet(FieldSetDepth.SHALLOW))
+	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
+		switch(selection) {
+			case ALL: {
+				visitor.beginVisit(this, 1);
 				visitor.visit(getPoints(), _points_METADATA);
-			visitor.endVisit();
-			break;
-		}
+				visitor.endVisit();
+				break;
+			}
+			default /* case ALL_SET_NONTRANSIENT */ : {
+				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
+				if (_isPointsSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getPoints(), _points_METADATA);
+				visitor.endVisit();
+				break;
+			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean _readField(final short fieldId, final Object context, final Reader reader)
-			throws java.io.IOException {
-		switch (fieldId) {
-		case (_points_ID):
-			setPoints((java.util.ArrayList<Segment>) reader
-					.readListField(_points_METADATA, context));
-			return true;
-		default:
-			reader.handleUnknownField(null, context);
-			return false;
+	public boolean _readField(final short fieldId,
+	                         final Object context,
+	                         final Reader reader) throws java.io.IOException {
+		switch(fieldId) {
+			case (_points_ID):
+				setPoints((java.util.ArrayList<Segment>)reader.readListField(_points_METADATA, context));
+				return true;
+			default:
+				reader.handleUnknownField(null, context);
+				return false;
 		}
 	}
 
@@ -301,17 +300,16 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		if (fieldSetDepth == FieldSetDepth.SHALLOW) {
 			return m_points != null;
 		} else {
-			return m_points != null
-					&& Validator.validateFieldDeep(getPoints(), _points_METADATA.typ());
+			return m_points != null && Validator.validateFieldDeep(getPoints(), _points_METADATA.typ());
 		}
 	}
 
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
-		switch (field.id()) {
-		case (_points_ID):
-			return _isPointsSet(depth);
-		default:
-			return false;
+		switch(field.id()) {
+			case (_points_ID):
+				return _isPointsSet(depth);
+			default:
+				return false;
 		}
 	}
 
@@ -325,16 +323,17 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		return this;
 	}
 
-	public Ship _setAllFieldsSet(final boolean state, final FieldSetDepth depth) {
+	public Ship _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setPointsSet(state, depth);
 		return this;
 	}
 
-	public boolean _validate(final FieldSetDepth fieldSetDepth) {
+	public boolean _validate(final FieldSetDepth fieldSetDepth) { 
 		if (fieldSetDepth == FieldSetDepth.SHALLOW) {
 			return true;
 		} else {
-			return true && (!_isPointsSet(FieldSetDepth.SHALLOW) || _isPointsSet(FieldSetDepth.DEEP));
+			return true
+				&& (!_isPointsSet(FieldSetDepth.SHALLOW) || _isPointsSet(FieldSetDepth.DEEP));
 		}
 	}
 
@@ -347,31 +346,36 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 
 	@Override
 	public Field _fieldById(final short fieldId) {
-		switch (fieldId) {
-		case (_points_ID):
-			return _points_METADATA;
-		default:
-			return null;
+		switch(fieldId) {
+			case (_points_ID):
+				return _points_METADATA;
+			default:
+				return null;
 		}
 	}
 
 	@Override
 	public Field _fieldByName(final String fieldName) {
-		switch (fieldName) {
-		case ("points"):
-			return _points_METADATA;
-		default:
-			return null;
+		switch(fieldName) {
+			case ("points"):
+				return _points_METADATA;
+			default:
+				return null;
 		}
 	}
 
-	/********************************************************************************************************************
-	 ******************************************************************************************************************** 
-	 ******************************************************************************************************************** 
-	 ***** ***** TYPE METADATA ***** (generally speaking, it's a bad idea to edit
-	 * this manually) ***** *****
-	 ******************************************************************************************************************** 
-	 ********************************************************************************************************************/
+
+							
+/********************************************************************************************************************
+ ********************************************************************************************************************
+ ********************************************************************************************************************
+           *****                                                                                      *****
+           *****                                    TYPE METADATA                                     *****
+           *****             (generally speaking, it's a bad idea to edit this manually)              *****	
+           *****                                                                                      *****		
+ ********************************************************************************************************************
+ ********************************************************************************************************************/	 		  
+		  
 
 	public static final long _TYPE_ID = 5434834621073515272L;
 
@@ -391,15 +395,9 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 
 	public static final String[] _TYPE_NAMES = { battleship.state.Ship._TYPE_NAME };
 
-	public static final Field _points_METADATA = new Field(
-			"battleship.state.Ship",
-			"points",
-			new se.culvertsoft.mgen.api.model.ListType(
-					new se.culvertsoft.mgen.api.model.RuntimeClassType(
-							"battleship.state.Segment",
-							3947935130376690974L)), null, (short) -26865);
+	public static final Field _points_METADATA = new Field("battleship.state.Ship", "points", new se.culvertsoft.mgen.api.model.ListType(new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Segment", 3947935130376690974L)), null, (short)-26865);
 
-	public static final short _points_ID = (short) -26865;
+	public static final short _points_ID = (short)-26865;
 
 	public static final Field[] _FIELDS = { _points_METADATA };
 

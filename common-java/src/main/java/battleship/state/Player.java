@@ -468,5 +468,4 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cust
 
 	public static final Field[] _FIELDS = { _uuid_METADATA, _name_METADATA, _team_METADATA, _shots_METADATA };
 
-
 }

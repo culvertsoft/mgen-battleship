@@ -695,5 +695,4 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 
 	public static final Field[] _FIELDS = { _redPlayer_METADATA, _bluePlayer_METADATA, _observers_METADATA, _redMap_METADATA, _blueMap_METADATA, _phase_METADATA, _currentTeam_METADATA };
 
-
 }
