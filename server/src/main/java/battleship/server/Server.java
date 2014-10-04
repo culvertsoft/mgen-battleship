@@ -220,6 +220,7 @@ public class Server {
 
 		@Override
 		public void handle(final ShipPlacement o) {
+			System.out.println("Received ship placement");
 			final Player player = sendingPlayer();
 			if (isInLobby() && player != null && !isObserver(player)) {
 				if (validateShipPlacement(o.getShips())) {
@@ -230,6 +231,7 @@ public class Server {
 					}
 				} else {
 					reply(new ShipPlacementReply(false, "Illegal ship placement"));
+					incorrectUsage("Illegal ship placement");
 				}
 			}
 		}
@@ -578,8 +580,8 @@ public class Server {
 	private List<Integer> properShipLengths() {
 		final List<Integer> out = new ArrayList<>();
 		out.add(2);
-		out.add(2);
 		out.add(3);
+		out.add(4);
 		out.add(5);
 		out.add(6);
 		return out;

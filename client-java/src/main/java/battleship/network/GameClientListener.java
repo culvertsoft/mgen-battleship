@@ -4,6 +4,7 @@ import battleship.Handler;
 import battleship.messages.Chat;
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
+import battleship.messages.IncorrectUsage;
 import battleship.messages.LoginReply;
 import battleship.messages.Message;
 import battleship.messages.NextTurn;
@@ -32,9 +33,15 @@ public abstract class GameClientListener extends Handler {
 	public void onDisconnect(String reason) {
 	}
 
-	public void onNetworkError(Exception error, Object source) {		
+	public void onNetworkError(Exception error, Object source) {
 	}
-	
+
+	@Override
+	protected void handle(IncorrectUsage o) {
+		// TODO Auto-generated method stub
+		super.handle(o);
+	}
+
 	@Override
 	public void handle(LoginReply o) {
 		super.handle(o); // Default impl just forwards to super
@@ -44,7 +51,7 @@ public abstract class GameClientListener extends Handler {
 	public void handle(TeamSelectReply o) {
 		super.handle(o); // Default impl just forwards to super
 	}
-	
+
 	@Override
 	public void handle(ShipPlacementReply o) {
 		super.handle(o); // Default impl just forwards to super
@@ -85,7 +92,6 @@ public abstract class GameClientListener extends Handler {
 		super.handle(o); // Default impl just forwards to super
 	}
 
-
 	// /////////////////////////////////////////////////////// //
 	// ////////////////////// PRIVATE /////////////////////// //
 	// ////////////////////////////////////////////////////// //
@@ -93,6 +99,5 @@ public abstract class GameClientListener extends Handler {
 	void dispatch(Message o) {
 		super.handle(o);
 	}
-
 
 }

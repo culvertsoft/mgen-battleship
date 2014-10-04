@@ -3,6 +3,7 @@ package battleship;
 import battleship.messages.Chat;
 import battleship.messages.FireResult;
 import battleship.messages.GameOver;
+import battleship.messages.IncorrectUsage;
 import battleship.messages.LoginReply;
 import battleship.messages.NextTurn;
 import battleship.messages.PhaseChange;
@@ -74,6 +75,16 @@ public class SimpleGameClient {
 		m_gameClient.chat(message, team);
 	}
 
+	/**
+	 * Overload this to handle incorrect usage notifications
+	 * 
+	 * @param iu
+	 *            The incorrect usage notification message
+	 */
+	public void onIncorrectUsage(final IncorrectUsage iu) {
+		System.err.println("Incorrect usage: " + iu.getReason());
+	}
+
 	private class GameListener extends GameClientListener {
 
 		@Override
@@ -93,6 +104,11 @@ public class SimpleGameClient {
 						new RuntimeException("Login failed: " + o.getFailReason()),
 						this);
 			}
+		}
+
+		@Override
+		public void handle(IncorrectUsage o) {
+			SimpleGameClient.this.onIncorrectUsage(o);
 		}
 
 		@Override
