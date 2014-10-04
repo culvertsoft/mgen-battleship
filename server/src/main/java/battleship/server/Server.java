@@ -158,11 +158,11 @@ public class Server {
 						broadcast(new FireResult(true, o.getPosition(), player.getTeam()));
 						if (enemyShip.isSunk()) {
 							broadcast(new ShipSunk(enemyShip, opposingTeam(player)));
-							
+
 							if (!isAlive(player)) {
 								handleGameOver(player.getTeam(), "All enemy ships sunk!");
 							}
-							
+
 						}
 						broadcastSnapshot();
 						return;
@@ -196,8 +196,16 @@ public class Server {
 		@Override
 		public void handle(final SetReady o) {
 			final Player player = sendingPlayer();
-			if (player != null && isPreGame()) {
+			if (player != null) {
 				player.setReady(o.getIsReady());
+				if (playersReady()) {
+					if (isPreGame()) {
+						startGame();
+					} else if (isPostGame()) {
+						resetToPreGameLobby();
+					}
+					setPlayersNotReady();
+				}
 			}
 		}
 
@@ -222,6 +230,7 @@ public class Server {
 			final Player player = sendingPlayer();
 			if (isPreGame() && player != null && !isObserver(player)) {
 				if (validateShipPlacement(o.getShips())) {
+					setShips(player.getTeam(), o.getShips());
 					reply(new ShipPlacementReply(true, null));
 				} else {
 					reply(new ShipPlacementReply(false, "Illegal ship placement"));
@@ -273,6 +282,46 @@ public class Server {
 		broadcastSnapshot();
 	}
 
+	private void resetToPreGameLobby() {
+		setPhase(Phase.LOBBY_PREGAME);
+	}
+
+	private void startGame() {
+		setPhase(Phase.PLAYING);
+	}
+
+	private void setPlayersNotReady() {
+		final Player red = game().getRedPlayer();
+		final Player blue = game().getBluePlayer();
+		if (red != null) {
+			red.setReady(false);
+		}
+		if (blue != null) {
+			blue.setReady(false);
+		}
+		for (final Player observer : game().getObservers()) {
+			observer.setReady(false);
+		}
+	}
+
+	private boolean playersReady() {
+		return game().hasBluePlayer() && game().hasRedPlayer() && game().getBluePlayer().getReady()
+				&& game().getRedPlayer().getReady();
+	}
+
+	private void setShips(final Team team, final ArrayList<Ship> ships) {
+		switch (team) {
+		case RED:
+			game().getRedMap().setShips(ships);
+			break;
+		case BLUE:
+			game().getBlueMap().setShips(ships);
+			break;
+		default:
+			break;
+		}
+	}
+
 	private boolean isAlive(final Player player) {
 		for (final Ship ship : shipsOf(player)) {
 			if (ship.isAlive()) {
@@ -285,7 +334,7 @@ public class Server {
 	private List<Ship> shipsOf(final Player player) {
 		return shipsOf(player.getTeam());
 	}
-	
+
 	private List<Ship> shipsOf(final Team team) {
 		switch (team) {
 		case BLUE:
@@ -385,8 +434,8 @@ public class Server {
 	}
 
 	private void setPhase(Phase newPhase) {
-		broadcast(new PhaseChange(newPhase));
 		m_game.setPhase(newPhase);
+		broadcast(new PhaseChange(newPhase));
 	}
 
 	private Team opposingTeam(final Team team) {
