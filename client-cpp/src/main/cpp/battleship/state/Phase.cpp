@@ -15,27 +15,27 @@ namespace state {
 
 static std::map<std::string, Phase> _mk_Phase_enum_lkup_map() {
 	std::map<std::string, Phase> out;
-	out["LOBBY"] = Phase_LOBBY;
+	out["LOBBY_PREGAME"] = Phase_LOBBY_PREGAME;
 	out["PLAYING"] = Phase_PLAYING;
-	out["PAUSED"] = Phase_PAUSED;
+	out["LOBBY_POSTGAME"] = Phase_LOBBY_POSTGAME;
 	out["UNKNOWN"] = Phase_UNKNOWN;
 	return out;
 }
 
 static std::vector<Phase> _mk_Phase_enum_values() {
 	std::vector<Phase> out;
-	out.push_back(Phase_LOBBY);
+	out.push_back(Phase_LOBBY_PREGAME);
 	out.push_back(Phase_PLAYING);
-	out.push_back(Phase_PAUSED);
+	out.push_back(Phase_LOBBY_POSTGAME);
 	out.push_back(Phase_UNKNOWN);
 	return out;
 }
 
 static std::vector<std::string> _mk_Phase_enum_names() {
 	std::vector<std::string> out;
-	out.push_back("LOBBY");
+	out.push_back("LOBBY_PREGAME");
 	out.push_back("PLAYING");
-	out.push_back("PAUSED");
+	out.push_back("LOBBY_POSTGAME");
 	out.push_back("UNKNOWN");
 	return out;
 }
@@ -62,17 +62,17 @@ const std::vector<std::string>& get_enum_names(const battleship::state::Phase /*
 }
 
 const std::string& get_enum_name(const battleship::state::Phase enumValue) {
-	const static std::string LOBBY_name("LOBBY");
+	const static std::string LOBBY_PREGAME_name("LOBBY_PREGAME");
 	const static std::string PLAYING_name("PLAYING");
-	const static std::string PAUSED_name("PAUSED");
+	const static std::string LOBBY_POSTGAME_name("LOBBY_POSTGAME");
 	const static std::string UNKNOWN_name("UNKNOWN");
 	switch (enumValue) {
-		case battleship::state::Phase_LOBBY:
-			return LOBBY_name;
+		case battleship::state::Phase_LOBBY_PREGAME:
+			return LOBBY_PREGAME_name;
 		case battleship::state::Phase_PLAYING:
 			return PLAYING_name;
-		case battleship::state::Phase_PAUSED:
-			return PAUSED_name;
+		case battleship::state::Phase_LOBBY_POSTGAME:
+			return LOBBY_POSTGAME_name;
 		case battleship::state::Phase_UNKNOWN:
 			return UNKNOWN_name;
 		default:

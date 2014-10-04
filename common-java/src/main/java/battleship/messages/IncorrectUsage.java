@@ -6,7 +6,7 @@
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
-package battleship.state;
+package battleship.messages;
 
 import se.culvertsoft.mgen.api.model.Field;
 import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
@@ -16,133 +16,40 @@ import se.culvertsoft.mgen.javapack.serialization.Reader;
 import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
-import se.culvertsoft.mgen.javapack.util.Validator;
-import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*/
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-/*custom_imports_end*/
+/*custom_imports_begin*//*custom_imports_end*/
 
-public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class IncorrectUsage extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
-	private java.util.ArrayList<Segment> m_points;
+	private String m_reason;
 
-	public Ship() {
+	public IncorrectUsage() {
 		super();
-		m_points = null;
+		m_reason = null;
 	}
 
-	public Ship(final java.util.ArrayList<Segment> points) {
-		m_points = points;
+	public IncorrectUsage(final String reason) {
+		m_reason = reason;
 	}
 
-	public java.util.ArrayList<Segment> getPoints() {
-		return m_points;
+	public String getReason() {
+		return m_reason;
 	}
 
-	public boolean hasPoints() {
-		return _isPointsSet(FieldSetDepth.SHALLOW);
+	public boolean hasReason() {
+		return _isReasonSet(FieldSetDepth.SHALLOW);
 	}
 
-	public Ship unsetPoints() {
-		_setPointsSet(false, FieldSetDepth.SHALLOW);
+	public IncorrectUsage unsetReason() {
+		_setReasonSet(false, FieldSetDepth.SHALLOW);
 		return this;
 	}
 
-	public Ship setPoints(final java.util.ArrayList<Segment> points) {
-		m_points = points;
+	public IncorrectUsage setReason(final String reason) {
+		m_reason = reason;
 		return this;
 	}
 
-	/*custom_methods_begin*/
-
-	public boolean arePointsInLine() {
-		if (allXSame()) {
-			return allYInc1();
-		} else if (allYSame()) {
-			return allXInc1();
-		} else {
-			return false;
-		}
-	}
-
-	public int xMin() {
-		return Collections.min(allX());
-	}
-
-	public int xMax() {
-		return Collections.max(allX());
-	}
-
-	public int yMin() {
-		return Collections.min(allY());
-	}
-
-	public int yMax() {
-		return Collections.max(allY());
-	}
-
-	public boolean isAlive() {
-		for (final Segment segment : getPoints()) {
-			if (segment.getAlive()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isSunk() {
-		return !isAlive();
-	}
-	
-	public int length() {
-		return getPoints().size();
-	}
-	
-	private List<Integer> allX() {
-		final List<Integer> xs = new ArrayList<>();
-		for (final Segment segment : getPoints()) {
-			xs.add(segment.getPos().getX());
-		}
-		return xs;
-	}
-
-	private List<Integer> allY() {
-		final List<Integer> ys = new ArrayList<>();
-		for (final Segment segment : getPoints()) {
-			ys.add(segment.getPos().getY());
-		}
-		return ys;
-	}
-	
-	private boolean allXInc1() {
-		return allInc1(allX());
-	}
-
-	private boolean allInc1(final List<Integer> xs) {
-		Collections.sort(xs);
-		for (int i = 1; i < xs.size(); i++) {
-			if (xs.get(i - 1) + 1 != xs.get(i)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	private boolean allYInc1() {
-		return allInc1(allY());
-	}
-
-	private boolean allXSame() {
-		return Collections.min(allX()) == Collections.max(allX());
-	}
-
-	private boolean allYSame() {
-		return Collections.min(allY()) == Collections.max(allY());
-	}
-
-	/*custom_methods_end*/
+	/*custom_methods_begin*//*custom_methods_end*/
 
 	@Override
 	public String toString() {
@@ -152,8 +59,8 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = -498342701;
-		result = _isPointsSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getPoints(), _points_METADATA.typ())) : result;
+		int result = 1506596100;
+		result = _isReasonSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getReason(), _reason_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -161,18 +68,18 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public boolean equals(final Object other) {
 		if (other == null) return false;
 		if (other == this) return true;
-		if (Ship.class != other.getClass()) return false;
-		final Ship o = (Ship)other;
+		if (IncorrectUsage.class != other.getClass()) return false;
+		final IncorrectUsage o = (IncorrectUsage)other;
 		return true
-		  && (_isPointsSet(FieldSetDepth.SHALLOW) == o._isPointsSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ());
+		  && (_isReasonSet(FieldSetDepth.SHALLOW) == o._isReasonSet(FieldSetDepth.SHALLOW))
+		  && EqualityTester.areEqual(getReason(), o.getReason(), _reason_METADATA.typ());
 	}
 
 	@Override
-	public Ship deepCopy() {
-		final Ship out = new Ship();
-		out.setPoints(DeepCopyer.deepCopy(getPoints(), _points_METADATA.typ()));
-		out._setPointsSet(_isPointsSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+	public IncorrectUsage deepCopy() {
+		final IncorrectUsage out = new IncorrectUsage();
+		out.setReason(DeepCopyer.deepCopy(getReason(), _reason_METADATA.typ()));
+		out._setReasonSet(_isReasonSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -239,28 +146,27 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		switch(selection) {
 			case ALL: {
 				visitor.beginVisit(this, 1);
-				visitor.visit(getPoints(), _points_METADATA);
+				visitor.visit(getReason(), _reason_METADATA);
 				visitor.endVisit();
 				break;
 			}
 			default /* case ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
-				if (_isPointsSet(FieldSetDepth.SHALLOW))
-					visitor.visit(getPoints(), _points_METADATA);
+				if (_isReasonSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getReason(), _reason_METADATA);
 				visitor.endVisit();
 				break;
 			}
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean _readField(final short fieldId,
 	                         final Object context,
 	                         final Reader reader) throws java.io.IOException {
 		switch(fieldId) {
-			case (_points_ID):
-				setPoints((java.util.ArrayList<Segment>)reader.readListField(_points_METADATA, context));
+			case (_reason_ID):
+				setReason((String)reader.readStringField(_reason_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -273,35 +179,29 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return _FIELDS;
 	}
 
-	public boolean _isPointsSet(final FieldSetDepth fieldSetDepth) {
-		if (fieldSetDepth == FieldSetDepth.SHALLOW) {
-			return m_points != null;
-		} else {
-			return m_points != null && Validator.validateFieldDeep(getPoints(), _points_METADATA.typ());
-		}
+	public boolean _isReasonSet(final FieldSetDepth fieldSetDepth) {
+		return m_reason != null;
 	}
 
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
-			case (_points_ID):
-				return _isPointsSet(depth);
+			case (_reason_ID):
+				return _isReasonSet(depth);
 			default:
 				return false;
 		}
 	}
 
-	public Ship _setPointsSet(final boolean state, final FieldSetDepth depth) {
+	public IncorrectUsage _setReasonSet(final boolean state, final FieldSetDepth depth) {
 		if (state)
-			m_points = m_points != null ? m_points : new java.util.ArrayList<Segment>();
+			m_reason = m_reason != null ? m_reason : "";
 		else
-			m_points = null;
-		if (depth == FieldSetDepth.DEEP)
-			Marker.setFieldSetDeep(getPoints(), _points_METADATA.typ());
+			m_reason = null;
 		return this;
 	}
 
-	public Ship _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
-		_setPointsSet(state, depth);
+	public IncorrectUsage _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
+		_setReasonSet(state, depth);
 		return this;
 	}
 
@@ -309,23 +209,22 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		if (fieldSetDepth == FieldSetDepth.SHALLOW) {
 			return true;
 		} else {
-			return true
-				&& (!_isPointsSet(FieldSetDepth.SHALLOW) || _isPointsSet(FieldSetDepth.DEEP));
+			return true;
 		}
 	}
 
 	@Override
 	public int _nFieldsSet(final FieldSetDepth depth, final boolean includeTransient) {
 		int out = 0;
-		out += _isPointsSet(depth) ? 1 : 0;
+		out += _isReasonSet(depth) ? 1 : 0;
 		return out;
 	}
 
 	@Override
 	public Field _fieldById(final short fieldId) {
 		switch(fieldId) {
-			case (_points_ID):
-				return _points_METADATA;
+			case (_reason_ID):
+				return _reason_METADATA;
 			default:
 				return null;
 		}
@@ -334,8 +233,8 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	@Override
 	public Field _fieldByName(final String fieldName) {
 		switch(fieldName) {
-			case ("points"):
-				return _points_METADATA;
+			case ("reason"):
+				return _reason_METADATA;
 			default:
 				return null;
 		}
@@ -354,28 +253,28 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
  ********************************************************************************************************************/	 		  
 		  
 
-	public static final long _TYPE_ID = 5434834621073515272L;
+	public static final long _TYPE_ID = 3733949225402703826L;
 
-	public static final long[] _TYPE_IDS = { battleship.state.Ship._TYPE_ID };
+	public static final long[] _TYPE_IDS = { battleship.messages.Message._TYPE_ID, battleship.messages.GameInfo._TYPE_ID, battleship.messages.IncorrectUsage._TYPE_ID };
 
-	public static final short _TYPE_ID_16BIT = 28226;
+	public static final short _TYPE_ID_16BIT = -8614;
 
-	public static final short[] _TYPE_IDS_16BIT = { battleship.state.Ship._TYPE_ID_16BIT };
+	public static final short[] _TYPE_IDS_16BIT = { battleship.messages.Message._TYPE_ID_16BIT, battleship.messages.GameInfo._TYPE_ID_16BIT, battleship.messages.IncorrectUsage._TYPE_ID_16BIT };
 
-	public static final String _TYPE_ID_16BIT_BASE64 = "bkI";
+	public static final String _TYPE_ID_16BIT_BASE64 = "3lo";
 
-	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.state.Ship._TYPE_ID_16BIT_BASE64 };
+	public static final String[] _TYPE_IDS_16BIT_BASE64 = { battleship.messages.Message._TYPE_ID_16BIT_BASE64, battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64, battleship.messages.IncorrectUsage._TYPE_ID_16BIT_BASE64 };
 
-	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.state.Ship._TYPE_ID_16BIT_BASE64;
+	public static final String _TYPE_IDS_16BIT_BASE64_STRING = battleship.messages.Message._TYPE_ID_16BIT_BASE64 + battleship.messages.GameInfo._TYPE_ID_16BIT_BASE64 + battleship.messages.IncorrectUsage._TYPE_ID_16BIT_BASE64;
 
-	public static final String _TYPE_NAME = "battleship.state.Ship";
+	public static final String _TYPE_NAME = "battleship.messages.IncorrectUsage";
 
-	public static final String[] _TYPE_NAMES = { battleship.state.Ship._TYPE_NAME };
+	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.IncorrectUsage._TYPE_NAME };
 
-	public static final Field _points_METADATA = new Field("battleship.state.Ship", "points", new se.culvertsoft.mgen.api.model.ListType(new se.culvertsoft.mgen.api.model.RuntimeClassType("battleship.state.Segment", 3947935130376690974L)), null, (short)-26865);
+	public static final Field _reason_METADATA = new Field("battleship.messages.IncorrectUsage", "reason", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-15867);
 
-	public static final short _points_ID = (short)-26865;
+	public static final short _reason_ID = (short)-15867;
 
-	public static final Field[] _FIELDS = { _points_METADATA };
+	public static final Field[] _FIELDS = { _reason_METADATA };
 
 }

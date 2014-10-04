@@ -12,9 +12,9 @@ import se.culvertsoft.mgen.api.model.RuntimeEnumType;
 import se.culvertsoft.mgen.javapack.classes.MGenEnum;
 
 public enum Phase implements MGenEnum {
-	LOBBY(0, "LOBBY"),
+	LOBBY_PREGAME(0, "LOBBY_PREGAME"),
 	PLAYING(1, "PLAYING"),
-	PAUSED(2, "PAUSED"),
+	LOBBY_POSTGAME(2, "LOBBY_POSTGAME"),
 	UNKNOWN(3, "UNKNOWN");
 
 	final int m_intValue;
@@ -40,12 +40,12 @@ public enum Phase implements MGenEnum {
 		@Override
 		public Enum<?> get(final String entryStringName) {
 			switch(entryStringName) {
-				case "LOBBY":
-					return LOBBY;
+				case "LOBBY_PREGAME":
+					return LOBBY_PREGAME;
 				case "PLAYING":
 					return PLAYING;
-				case "PAUSED":
-					return PAUSED;
+				case "LOBBY_POSTGAME":
+					return LOBBY_POSTGAME;
 				case "UNKNOWN":
 					return UNKNOWN;
 				default:
@@ -57,11 +57,11 @@ public enum Phase implements MGenEnum {
 		public Enum<?> get(final int entryIntValue) {
 			switch(entryIntValue) {
 				case 0:
-					return LOBBY;
+					return LOBBY_PREGAME;
 				case 1:
 					return PLAYING;
 				case 2:
-					return PAUSED;
+					return LOBBY_POSTGAME;
 				case 3:
 					return UNKNOWN;
 				default:

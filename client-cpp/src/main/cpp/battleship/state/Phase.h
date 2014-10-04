@@ -16,9 +16,9 @@ namespace battleship {
 namespace state {
 
 enum Phase {
-	Phase_LOBBY = 0,
+	Phase_LOBBY_PREGAME = 0,
 	Phase_PLAYING = 1,
-	Phase_PAUSED = 2,
+	Phase_LOBBY_POSTGAME = 2,
 	Phase_UNKNOWN = 3
 };
 

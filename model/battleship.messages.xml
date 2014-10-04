@@ -26,6 +26,8 @@
         </Login>
         <LoginReply extends="Connection">
             <uuid type="string"/>
+            <result type="bool"/>
+            <failReason type="string"/>
         </LoginReply>
         <NextTurn extends="GameInfo">
             <team type="battleship.state.Team"/>
@@ -49,7 +51,7 @@
         </ShipPlacement>
         <ShipPlacementReply extends="GameInfo">
             <result type="bool"/>
-            <failReason type="int32"/>
+            <failReason type="string"/>
         </ShipPlacementReply>
         <ShipSunk extends="GameInfo">
             <ship type="battleship.state.Ship"/>
@@ -58,5 +60,14 @@
         <SetReady extends="Connection">
             <isReady type="bool"/>
         </SetReady>
+        <PlayerJoined extends="Connection">
+            <playerId type="string" id="6798"/>
+        </PlayerJoined>
+        <PlayerChangedTeam extends="Connection">
+            <playerId type="string"/>
+        </PlayerChangedTeam>
+        <IncorrectUsage extends="GameInfo">
+            <reason type="string"/>
+        </IncorrectUsage>
     </Types>
 </Module>

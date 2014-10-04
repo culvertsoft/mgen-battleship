@@ -16,12 +16,21 @@ namespace battleship {
 namespace messages {
 
 LoginReply::LoginReply() : 
-		_m_uuid_isSet(false) {
+		m_result(false),
+		_m_uuid_isSet(false),
+		_m_result_isSet(false),
+		_m_failReason_isSet(false) {
 }
 
-LoginReply::LoginReply(const std::string& uuid) : 
+LoginReply::LoginReply(const std::string& uuid, 
+			const bool& result, 
+			const std::string& failReason) : 
 		m_uuid(uuid),
-		_m_uuid_isSet(true) {
+		m_result(result),
+		m_failReason(failReason),
+		_m_uuid_isSet(true),
+		_m_result_isSet(true),
+		_m_failReason_isSet(true) {
 }
 
 LoginReply::~LoginReply() {
@@ -31,14 +40,44 @@ const std::string& LoginReply::getUuid() const {
 	return m_uuid;
 }
 
+const bool& LoginReply::getResult() const {
+	return m_result;
+}
+
+const std::string& LoginReply::getFailReason() const {
+	return m_failReason;
+}
+
 std::string& LoginReply::getUuidMutable() {
 	_m_uuid_isSet = true;
 	return m_uuid;
 }
 
+bool& LoginReply::getResultMutable() {
+	_m_result_isSet = true;
+	return m_result;
+}
+
+std::string& LoginReply::getFailReasonMutable() {
+	_m_failReason_isSet = true;
+	return m_failReason;
+}
+
 LoginReply& LoginReply::setUuid(const std::string& uuid) {
 	m_uuid = uuid;
 	_m_uuid_isSet = true;
+	return *this;
+}
+
+LoginReply& LoginReply::setResult(const bool& result) {
+	m_result = result;
+	_m_result_isSet = true;
+	return *this;
+}
+
+LoginReply& LoginReply::setFailReason(const std::string& failReason) {
+	m_failReason = failReason;
+	_m_failReason_isSet = true;
 	return *this;
 }
 
@@ -48,15 +87,37 @@ bool LoginReply::hasUuid() const {
 	return _isUuidSet(mgen::SHALLOW);
 }
 
+bool LoginReply::hasResult() const {
+	return _isResultSet(mgen::SHALLOW);
+}
+
+bool LoginReply::hasFailReason() const {
+	return _isFailReasonSet(mgen::SHALLOW);
+}
+
 LoginReply& LoginReply::unsetUuid() {
 	_setUuidSet(false, mgen::SHALLOW);
+	return *this;
+}
+
+LoginReply& LoginReply::unsetResult() {
+	_setResultSet(false, mgen::SHALLOW);
+	return *this;
+}
+
+LoginReply& LoginReply::unsetFailReason() {
+	_setFailReasonSet(false, mgen::SHALLOW);
 	return *this;
 }
 
 bool LoginReply::operator==(const LoginReply& other) const {
 	return true
 		 && _isUuidSet(mgen::SHALLOW) == other._isUuidSet(mgen::SHALLOW)
-		 && getUuid() == other.getUuid();
+		 && _isResultSet(mgen::SHALLOW) == other._isResultSet(mgen::SHALLOW)
+		 && _isFailReasonSet(mgen::SHALLOW) == other._isFailReasonSet(mgen::SHALLOW)
+		 && getUuid() == other.getUuid()
+		 && getResult() == other.getResult()
+		 && getFailReason() == other.getFailReason();
 }
 
 bool LoginReply::operator!=(const LoginReply& other) const {
@@ -79,13 +140,17 @@ const mgen::Field * LoginReply::_fieldById(const short id) const {
 	switch (id) {
 	case _field_uuid_id:
 		return &_field_uuid_metadata();
+	case _field_result_id:
+		return &_field_result_metadata();
+	case _field_failReason_id:
+		return &_field_failReason_metadata();
 	default:
 		return 0;
 	}
 }
 
 const mgen::Field * LoginReply::_fieldByName(const std::string& name) const {
-	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("uuid", &LoginReply::_field_uuid_metadata());
+	static const std::map<std::string, const mgen::Field*> name2meta = mgen::make_map<std::string, const mgen::Field*>()("uuid", &LoginReply::_field_uuid_metadata())("result", &LoginReply::_field_result_metadata())("failReason", &LoginReply::_field_failReason_metadata());
 	const std::map<std::string, const mgen::Field*>::const_iterator it = name2meta.find(name);
 	return it != name2meta.end() ? it->second : 0;
 }
@@ -137,14 +202,32 @@ LoginReply& LoginReply::_setUuidSet(const bool state, const mgen::FieldSetDepth 
 	return *this;
 }
 
+LoginReply& LoginReply::_setResultSet(const bool state, const mgen::FieldSetDepth depth) {
+	if (!state)
+		m_result = false;
+	_m_result_isSet = state;
+	return *this;
+}
+
+LoginReply& LoginReply::_setFailReasonSet(const bool state, const mgen::FieldSetDepth depth) {
+	if (!state)
+		m_failReason = "";
+	_m_failReason_isSet = state;
+	return *this;
+}
+
 LoginReply& LoginReply::_setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth) { 
 	_setUuidSet(state, depth);
+	_setResultSet(state, depth);
+	_setFailReasonSet(state, depth);
 	return *this;
 }
 
 int LoginReply::_numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const {
 	int out = 0;
 	out += _isUuidSet(depth) ? 1 : 0;
+	out += _isResultSet(depth) ? 1 : 0;
+	out += _isFailReasonSet(depth) ? 1 : 0;
 	return out;
 }
 
@@ -152,6 +235,10 @@ bool LoginReply::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth
 	switch(field.id()) {
 		case (_field_uuid_id):
 			return _isUuidSet(depth);
+		case (_field_result_id):
+			return _isResultSet(depth);
+		case (_field_failReason_id):
+			return _isFailReasonSet(depth);
 		default:
 			return false;
 	}
@@ -159,6 +246,14 @@ bool LoginReply::_isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth
 
 bool LoginReply::_isUuidSet(const mgen::FieldSetDepth depth) const {
 	return _m_uuid_isSet;
+}
+
+bool LoginReply::_isResultSet(const mgen::FieldSetDepth depth) const {
+	return _m_result_isSet;
+}
+
+bool LoginReply::_isFailReasonSet(const mgen::FieldSetDepth depth) const {
+	return _m_failReason_isSet;
 }
 
 bool LoginReply::_validate(const mgen::FieldSetDepth depth) const { 
@@ -229,12 +324,22 @@ const std::string& LoginReply::_type_id_16bit_base64() {
 }
 
 const std::vector<mgen::Field>& LoginReply::_field_metadatas() {
-	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_uuid_metadata();
+	static const std::vector<mgen::Field> out = mgen::make_vector<mgen::Field>() << _field_uuid_metadata() << _field_result_metadata() << _field_failReason_metadata();
 	return out;
 }
 
 const mgen::Field& LoginReply::_field_uuid_metadata() {
 	static const mgen::Field out(-11112, "uuid");
+	return out;
+}
+
+const mgen::Field& LoginReply::_field_result_metadata() {
+	static const mgen::Field out(24642, "result");
+	return out;
+}
+
+const mgen::Field& LoginReply::_field_failReason_metadata() {
+	static const mgen::Field out(1610, "failReason");
 	return out;
 }
 

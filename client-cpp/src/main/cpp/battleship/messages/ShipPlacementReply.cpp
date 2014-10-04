@@ -17,13 +17,12 @@ namespace messages {
 
 ShipPlacementReply::ShipPlacementReply() : 
 		m_result(false),
-		m_failReason(0),
 		_m_result_isSet(false),
 		_m_failReason_isSet(false) {
 }
 
 ShipPlacementReply::ShipPlacementReply(const bool& result, 
-			const int& failReason) : 
+			const std::string& failReason) : 
 		m_result(result),
 		m_failReason(failReason),
 		_m_result_isSet(true),
@@ -37,7 +36,7 @@ const bool& ShipPlacementReply::getResult() const {
 	return m_result;
 }
 
-const int& ShipPlacementReply::getFailReason() const {
+const std::string& ShipPlacementReply::getFailReason() const {
 	return m_failReason;
 }
 
@@ -46,7 +45,7 @@ bool& ShipPlacementReply::getResultMutable() {
 	return m_result;
 }
 
-int& ShipPlacementReply::getFailReasonMutable() {
+std::string& ShipPlacementReply::getFailReasonMutable() {
 	_m_failReason_isSet = true;
 	return m_failReason;
 }
@@ -57,7 +56,7 @@ ShipPlacementReply& ShipPlacementReply::setResult(const bool& result) {
 	return *this;
 }
 
-ShipPlacementReply& ShipPlacementReply::setFailReason(const int& failReason) {
+ShipPlacementReply& ShipPlacementReply::setFailReason(const std::string& failReason) {
 	m_failReason = failReason;
 	_m_failReason_isSet = true;
 	return *this;
@@ -173,7 +172,7 @@ ShipPlacementReply& ShipPlacementReply::_setResultSet(const bool state, const mg
 
 ShipPlacementReply& ShipPlacementReply::_setFailReasonSet(const bool state, const mgen::FieldSetDepth depth) {
 	if (!state)
-		m_failReason = 0;
+		m_failReason = "";
 	_m_failReason_isSet = state;
 	return *this;
 }

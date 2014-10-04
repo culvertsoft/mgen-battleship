@@ -31,6 +31,9 @@
 #include "battleship/messages/ShipPlacementReply.h"
 #include "battleship/messages/ShipSunk.h"
 #include "battleship/messages/SetReady.h"
+#include "battleship/messages/PlayerJoined.h"
+#include "battleship/messages/PlayerChangedTeam.h"
+#include "battleship/messages/IncorrectUsage.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Segment.h"
 #include "battleship/state/Map.h"
@@ -75,6 +78,12 @@ public:
 								break;
 							case battleship::messages::SetReady::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::SetReady&>(o), context);
+								break;
+							case battleship::messages::PlayerJoined::_type_id_16bit:
+								reader.readFields(static_cast<battleship::messages::PlayerJoined&>(o), context);
+								break;
+							case battleship::messages::PlayerChangedTeam::_type_id_16bit:
+								reader.readFields(static_cast<battleship::messages::PlayerChangedTeam&>(o), context);
 								break;
 							default:
 								reader.readFields(static_cast<battleship::messages::Connection&>(o), context);
@@ -123,6 +132,9 @@ public:
 								break;
 							case battleship::messages::ShipSunk::_type_id_16bit:
 								reader.readFields(static_cast<battleship::messages::ShipSunk&>(o), context);
+								break;
+							case battleship::messages::IncorrectUsage::_type_id_16bit:
+								reader.readFields(static_cast<battleship::messages::IncorrectUsage&>(o), context);
 								break;
 							default:
 								reader.readFields(static_cast<battleship::messages::GameInfo&>(o), context);
@@ -191,6 +203,12 @@ public:
 							case battleship::messages::SetReady::_type_id_16bit:
 								static_cast<battleship::messages::SetReady&>(o)._accept<VisitorType>(visitor, selection);
 								break;
+							case battleship::messages::PlayerJoined::_type_id_16bit:
+								static_cast<battleship::messages::PlayerJoined&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::PlayerChangedTeam::_type_id_16bit:
+								static_cast<battleship::messages::PlayerChangedTeam&>(o)._accept<VisitorType>(visitor, selection);
+								break;
 							default:
 								static_cast<battleship::messages::Connection&>(o)._accept<VisitorType>(visitor, selection);
 								break;
@@ -238,6 +256,9 @@ public:
 								break;
 							case battleship::messages::ShipSunk::_type_id_16bit:
 								static_cast<battleship::messages::ShipSunk&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::IncorrectUsage::_type_id_16bit:
+								static_cast<battleship::messages::IncorrectUsage&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							default:
 								static_cast<battleship::messages::GameInfo&>(o)._accept<VisitorType>(visitor, selection);
@@ -306,6 +327,12 @@ public:
 							case battleship::messages::SetReady::_type_id_16bit:
 								static_cast<const battleship::messages::SetReady&>(o)._accept<VisitorType>(visitor, selection);
 								break;
+							case battleship::messages::PlayerJoined::_type_id_16bit:
+								static_cast<const battleship::messages::PlayerJoined&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::PlayerChangedTeam::_type_id_16bit:
+								static_cast<const battleship::messages::PlayerChangedTeam&>(o)._accept<VisitorType>(visitor, selection);
+								break;
 							default:
 								static_cast<const battleship::messages::Connection&>(o)._accept<VisitorType>(visitor, selection);
 								break;
@@ -353,6 +380,9 @@ public:
 								break;
 							case battleship::messages::ShipSunk::_type_id_16bit:
 								static_cast<const battleship::messages::ShipSunk&>(o)._accept<VisitorType>(visitor, selection);
+								break;
+							case battleship::messages::IncorrectUsage::_type_id_16bit:
+								static_cast<const battleship::messages::IncorrectUsage&>(o)._accept<VisitorType>(visitor, selection);
 								break;
 							default:
 								static_cast<const battleship::messages::GameInfo&>(o)._accept<VisitorType>(visitor, selection);

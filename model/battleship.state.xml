@@ -6,9 +6,9 @@
             <OBSERVERS> </OBSERVERS>
         </Team>
         <Phase>
-            <LOBBY> </LOBBY>
+            <LOBBY_PREGAME> </LOBBY_PREGAME>
             <PLAYING> </PLAYING>
-            <PAUSED> </PAUSED>
+            <LOBBY_POSTGAME> </LOBBY_POSTGAME>
         </Phase>
     </Enums>
     <Types>

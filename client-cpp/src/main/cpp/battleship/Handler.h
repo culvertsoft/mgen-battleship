@@ -41,6 +41,9 @@ class Handler  {
 	virtual void handle(battleship::messages::ShipPlacementReply& o);
 	virtual void handle(battleship::messages::ShipSunk& o);
 	virtual void handle(battleship::messages::SetReady& o);
+	virtual void handle(battleship::messages::PlayerJoined& o);
+	virtual void handle(battleship::messages::PlayerChangedTeam& o);
+	virtual void handle(battleship::messages::IncorrectUsage& o);
 	virtual void handle(battleship::state::Ship& o);
 	virtual void handle(battleship::state::Segment& o);
 	virtual void handle(battleship::state::Map& o);

@@ -44,6 +44,12 @@ public class Dispatcher  {
 							case battleship.messages.SetReady._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.SetReady)o);
 								break;
+							case battleship.messages.PlayerJoined._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.PlayerJoined)o);
+								break;
+							case battleship.messages.PlayerChangedTeam._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.PlayerChangedTeam)o);
+								break;
 							default:
 								handler.handle((battleship.messages.Connection)o);
 								break;
@@ -91,6 +97,9 @@ public class Dispatcher  {
 								break;
 							case battleship.messages.ShipSunk._TYPE_ID_16BIT:
 								handler.handle((battleship.messages.ShipSunk)o);
+								break;
+							case battleship.messages.IncorrectUsage._TYPE_ID_16BIT:
+								handler.handle((battleship.messages.IncorrectUsage)o);
 								break;
 							default:
 								handler.handle((battleship.messages.GameInfo)o);

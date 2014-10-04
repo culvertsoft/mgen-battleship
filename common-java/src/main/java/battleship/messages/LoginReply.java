@@ -21,22 +21,49 @@ import se.culvertsoft.mgen.javapack.util.FieldHasher;
 public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private String m_uuid;
+	private boolean m_result;
+	private String m_failReason;
+	private boolean _m_result_isSet;
 
 	public LoginReply() {
 		super();
 		m_uuid = null;
+		m_result = false;
+		m_failReason = null;
+		_m_result_isSet = false;
 	}
 
-	public LoginReply(final String uuid) {
+	public LoginReply(final String uuid,
+				final boolean result,
+				final String failReason) {
 		m_uuid = uuid;
+		m_result = result;
+		m_failReason = failReason;
+		_m_result_isSet = true;
 	}
 
 	public String getUuid() {
 		return m_uuid;
 	}
 
+	public boolean getResult() {
+		return m_result;
+	}
+
+	public String getFailReason() {
+		return m_failReason;
+	}
+
 	public boolean hasUuid() {
 		return _isUuidSet(FieldSetDepth.SHALLOW);
+	}
+
+	public boolean hasResult() {
+		return _isResultSet(FieldSetDepth.SHALLOW);
+	}
+
+	public boolean hasFailReason() {
+		return _isFailReasonSet(FieldSetDepth.SHALLOW);
 	}
 
 	public LoginReply unsetUuid() {
@@ -44,8 +71,29 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		return this;
 	}
 
+	public LoginReply unsetResult() {
+		_setResultSet(false, FieldSetDepth.SHALLOW);
+		return this;
+	}
+
+	public LoginReply unsetFailReason() {
+		_setFailReasonSet(false, FieldSetDepth.SHALLOW);
+		return this;
+	}
+
 	public LoginReply setUuid(final String uuid) {
 		m_uuid = uuid;
+		return this;
+	}
+
+	public LoginReply setResult(final boolean result) {
+		m_result = result;
+		_m_result_isSet = true;
+		return this;
+	}
+
+	public LoginReply setFailReason(final String failReason) {
+		m_failReason = failReason;
 		return this;
 	}
 
@@ -61,6 +109,8 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		final int prime = 31;
 		int result = -1861127927;
 		result = _isUuidSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getUuid(), _uuid_METADATA.typ())) : result;
+		result = _isResultSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getResult(), _result_METADATA.typ())) : result;
+		result = _isFailReasonSet(FieldSetDepth.SHALLOW) ? (prime * result + FieldHasher.calc(getFailReason(), _failReason_METADATA.typ())) : result;
 		return result;
 	}
 
@@ -72,14 +122,22 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		final LoginReply o = (LoginReply)other;
 		return true
 		  && (_isUuidSet(FieldSetDepth.SHALLOW) == o._isUuidSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getUuid(), o.getUuid(), _uuid_METADATA.typ());
+		  && (_isResultSet(FieldSetDepth.SHALLOW) == o._isResultSet(FieldSetDepth.SHALLOW))
+		  && (_isFailReasonSet(FieldSetDepth.SHALLOW) == o._isFailReasonSet(FieldSetDepth.SHALLOW))
+		  && EqualityTester.areEqual(getUuid(), o.getUuid(), _uuid_METADATA.typ())
+		  && EqualityTester.areEqual(getResult(), o.getResult(), _result_METADATA.typ())
+		  && EqualityTester.areEqual(getFailReason(), o.getFailReason(), _failReason_METADATA.typ());
 	}
 
 	@Override
 	public LoginReply deepCopy() {
 		final LoginReply out = new LoginReply();
 		out.setUuid(DeepCopyer.deepCopy(getUuid(), _uuid_METADATA.typ()));
+		out.setResult(DeepCopyer.deepCopy(getResult(), _result_METADATA.typ()));
+		out.setFailReason(DeepCopyer.deepCopy(getFailReason(), _failReason_METADATA.typ()));
 		out._setUuidSet(_isUuidSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		out._setResultSet(_isResultSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		out._setFailReasonSet(_isFailReasonSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
 		return out;
 	}
 
@@ -145,8 +203,10 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 	public void _accept(final FieldVisitor visitor, final FieldVisitSelection selection) throws java.io.IOException {
 		switch(selection) {
 			case ALL: {
-				visitor.beginVisit(this, 1);
+				visitor.beginVisit(this, 3);
 				visitor.visit(getUuid(), _uuid_METADATA);
+				visitor.visit(getResult(), _result_METADATA);
+				visitor.visit(getFailReason(), _failReason_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -154,6 +214,10 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 				visitor.beginVisit(this, _nFieldsSet(FieldSetDepth.SHALLOW, false));
 				if (_isUuidSet(FieldSetDepth.SHALLOW))
 					visitor.visit(getUuid(), _uuid_METADATA);
+				if (_isResultSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getResult(), _result_METADATA);
+				if (_isFailReasonSet(FieldSetDepth.SHALLOW))
+					visitor.visit(getFailReason(), _failReason_METADATA);
 				visitor.endVisit();
 				break;
 			}
@@ -167,6 +231,12 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		switch(fieldId) {
 			case (_uuid_ID):
 				setUuid((String)reader.readStringField(_uuid_METADATA, context));
+				return true;
+			case (_result_ID):
+				setResult((boolean)reader.readBooleanField(_result_METADATA, context));
+				return true;
+			case (_failReason_ID):
+				setFailReason((String)reader.readStringField(_failReason_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -183,10 +253,22 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		return m_uuid != null;
 	}
 
+	public boolean _isResultSet(final FieldSetDepth fieldSetDepth) {
+		return _m_result_isSet;
+	}
+
+	public boolean _isFailReasonSet(final FieldSetDepth fieldSetDepth) {
+		return m_failReason != null;
+	}
+
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
 		switch(field.id()) {
 			case (_uuid_ID):
 				return _isUuidSet(depth);
+			case (_result_ID):
+				return _isResultSet(depth);
+			case (_failReason_ID):
+				return _isFailReasonSet(depth);
 			default:
 				return false;
 		}
@@ -200,8 +282,25 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		return this;
 	}
 
+	public LoginReply _setResultSet(final boolean state, final FieldSetDepth depth) {
+		if (!state)
+			m_result = false;
+		_m_result_isSet = state;
+		return this;
+	}
+
+	public LoginReply _setFailReasonSet(final boolean state, final FieldSetDepth depth) {
+		if (state)
+			m_failReason = m_failReason != null ? m_failReason : "";
+		else
+			m_failReason = null;
+		return this;
+	}
+
 	public LoginReply _setAllFieldsSet(final boolean state, final FieldSetDepth depth) { 
 		_setUuidSet(state, depth);
+		_setResultSet(state, depth);
+		_setFailReasonSet(state, depth);
 		return this;
 	}
 
@@ -217,6 +316,8 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 	public int _nFieldsSet(final FieldSetDepth depth, final boolean includeTransient) {
 		int out = 0;
 		out += _isUuidSet(depth) ? 1 : 0;
+		out += _isResultSet(depth) ? 1 : 0;
+		out += _isFailReasonSet(depth) ? 1 : 0;
 		return out;
 	}
 
@@ -225,6 +326,10 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		switch(fieldId) {
 			case (_uuid_ID):
 				return _uuid_METADATA;
+			case (_result_ID):
+				return _result_METADATA;
+			case (_failReason_ID):
+				return _failReason_METADATA;
 			default:
 				return null;
 		}
@@ -235,6 +340,10 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 		switch(fieldName) {
 			case ("uuid"):
 				return _uuid_METADATA;
+			case ("result"):
+				return _result_METADATA;
+			case ("failReason"):
+				return _failReason_METADATA;
 			default:
 				return null;
 		}
@@ -272,9 +381,13 @@ public class LoginReply extends Connection /*custom_ifcs_begin*//*custom_ifcs_en
 	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.Connection._TYPE_NAME, battleship.messages.LoginReply._TYPE_NAME };
 
 	public static final Field _uuid_METADATA = new Field("battleship.messages.LoginReply", "uuid", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)-11112);
+	public static final Field _result_METADATA = new Field("battleship.messages.LoginReply", "result", se.culvertsoft.mgen.api.model.BoolType.INSTANCE, null, (short)24642);
+	public static final Field _failReason_METADATA = new Field("battleship.messages.LoginReply", "failReason", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)1610);
 
 	public static final short _uuid_ID = (short)-11112;
+	public static final short _result_ID = (short)24642;
+	public static final short _failReason_ID = (short)1610;
 
-	public static final Field[] _FIELDS = { _uuid_METADATA };
+	public static final Field[] _FIELDS = { _uuid_METADATA, _result_METADATA, _failReason_METADATA };
 
 }

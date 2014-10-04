@@ -19,24 +19,24 @@ namespace messages {
 class ShipPlacementReply : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
 	bool m_result;
-	int m_failReason;
+	std::string m_failReason;
 	bool _m_result_isSet;
 	bool _m_failReason_isSet;
 
 public:
 	ShipPlacementReply();
 	ShipPlacementReply(const bool& result,
-			const int& failReason);
+			const std::string& failReason);
 	virtual ~ShipPlacementReply();
 
 	const bool& getResult() const;
-	const int& getFailReason() const;
+	const std::string& getFailReason() const;
 
 	bool& getResultMutable();
-	int& getFailReasonMutable();
+	std::string& getFailReasonMutable();
 
 	ShipPlacementReply& setResult(const bool& result);
-	ShipPlacementReply& setFailReason(const int& failReason);
+	ShipPlacementReply& setFailReason(const std::string& failReason);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 

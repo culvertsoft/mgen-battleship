@@ -53,7 +53,7 @@
 		"__t": "bsYrCw3mc",
 		"phase": {
 			"flags": [],
-			"type": "enum:LOBBY, PLAYING, PAUSED",
+			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
 			"hash": "Hck"
 		}
 	};
@@ -79,6 +79,16 @@
 			"flags": [],
 			"type": "string",
 			"hash": "1Jg"
+		},
+		"result": {
+			"flags": [],
+			"type": "boolean",
+			"hash": "YEI"
+		},
+		"failReason": {
+			"flags": [],
+			"type": "string",
+			"hash": "Bko"
 		}
 	};
 	blueprint.classes["battleship.messages.NextTurn"] =  {
@@ -101,7 +111,7 @@
 		"__t": "bsYrCw3mc97g",
 		"phase": {
 			"flags": [],
-			"type": "enum:LOBBY, PLAYING, PAUSED",
+			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
 			"hash": "Hck"
 		},
 		"winner": {
@@ -156,7 +166,7 @@
 		},
 		"failReason": {
 			"flags": [],
-			"type": "int32",
+			"type": "string",
 			"hash": "Bko"
 		}
 	};
@@ -179,6 +189,30 @@
 			"flags": [],
 			"type": "boolean",
 			"hash": "0kk"
+		}
+	};
+	blueprint.classes["battleship.messages.PlayerJoined"] =  {
+		"__t": "bsYLWcgP4",
+		"playerId": {
+			"flags": [],
+			"type": "string",
+			"hash": "Go4"
+		}
+	};
+	blueprint.classes["battleship.messages.PlayerChangedTeam"] =  {
+		"__t": "bsYLWcr90",
+		"playerId": {
+			"flags": [],
+			"type": "string",
+			"hash": "B4g"
+		}
+	};
+	blueprint.classes["battleship.messages.IncorrectUsage"] =  {
+		"__t": "bsYrCw3lo",
+		"reason": {
+			"flags": [],
+			"type": "string",
+			"hash": "wgU"
 		}
 	};
 	blueprint.classes["battleship.state.Ship"] =  {
@@ -272,7 +306,7 @@
 		},
 		"phase": {
 			"flags": [],
-			"type": "enum:LOBBY, PLAYING, PAUSED",
+			"type": "enum:LOBBY_PREGAME, PLAYING, LOBBY_POSTGAME",
 			"hash": "Hck"
 		},
 		"currentTeam": {
@@ -331,6 +365,10 @@
 								return "battleship.messages.TeamSelectReply";
 							case "Jrc":
 								return "battleship.messages.SetReady";
+							case "gP4":
+								return "battleship.messages.PlayerJoined";
+							case "r90":
+								return "battleship.messages.PlayerChangedTeam";
 						}
 						return "battleship.messages.Connection";
 					case "ew4":
@@ -361,6 +399,8 @@
 								return "battleship.messages.ShipPlacementReply";
 							case "nSY":
 								return "battleship.messages.ShipSunk";
+							case "3lo":
+								return "battleship.messages.IncorrectUsage";
 						}
 						return "battleship.messages.GameInfo";
 				}

@@ -7,55 +7,39 @@
  ********************************************************************************************************************
  ********************************************************************************************************************/
 
-#ifndef BATTLESHIP_MESSAGES_LOGINREPLY
-#define BATTLESHIP_MESSAGES_LOGINREPLY
+#ifndef BATTLESHIP_MESSAGES_INCORRECTUSAGE
+#define BATTLESHIP_MESSAGES_INCORRECTUSAGE
 
-#include "battleship/messages/Connection.h"
+#include "battleship/messages/GameInfo.h"
 /*custom_includes_begin*//*custom_includes_end*/
 
 namespace battleship {
 namespace messages {
 
-class LoginReply : public Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class IncorrectUsage : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 private:
-	std::string m_uuid;
-	bool m_result;
-	std::string m_failReason;
-	bool _m_uuid_isSet;
-	bool _m_result_isSet;
-	bool _m_failReason_isSet;
+	std::string m_reason;
+	bool _m_reason_isSet;
 
 public:
-	LoginReply();
-	LoginReply(const std::string& uuid,
-			const bool& result,
-			const std::string& failReason);
-	virtual ~LoginReply();
+	IncorrectUsage();
+	IncorrectUsage(const std::string& reason);
+	virtual ~IncorrectUsage();
 
-	const std::string& getUuid() const;
-	const bool& getResult() const;
-	const std::string& getFailReason() const;
+	const std::string& getReason() const;
 
-	std::string& getUuidMutable();
-	bool& getResultMutable();
-	std::string& getFailReasonMutable();
+	std::string& getReasonMutable();
 
-	LoginReply& setUuid(const std::string& uuid);
-	LoginReply& setResult(const bool& result);
-	LoginReply& setFailReason(const std::string& failReason);
+	IncorrectUsage& setReason(const std::string& reason);
 
 	/*custom_methods_begin*//*custom_methods_end*/
 
-	bool hasUuid() const;
-	bool hasResult() const;
-	bool hasFailReason() const;
+	bool hasReason() const;
 
-	LoginReply& unsetUuid();
-	LoginReply& unsetResult();
-	LoginReply& unsetFailReason();
+	IncorrectUsage& unsetReason();
 
-	bool operator==(const LoginReply& other) const;
-	bool operator!=(const LoginReply& other) const;
+	bool operator==(const IncorrectUsage& other) const;
+	bool operator!=(const IncorrectUsage& other) const;
 
 
 							
@@ -73,14 +57,8 @@ public:
 	template<typename ReaderType, typename ReadContextType>
 	void _readField(const short fieldId, ReadContextType& context, ReaderType& reader) {
 		switch (fieldId) {
-		case _field_uuid_id:
-			reader.readField(_field_uuid_metadata(), context, getUuidMutable());
-			break;
-		case _field_result_id:
-			reader.readField(_field_result_metadata(), context, getResultMutable());
-			break;
-		case _field_failReason_id:
-			reader.readField(_field_failReason_metadata(), context, getFailReasonMutable());
+		case _field_reason_id:
+			reader.readField(_field_reason_metadata(), context, getReasonMutable());
 			break;
 		default:
 			reader.handleUnknownField(fieldId, context);
@@ -92,21 +70,15 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) const {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 3);
-				visitor.visit(getUuid(), _field_uuid_metadata());
-				visitor.visit(getResult(), _field_result_metadata());
-				visitor.visit(getFailReason(), _field_failReason_metadata());
+				visitor.beginVisit(*this, 1);
+				visitor.visit(getReason(), _field_reason_metadata());
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isUuidSet(mgen::SHALLOW))
-					visitor.visit(getUuid(), _field_uuid_metadata());
-				if (_isResultSet(mgen::SHALLOW))
-					visitor.visit(getResult(), _field_result_metadata());
-				if (_isFailReasonSet(mgen::SHALLOW))
-					visitor.visit(getFailReason(), _field_failReason_metadata());
+				if (_isReasonSet(mgen::SHALLOW))
+					visitor.visit(getReason(), _field_reason_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -117,21 +89,15 @@ public:
 	void _accept(VisitorType& visitor, const mgen::FieldVisitSelection selection) {
 		switch(selection) {
 			case mgen::ALL: {
-				visitor.beginVisit(*this, 3);
-				visitor.visit(getUuidMutable(), _field_uuid_metadata());
-				visitor.visit(getResultMutable(), _field_result_metadata());
-				visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				visitor.beginVisit(*this, 1);
+				visitor.visit(getReasonMutable(), _field_reason_metadata());
 				visitor.endVisit();
 				break;
 			}
 			default /* case mgen::ALL_SET_NONTRANSIENT */ : {
 				visitor.beginVisit(*this, _numFieldsSet(mgen::SHALLOW, false));
-				if (_isUuidSet(mgen::SHALLOW))
-					visitor.visit(getUuidMutable(), _field_uuid_metadata());
-				if (_isResultSet(mgen::SHALLOW))
-					visitor.visit(getResultMutable(), _field_result_metadata());
-				if (_isFailReasonSet(mgen::SHALLOW))
-					visitor.visit(getFailReasonMutable(), _field_failReason_metadata());
+				if (_isReasonSet(mgen::SHALLOW))
+					visitor.visit(getReasonMutable(), _field_reason_metadata());
 				visitor.endVisit();
 				break;
 			}
@@ -155,23 +121,19 @@ public:
 
 	bool _isFieldSet(const mgen::Field& field, const mgen::FieldSetDepth depth) const;
 
-	LoginReply& _setUuidSet(const bool state, const mgen::FieldSetDepth depth);
-	LoginReply& _setResultSet(const bool state, const mgen::FieldSetDepth depth);
-	LoginReply& _setFailReasonSet(const bool state, const mgen::FieldSetDepth depth);
+	IncorrectUsage& _setReasonSet(const bool state, const mgen::FieldSetDepth depth);
 
-	LoginReply& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
+	IncorrectUsage& _setAllFieldsSet(const bool state, const mgen::FieldSetDepth depth);
 
 	int _numFieldsSet(const mgen::FieldSetDepth depth, const bool includeTransient) const;
 
-	bool _isUuidSet(const mgen::FieldSetDepth depth) const;
-	bool _isResultSet(const mgen::FieldSetDepth depth) const;
-	bool _isFailReasonSet(const mgen::FieldSetDepth depth) const;
+	bool _isReasonSet(const mgen::FieldSetDepth depth) const;
 
 	bool _validate(const mgen::FieldSetDepth depth) const;
 
 	bool _equals(const mgen::MGenBase& other) const;
 
-	LoginReply * _deepCopy() const;
+	IncorrectUsage * _deepCopy() const;
 
 	static mgen::MGenBase * _newInstance();
 
@@ -186,10 +148,10 @@ public:
  ********************************************************************************************************************
  ********************************************************************************************************************/	 		  
 		  
-	static const long long _type_id = 1638563683387667720LL;
+	static const long long _type_id = 3733949225402703826LL;
 	static const std::vector<long long>& _type_ids();
 
-	static const short _type_id_16bit = -9758;
+	static const short _type_id_16bit = -8614;
 	static const std::vector<short>& _type_ids_16bit();
 
 	static const std::string& _type_id_16bit_base64();
@@ -200,17 +162,13 @@ public:
 	static const std::string& _type_name();
 	static const std::vector<std::string>& _type_names();
 
-	static const mgen::Field& _field_uuid_metadata();
-	static const mgen::Field& _field_result_metadata();
-	static const mgen::Field& _field_failReason_metadata();
+	static const mgen::Field& _field_reason_metadata();
 
-	static const short _field_uuid_id = -11112;
-	static const short _field_result_id = 24642;
-	static const short _field_failReason_id = 1610;
+	static const short _field_reason_id = -15867;
 
 	static const std::vector<mgen::Field>& _field_metadatas();
 
-}; // End class LoginReply
+}; // End class IncorrectUsage
 
 } // End namespace messages
 } // End namespace battleship

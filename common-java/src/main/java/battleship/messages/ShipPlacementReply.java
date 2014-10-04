@@ -21,31 +21,28 @@ import se.culvertsoft.mgen.javapack.util.FieldHasher;
 public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 
 	private boolean m_result;
-	private int m_failReason;
+	private String m_failReason;
 	private boolean _m_result_isSet;
-	private boolean _m_failReason_isSet;
 
 	public ShipPlacementReply() {
 		super();
 		m_result = false;
-		m_failReason = 0;
+		m_failReason = null;
 		_m_result_isSet = false;
-		_m_failReason_isSet = false;
 	}
 
 	public ShipPlacementReply(final boolean result,
-				final int failReason) {
+				final String failReason) {
 		m_result = result;
 		m_failReason = failReason;
 		_m_result_isSet = true;
-		_m_failReason_isSet = true;
 	}
 
 	public boolean getResult() {
 		return m_result;
 	}
 
-	public int getFailReason() {
+	public String getFailReason() {
 		return m_failReason;
 	}
 
@@ -73,9 +70,8 @@ public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_i
 		return this;
 	}
 
-	public ShipPlacementReply setFailReason(final int failReason) {
+	public ShipPlacementReply setFailReason(final String failReason) {
 		m_failReason = failReason;
-		_m_failReason_isSet = true;
 		return this;
 	}
 
@@ -207,7 +203,7 @@ public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_i
 				setResult((boolean)reader.readBooleanField(_result_METADATA, context));
 				return true;
 			case (_failReason_ID):
-				setFailReason((int)reader.readInt32Field(_failReason_METADATA, context));
+				setFailReason((String)reader.readStringField(_failReason_METADATA, context));
 				return true;
 			default:
 				reader.handleUnknownField(null, context);
@@ -225,7 +221,7 @@ public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_i
 	}
 
 	public boolean _isFailReasonSet(final FieldSetDepth fieldSetDepth) {
-		return _m_failReason_isSet;
+		return m_failReason != null;
 	}
 
 	public boolean _isFieldSet(final Field field, final FieldSetDepth depth) {
@@ -247,9 +243,10 @@ public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_i
 	}
 
 	public ShipPlacementReply _setFailReasonSet(final boolean state, final FieldSetDepth depth) {
-		if (!state)
-			m_failReason = 0;
-		_m_failReason_isSet = state;
+		if (state)
+			m_failReason = m_failReason != null ? m_failReason : "";
+		else
+			m_failReason = null;
 		return this;
 	}
 
@@ -331,7 +328,7 @@ public class ShipPlacementReply extends GameInfo /*custom_ifcs_begin*//*custom_i
 	public static final String[] _TYPE_NAMES = { battleship.messages.Message._TYPE_NAME, battleship.messages.GameInfo._TYPE_NAME, battleship.messages.ShipPlacementReply._TYPE_NAME };
 
 	public static final Field _result_METADATA = new Field("battleship.messages.ShipPlacementReply", "result", se.culvertsoft.mgen.api.model.BoolType.INSTANCE, null, (short)24642);
-	public static final Field _failReason_METADATA = new Field("battleship.messages.ShipPlacementReply", "failReason", se.culvertsoft.mgen.api.model.Int32Type.INSTANCE, null, (short)1610);
+	public static final Field _failReason_METADATA = new Field("battleship.messages.ShipPlacementReply", "failReason", se.culvertsoft.mgen.api.model.StringType.INSTANCE, null, (short)1610);
 
 	public static final short _result_ID = (short)24642;
 	public static final short _failReason_ID = (short)1610;

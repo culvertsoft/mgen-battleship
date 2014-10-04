@@ -35,6 +35,9 @@ class ShipPlacement;
 class ShipPlacementReply;
 class ShipSunk;
 class SetReady;
+class PlayerJoined;
+class PlayerChangedTeam;
+class IncorrectUsage;
 
 } // End namespace messages
 } // End namespace battleship
