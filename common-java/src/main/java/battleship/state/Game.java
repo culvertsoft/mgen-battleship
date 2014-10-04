@@ -184,6 +184,39 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	}
 
 	/*custom_methods_begin*/
+
+	public Player getPlayer(final Team team) {
+		switch (team) {
+		case BLUE:
+			return getBluePlayer();
+		case RED:
+			return getRedPlayer();
+		default:
+			return null;
+		}
+	}
+
+	public Map getMap(final Team team) {
+		switch (team) {
+		case BLUE:
+			return getBlueMap();
+		case RED:
+			return getRedMap();
+		default:
+			return null;
+		}
+	}
+
+	public Map getOpponentMap(final Team ownTeam) {
+		switch (ownTeam) {
+		case BLUE:
+			return getRedMap();
+		case RED:
+			return getBlueMap();
+		default:
+			return null;
+		}
+	}
 	
 	public Player getPlayer(final String uuid) {
 		if (hasRedPlayer() && getRedPlayer().getUuid().equals(uuid)) {
@@ -661,5 +694,6 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 	public static final short _currentTeam_ID = (short)-14726;
 
 	public static final Field[] _FIELDS = { _redPlayer_METADATA, _bluePlayer_METADATA, _observers_METADATA, _redMap_METADATA, _blueMap_METADATA, _phase_METADATA, _currentTeam_METADATA };
+
 
 }

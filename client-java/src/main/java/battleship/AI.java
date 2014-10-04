@@ -8,8 +8,8 @@ import battleship.messages.ShipSunk;
 import battleship.state.Game;
 import battleship.state.Phase;
 import battleship.state.Ship;
-import battleship.state.Shot;
 import battleship.state.Team;
+import battleship.state.Vec2;
 
 public interface AI {
 
@@ -57,7 +57,7 @@ public interface AI {
 	 *         fired there or outside of map) shot enough times you lose the
 	 *         game. If you return null you automatically resign.
 	 */
-	Shot makeShot(final Game gameState);
+	Vec2 makeShot(final Game gameState);
 
 	// ///////////////////////////////////////////////// //
 	// ////////////////// NOTIFICATIONS //////////////// //

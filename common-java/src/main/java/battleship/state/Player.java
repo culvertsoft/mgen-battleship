@@ -117,7 +117,23 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cust
 		return this;
 	}
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/*custom_methods_begin*/
+
+	public boolean hasFiredAt(final Vec2 firePos) {
+		for (final Shot shot : getShots()) {
+			if (shot.getPos().equals(firePos)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public boolean hasFiredAt(int x, int y) {
+		return hasFiredAt(new Vec2(x, y));
+	}
+	
+	/*custom_methods_end*/
 
 	@Override
 	public String toString() {
@@ -451,5 +467,6 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cust
 	public static final short _shots_ID = (short)890;
 
 	public static final Field[] _FIELDS = { _uuid_METADATA, _name_METADATA, _team_METADATA, _shots_METADATA };
+
 
 }

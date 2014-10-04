@@ -14,8 +14,8 @@ import battleship.network.GameClientListener;
 import battleship.network.MNetNetworkClient;
 import battleship.state.Game;
 import battleship.state.Phase;
-import battleship.state.Shot;
 import battleship.state.Team;
+import battleship.state.Vec2;
 
 public class SimpleGameClient {
 
@@ -133,9 +133,9 @@ public class SimpleGameClient {
 		@Override
 		public void handle(NextTurn o) {
 			if (o.getTeam() == m_team) {
-				final Shot shot = m_ai.makeShot(m_state);
+				final Vec2 shot = m_ai.makeShot(m_state);
 				if (shot != null) {
-					m_gameClient.fire(shot.getPos());
+					m_gameClient.fire(shot);
 				} else {
 					m_gameClient.resign();
 				}

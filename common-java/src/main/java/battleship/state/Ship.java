@@ -58,6 +58,20 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 
 	/* custom_methods_begin */
 
+	public Ship(final int x0, final int y0, final int len, final boolean horizontal) {
+		this(new ArrayList<Segment>());
+
+		final int dx = horizontal ? 1 : 0;
+		final int dy = horizontal ? 0 : 1;
+
+		for (int i = 0; i < len; i++) {
+			final int x = x0 + i * dx;
+			final int y = y0 + i * dy;
+			m_points.add(new Segment(true, new Vec2(x, y)));
+		}
+
+	}
+	
 	public boolean arePointsInLine() {
 		if (allXSame()) {
 			return allYInc1();

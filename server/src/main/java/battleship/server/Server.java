@@ -3,8 +3,10 @@ package battleship.server;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import battleship.Dispatcher;
@@ -30,6 +32,7 @@ import battleship.messages.TeamSelectReply;
 import battleship.state.Game;
 import battleship.state.Phase;
 import battleship.state.Player;
+import battleship.state.Segment;
 import battleship.state.Ship;
 import battleship.state.Shot;
 import battleship.state.Team;
@@ -409,12 +412,23 @@ public class Server {
 
 	private boolean validateShipPlacement(final ArrayList<Ship> ships) {
 		final List<Integer> lengths = new ArrayList<>();
+		final List<Segment> segments = new ArrayList<>();
 		for (final Ship ship : ships) {
 			if (!ship.arePointsInLine()) {
 				return false;
 			}
+			for (final Segment segment : ship.getPoints()) {
+				segments.add(segment);
+			}
 			lengths.add(ship.length());
 		}
+
+		Set<Segment> setSegments = new HashSet<Segment>(segments);
+
+		if (setSegments.size() < segments.size()) {
+			return false;
+		}
+
 		Collections.sort(lengths);
 		return lengths.equals(properShipLengths());
 	}
