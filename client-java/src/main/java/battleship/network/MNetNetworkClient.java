@@ -49,7 +49,7 @@ public class MNetNetworkClient extends NetworkClient {
 
 		public MNetBridge() {
 			super(
-					new WebsockBackendSettings().setConnectTo(ListUtil.create(WsUtil.mkAddress(m_address, m_port))),
+					new WebsockBackendSettings().unsetListenPort().setConnectTo(ListUtil.create(WsUtil.mkAddress(m_address, m_port))),
 					new NodeSettings().setName("mgen-battleship-client"));
 		}
 

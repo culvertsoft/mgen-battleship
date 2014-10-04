@@ -24,16 +24,19 @@ public class DumbAI implements AI {
 
 	@Override
 	public String selectName() {
+		System.out.println(this + " selectName()");
 		return getClass().getSimpleName() + "-" + UUID.randomUUID().toString();
 	}
 
 	@Override
 	public Team selectTeam() {
+		System.out.println(this + " selectTeam()");
 		return Math.random() < 0.5 ? Team.RED : Team.BLUE;
 	}
 
 	@Override
 	public List<Ship> placeShips() {
+		System.out.println(this + " placeShips()");
 		final Ship s2 = new Ship(0, 0, 2, true);
 		final Ship s3 = new Ship(0, 1, 3, true);
 		final Ship s4 = new Ship(0, 2, 4, true);
@@ -44,6 +47,7 @@ public class DumbAI implements AI {
 
 	@Override
 	public Vec2 makeShot(Game gameState) {
+		System.out.println(this + " makeShot()");
 		m_game = gameState;
 		final Player player = m_game.getPlayer(m_team);
 		final battleship.state.Map opponentMap = m_game.getOpponentMap(m_team);
@@ -58,6 +62,7 @@ public class DumbAI implements AI {
 
 	@Override
 	public void assignedTeam(Team team) {
+		System.out.println(this + " assignedTeam: " + team);
 		m_team = team;
 	}
 

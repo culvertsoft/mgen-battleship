@@ -26,12 +26,14 @@ public class SimpleGameClient {
 		m_gameClient = new GameClient(ai.selectName(), m_gameListener, m_networkClient);
 	}
 
-	public void init() {
+	public SimpleGameClient init() {
 		m_gameClient.init();
+		return this;
 	}
 
-	public void close() {
+	public SimpleGameClient close() {
 		m_gameClient.close();
+		return this;
 	}
 
 	/**

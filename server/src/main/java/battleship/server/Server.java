@@ -86,6 +86,18 @@ public class Server {
 
 		@Override
 		public void onJoin(final Player player) {
+			switch (player.getTeam()) {
+			case RED:
+				game().setRedPlayer(player);
+				break;
+			case BLUE:
+				game().setBluePlayer(player);
+				break;
+			default:
+				game().getObservers().add(player);
+				break;
+			}
+			System.out.println("Player " + player.getName() + " joined " + player.getTeam());
 			m_players.put(m_sendingClient, player);
 			reply(new LoginReply(player.getUuid(), true, null, player.getTeam()));
 			broadcastSnapshot();
@@ -232,7 +244,7 @@ public class Server {
 
 		@Override
 		public synchronized void onConnect(final Client client) {
-			System.out.println("client connected, waiting for login from: " + client);
+			// Do nothing when someone just connects on tcp..
 		}
 
 		@Override
@@ -439,12 +451,12 @@ public class Server {
 
 	private boolean isTeamFree(final Team team) {
 		switch (team) {
+		case RED:
+			return !game().hasRedPlayer();
 		case BLUE:
-			return game().hasBluePlayer();
+			return !game().hasBluePlayer();
 		case OBSERVERS:
 			return true;
-		case RED:
-			return game().hasRedPlayer();
 		default:
 			return false;
 		}

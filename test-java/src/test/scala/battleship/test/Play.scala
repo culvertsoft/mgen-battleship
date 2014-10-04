@@ -7,6 +7,8 @@ import battleship.server.MNetBackEnd
 import battleship.server.MNetClient
 import battleship.network.MNetNetworkClient
 import battleship.network.GameClient
+import battleship.SimpleGameClient
+import battleship.ais.DumbAI
 
 class Play {
 
@@ -19,13 +21,12 @@ class Play {
     server.init()    
     Thread.sleep(100)
     
-    val g1Network = new MNetNetworkClient("localhost", port)
-    //val p1 = new GameClient
-    
-    
-    server.close()    
+    val p1 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
+    val p2 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
+        
     Thread.sleep(1000)
 
+    server.close()    
   }
 
 }
