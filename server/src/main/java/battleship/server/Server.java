@@ -23,6 +23,7 @@ import battleship.messages.Resign;
 import battleship.messages.SetReady;
 import battleship.messages.ShipPlacement;
 import battleship.messages.ShipPlacementReply;
+import battleship.messages.ShipSunk;
 import battleship.messages.Snapshot;
 import battleship.messages.TeamSelect;
 import battleship.messages.TeamSelectReply;
@@ -155,6 +156,14 @@ public class Server {
 					if (segment.getPos().equals(o.getPosition())) {
 						segment.setAlive(false);
 						broadcast(new FireResult(true, o.getPosition()));
+						if (enemyShip.isSunk()) {
+							broadcast(new ShipSunk(enemyShip, opposingTeam(player)));
+							
+							if (!isAlive(player)) {
+								handleGameOver(player.getTeam(), "All enemy ships sunk!");
+							}
+							
+						}
 						return;
 					}
 				}
@@ -263,6 +272,19 @@ public class Server {
 		broadcastSnapshot();
 	}
 
+	private boolean isAlive(final Player player) {
+		for (final Ship ship : shipsOf(player)) {
+			if (ship.isAlive()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private List<Ship> shipsOf(final Player player) {
+		return shipsOf(player.getTeam());
+	}
+	
 	private List<Ship> shipsOf(final Team team) {
 		switch (team) {
 		case BLUE:
