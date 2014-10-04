@@ -220,9 +220,15 @@ public class Server {
 
 		@Override
 		public void handle(final ShipPlacement o) {
-			System.out.println("Received ship placement");
+
+			if (!isInLobby()) {
+				incorrectUsage("Can only place ships while in lobby!");
+				return;
+			}
+
 			final Player player = sendingPlayer();
-			if (isInLobby() && player != null && !isObserver(player)) {
+
+			if (player != null && !isObserver(player)) {
 				if (validateShipPlacement(o.getShips())) {
 					setShips(player.getTeam(), o.getShips());
 					reply(new ShipPlacementReply(true, null));
@@ -342,8 +348,9 @@ public class Server {
 	}
 
 	private boolean playersReady() {
-		return game().hasBluePlayer() && game().hasRedPlayer() && game().getBlueMap().hasShips()
-				&& game().getRedMap().hasShips();
+		return game().hasBluePlayer() && game().hasRedPlayer()
+				&& !game().getBlueMap().getShips().isEmpty()
+				&& !game().getRedMap().getShips().isEmpty();
 	}
 
 	private void setShips(final Team team, final ArrayList<Ship> ships) {
