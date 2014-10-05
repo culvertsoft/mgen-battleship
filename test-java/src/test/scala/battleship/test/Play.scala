@@ -14,19 +14,18 @@ class Play {
 
   @Test
   def foo() {
-    
+
     val port = 12345
-    
-    val server = new Server().addBackend(port, MNetBackEnd.FACTORY)
-    server.init()    
-    Thread.sleep(100)
-    
+    val server = new Server().addBackend(port, MNetBackEnd.FACTORY).init()
+
     val p1 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
     val p2 = new SimpleGameClient(new DumbAI, "127.0.0.1", port).init();
-        
+
     Thread.sleep(5000)
 
-    server.close()    
+    p2.close()
+    p1.close()
+    server.close()
   }
 
 }
