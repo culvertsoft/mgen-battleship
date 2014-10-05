@@ -248,7 +248,7 @@ public class Server {
 
 			setShips(player.getTeam(), o.getShips());
 			reply(new ShipPlacementReply(true, null));
-			
+
 			if (allPlayersReady()) {
 				startGame();
 			}
