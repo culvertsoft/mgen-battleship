@@ -107,8 +107,8 @@ public class Server {
 		@Override
 		public void onLeft(final Player player, final String reason) {
 			m_players.remove(m_sendingClient);
-			if (player != null && player.getTeam() != Team.OBSERVERS && isInGame()) {
-				removePlayer(player);
+			removePlayer(player);
+			if (player.getTeam() != Team.OBSERVERS && isInGame()) {
 				handleGameOver(opposingTeam(player), "Team " + player.getTeam() + " disconnected");
 			}
 		}
@@ -194,51 +194,63 @@ public class Server {
 		@Override
 		public void handle(final Resign o) {
 			final Player player = sendingPlayer();
-			if (player != null && player.getTeam() != Team.OBSERVERS && isInGame()) {
+			if (player.getTeam() != Team.OBSERVERS && isInGame()) {
 				handleGameOver(opposingTeam(player), "Team " + player.getTeam() + " resigned");
 			}
 		}
 
 		@Override
 		public void handle(final TeamSelect o) {
+
 			final Player player = sendingPlayer();
-			final Team newTeam = o.getTeam();
-			if (isInLobby() && player != null) {
-				final Team oldTeam = player.getTeam();
-				if (newTeam != oldTeam) {
-					if (isTeamFree(newTeam)) {
-						setPlayerTeam(player, newTeam, oldTeam);
-						reply(new TeamSelectReply(true, null, newTeam));
-						broadcast(new PlayerChangedTeam(player.getUuid()));
-						broadcastSnapshot();
-					} else {
-						reply(new TeamSelectReply(false, "Team is full", oldTeam));
-					}
-				}
+			final Team desiredNewTeam = o.getTeam();
+			final Team newTeam = isTeamFree(desiredNewTeam) ? desiredNewTeam : freeSlot();
+			final Team oldTeam = player.getTeam();
+
+			if (!isInLobby()) {
+				incorrectUsage("Can only change team while in the lobby!");
+				return;
+			}
+
+			if (!isObserver(player) && desiredNewTeam != newTeam && newTeam == Team.OBSERVERS) {
+				// We don't want to auto drop to observers
+				return;
+			}
+
+			if (newTeam != oldTeam) {
+				setPlayerTeam(player, newTeam);
+				reply(new TeamSelectReply(true, null, newTeam));
+				broadcast(new PlayerChangedTeam(player.getUuid()));
+				broadcastSnapshot();
 			}
 		}
 
 		@Override
 		public void handle(final ShipPlacement o) {
 
+			final Player player = sendingPlayer();
+
 			if (!isInLobby()) {
 				incorrectUsage("Can only place ships while in lobby!");
 				return;
 			}
 
-			final Player player = sendingPlayer();
+			if (isObserver(player)) {
+				incorrectUsage("Observers cannot place ships...");
+				return;
+			}
 
-			if (player != null && !isObserver(player)) {
-				if (validateShipPlacement(o.getShips())) {
-					setShips(player.getTeam(), o.getShips());
-					reply(new ShipPlacementReply(true, null));
-					if (playersReady()) {
-						startGame();
-					}
-				} else {
-					reply(new ShipPlacementReply(false, "Illegal ship placement"));
-					incorrectUsage("Illegal ship placement");
-				}
+			if (!validateShipPlacement(o.getShips())) {
+				reply(new ShipPlacementReply(false, "Illegal ship placement"));
+				incorrectUsage("Illegal ship placement");
+				return;
+			}
+
+			setShips(player.getTeam(), o.getShips());
+			reply(new ShipPlacementReply(true, null));
+			
+			if (allPlayersReady()) {
+				startGame();
 			}
 		}
 
@@ -266,7 +278,8 @@ public class Server {
 		@Override
 		public synchronized void onMessage(final Client client, final Message message) {
 			m_sendingClient = client;
-			Dispatcher.dispatch(message, m_gameListener);
+			if (message instanceof Login || hasLoggedIn(client))
+				Dispatcher.dispatch(message, m_gameListener);
 		}
 
 		@Override
@@ -285,7 +298,25 @@ public class Server {
 		broadcast(new GameOver(winner, reason));
 		setPhase(Phase.LOBBY);
 		broadcastSnapshot();
-		clearPlayersShips();
+		clearShips();
+		clearPlayers();
+	}
+
+	private boolean hasLoggedIn(final Client client) {
+		return m_players.containsKey(client);
+	}
+
+	private Player bluePlayer() {
+		return game().getBluePlayer();
+	}
+
+	private Player redPlayer() {
+		return game().getRedPlayer();
+	}
+
+	private void clearPlayers() {
+		setPlayerTeam(bluePlayer(), Team.OBSERVERS);
+		setPlayerTeam(redPlayer(), Team.OBSERVERS);
 	}
 
 	private void nextTurn(final Team team) {
@@ -305,12 +336,17 @@ public class Server {
 		return 10.0;
 	}
 
-	private void clearPlayersShips() {
+	private void clearShips() {
 		game().setRedMap(createMap());
 		game().setBlueMap(createMap());
 	}
 
-	private void setPlayerTeam(final Player player, final Team newTeam, final Team oldTeam) {
+	private void setPlayerTeam(final Player player, final Team newTeam) {
+
+		if (player == null) // normal behaviour
+			return;
+
+		final Team oldTeam = player.getTeam();
 
 		player.setTeam(newTeam);
 
@@ -348,7 +384,7 @@ public class Server {
 		nextTurn();
 	}
 
-	private boolean playersReady() {
+	private boolean allPlayersReady() {
 		return game().hasBluePlayer() && game().hasRedPlayer()
 				&& !game().getBlueMap().getShips().isEmpty()
 				&& !game().getRedMap().getShips().isEmpty();
@@ -582,7 +618,7 @@ public class Server {
 	}
 
 	private Player createPlayer(final String name) {
-		return new Player(UUID.randomUUID().toString(), name, freeSlot(), new ArrayList<Shot>());
+		return new Player(UUID.randomUUID().toString(), name, Team.OBSERVERS, new ArrayList<Shot>());
 	}
 
 	private List<Integer> properShipLengths() {
