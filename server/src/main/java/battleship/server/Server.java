@@ -97,7 +97,7 @@ public class Server {
 				game().getObservers().add(player);
 				break;
 			}
-			System.out.println("Player " + player.getName() + " joined " + player.getTeam());
+			System.out.println("Player " + player.getName() + " joined ");
 			m_players.put(m_sendingClient, player);
 			reply(new LoginReply(player.getUuid(), true, null, player.getTeam()));
 			broadcastSnapshot();
