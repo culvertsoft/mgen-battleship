@@ -18,9 +18,9 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Segment extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Segment extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private boolean m_alive;
 	private Vec2 m_pos;
@@ -77,7 +77,7 @@ public class Segment extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cus
 		return this;
 	}
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	@Override
 	public String toString() {

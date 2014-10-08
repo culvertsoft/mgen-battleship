@@ -10,7 +10,7 @@
 #include "battleship/messages/ShipSunk.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -62,7 +62,7 @@ ShipSunk& ShipSunk::setTeam(const battleship::state::Team& team) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool ShipSunk::hasShip() const {
 	return _isShipSet(mgen::SHALLOW);

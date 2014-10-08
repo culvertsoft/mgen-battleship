@@ -10,7 +10,7 @@
 #include "battleship/messages/Message.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -21,7 +21,7 @@ Message::Message() {
 Message::~Message() {
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Message::operator==(const Message& other) const {
 	return true;

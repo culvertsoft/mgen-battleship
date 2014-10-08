@@ -18,14 +18,14 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*/
+/* custom_imports_begin */
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/*custom_imports_end*/
+/* custom_imports_end */
 
-public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private java.util.ArrayList<Segment> m_points;
 
@@ -56,7 +56,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	/*custom_methods_begin*/
+	/* custom_methods_begin */
 
 	public Ship(final int x0, final int y0, final int len, final boolean horizontal) {
 		this(new ArrayList<Segment>());
@@ -71,7 +71,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		}
 
 	}
-	
+
 	public boolean arePointsInLine() {
 		if (allXSame()) {
 			return allYInc1();
@@ -165,7 +165,7 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return Collections.min(allY()) == Collections.max(allY());
 	}
 
-	/*custom_methods_end*/
+	/* custom_methods_end */
 
 	@Override
 	public String toString() {

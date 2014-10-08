@@ -11,12 +11,12 @@
 #define BATTLESHIP_MESSAGES_SHIPPLACEMENTREPLY
 
 #include "battleship/messages/GameInfo.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class ShipPlacementReply : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class ShipPlacementReply : public GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	bool m_result;
 	std::string m_failReason;
@@ -38,7 +38,7 @@ public:
 	ShipPlacementReply& setResult(const bool& result);
 	ShipPlacementReply& setFailReason(const std::string& failReason);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasResult() const;
 	bool hasFailReason() const;

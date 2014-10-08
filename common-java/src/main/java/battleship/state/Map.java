@@ -18,9 +18,9 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private java.util.ArrayList<Ship> m_ships;
 	private Vec2 m_size;
@@ -73,7 +73,7 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_
 		return this;
 	}
 
-	/*custom_methods_begin*/
+	/* custom_methods_begin */
 
 	public Ship shipAt(final Vec2 position) {
 		for (final Ship ship : getShips()) {
@@ -86,7 +86,7 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_
 		return null;
 	}
 
-	/*custom_methods_end*/
+	/* custom_methods_end */
 
 	@Override
 	public String toString() {

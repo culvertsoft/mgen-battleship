@@ -10,7 +10,7 @@
 #include "battleship/messages/ShipPlacement.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -42,7 +42,7 @@ ShipPlacement& ShipPlacement::setShips(const std::vector<battleship::state::Ship
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool ShipPlacement::hasShips() const {
 	return _isShipsSet(mgen::SHALLOW);

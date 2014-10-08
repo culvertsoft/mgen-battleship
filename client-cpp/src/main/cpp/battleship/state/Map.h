@@ -13,12 +13,12 @@
 #include "mgen/classes/MGenBase.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Vec2.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Map : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Map : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	std::vector<Ship>  m_ships;
 	Vec2 m_size;
@@ -40,7 +40,7 @@ public:
 	Map& setShips(const std::vector<Ship> & ships);
 	Map& setSize(const Vec2& size);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasShips() const;
 	bool hasSize() const;

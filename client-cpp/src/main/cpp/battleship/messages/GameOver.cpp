@@ -10,7 +10,7 @@
 #include "battleship/messages/GameOver.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -62,7 +62,7 @@ GameOver& GameOver::setReason(const std::string& reason) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool GameOver::hasWinner() const {
 	return _isWinnerSet(mgen::SHALLOW);

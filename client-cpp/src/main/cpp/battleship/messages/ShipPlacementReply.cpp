@@ -10,7 +10,7 @@
 #include "battleship/messages/ShipPlacementReply.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -62,7 +62,7 @@ ShipPlacementReply& ShipPlacementReply::setFailReason(const std::string& failRea
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool ShipPlacementReply::hasResult() const {
 	return _isResultSet(mgen::SHALLOW);

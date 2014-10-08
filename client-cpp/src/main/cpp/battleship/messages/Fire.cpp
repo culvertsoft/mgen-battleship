@@ -10,7 +10,7 @@
 #include "battleship/messages/Fire.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -42,7 +42,7 @@ Fire& Fire::setPosition(const battleship::state::Vec2& position) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Fire::hasPosition() const {
 	return _isPositionSet(mgen::SHALLOW);

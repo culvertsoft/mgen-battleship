@@ -10,7 +10,7 @@
 #include "battleship/messages/FireResult.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -82,7 +82,7 @@ FireResult& FireResult::setFiringTeam(const battleship::state::Team& firingTeam)
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool FireResult::hasHit() const {
 	return _isHitSet(mgen::SHALLOW);

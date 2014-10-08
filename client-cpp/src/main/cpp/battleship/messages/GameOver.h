@@ -12,12 +12,12 @@
 
 #include "battleship/messages/GameInfo.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class GameOver : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class GameOver : public GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	battleship::state::Team m_winner;
 	std::string m_reason;
@@ -39,7 +39,7 @@ public:
 	GameOver& setWinner(const battleship::state::Team& winner);
 	GameOver& setReason(const std::string& reason);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasWinner() const;
 	bool hasReason() const;

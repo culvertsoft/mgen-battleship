@@ -11,18 +11,18 @@
 #define BATTLESHIP_MESSAGES_CONNECTION
 
 #include "battleship/messages/Message.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class Connection : public Message /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Connection : public Message /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 public:
 	Connection();
 	virtual ~Connection();
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool operator==(const Connection& other) const;
 	bool operator!=(const Connection& other) const;

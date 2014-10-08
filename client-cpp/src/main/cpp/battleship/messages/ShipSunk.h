@@ -13,12 +13,12 @@
 #include "battleship/messages/GameInfo.h"
 #include "battleship/state/Ship.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class ShipSunk : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class ShipSunk : public GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	battleship::state::Ship m_ship;
 	battleship::state::Team m_team;
@@ -40,7 +40,7 @@ public:
 	ShipSunk& setShip(const battleship::state::Ship& ship);
 	ShipSunk& setTeam(const battleship::state::Team& team);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasShip() const;
 	bool hasTeam() const;

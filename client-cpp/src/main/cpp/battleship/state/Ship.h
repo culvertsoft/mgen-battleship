@@ -12,12 +12,12 @@
 
 #include "mgen/classes/MGenBase.h"
 #include "battleship/state/Segment.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Ship : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Ship : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	std::vector<Segment>  m_points;
 	bool _m_points_isSet;
@@ -33,7 +33,7 @@ public:
 
 	Ship& setPoints(const std::vector<Segment> & points);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasPoints() const;
 

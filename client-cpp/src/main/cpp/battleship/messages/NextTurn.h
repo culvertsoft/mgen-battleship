@@ -12,12 +12,12 @@
 
 #include "battleship/messages/GameInfo.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class NextTurn : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class NextTurn : public GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	battleship::state::Team m_team;
 	double m_maxTime;
@@ -39,7 +39,7 @@ public:
 	NextTurn& setTeam(const battleship::state::Team& team);
 	NextTurn& setMaxTime(const double& maxTime);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasTeam() const;
 	bool hasMaxTime() const;

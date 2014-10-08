@@ -12,12 +12,12 @@
 
 #include "mgen/classes/MGenBase.h"
 #include "battleship/state/Vec2.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Shot : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Shot : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	Vec2 m_pos;
 	bool m_isHit;
@@ -39,7 +39,7 @@ public:
 	Shot& setPos(const Vec2& pos);
 	Shot& setIsHit(const bool& isHit);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasPos() const;
 	bool hasIsHit() const;

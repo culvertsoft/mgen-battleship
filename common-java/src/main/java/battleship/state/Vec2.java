@@ -16,9 +16,9 @@ import se.culvertsoft.mgen.javapack.serialization.Reader;
 import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Vec2 extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Vec2 extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private int m_x;
 	private int m_y;
@@ -79,7 +79,7 @@ public class Vec2 extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	@Override
 	public String toString() {

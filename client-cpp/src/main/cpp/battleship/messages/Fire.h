@@ -12,12 +12,12 @@
 
 #include "battleship/messages/GameInput.h"
 #include "battleship/state/Vec2.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class Fire : public GameInput /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Fire : public GameInput /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	battleship::state::Vec2 m_position;
 	bool _m_position_isSet;
@@ -33,7 +33,7 @@ public:
 
 	Fire& setPosition(const battleship::state::Vec2& position);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasPosition() const;
 

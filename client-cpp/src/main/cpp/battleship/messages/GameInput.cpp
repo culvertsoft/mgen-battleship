@@ -10,7 +10,7 @@
 #include "battleship/messages/GameInput.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -21,7 +21,7 @@ GameInput::GameInput() {
 GameInput::~GameInput() {
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool GameInput::operator==(const GameInput& other) const {
 	return true;

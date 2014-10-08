@@ -38,14 +38,15 @@ public class Serializer {
 			return readBinary(container.getBinaryData());
 		} else if (container.hasStringData()) {
 			return readJson(container.getStringData());
-		} 
-		throw new IOException("Tried reading DataMessage " + container + ", but it did not contain any data.");
+		}
+		throw new IOException("Tried reading DataMessage " + container
+				+ ", but it did not contain any data.");
 	}
 
 	public synchronized Message readJson(final String data) throws IOException {
 		return m_jsonReader.readObject(data, Message.class);
 	}
-	
+
 	public synchronized void reset() {
 		m_bos.reset();
 	}
@@ -53,8 +54,13 @@ public class Serializer {
 	private final ClassRegistry m_classRegistry = new ClassRegistry();
 	private final ByteArrayOutputStream m_bos = new ByteArrayOutputStream();
 	private final BinaryWriter m_binWriter = new BinaryWriter(m_bos, m_classRegistry, true);
-	private final JsonPrettyWriter m_jsonWriter = new JsonPrettyWriter(EMPTY_OUTPUT_STREAM, m_classRegistry, true);
-	private final BinaryReader m_binaryReader = new BinaryReader(EMPTY_INPUT_STREAM, m_classRegistry);
+	private final JsonPrettyWriter m_jsonWriter = new JsonPrettyWriter(
+			EMPTY_OUTPUT_STREAM,
+			m_classRegistry,
+			true);
+	private final BinaryReader m_binaryReader = new BinaryReader(
+			EMPTY_INPUT_STREAM,
+			m_classRegistry);
 	private final JsonReader m_jsonReader = new JsonReader(EMPTY_INPUT_STREAM, m_classRegistry);
 
 }

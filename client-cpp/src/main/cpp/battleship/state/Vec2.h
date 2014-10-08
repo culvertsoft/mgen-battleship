@@ -11,12 +11,12 @@
 #define BATTLESHIP_STATE_VEC2
 
 #include "mgen/classes/MGenBase.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Vec2 : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Vec2 : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	int m_x;
 	int m_y;
@@ -38,7 +38,7 @@ public:
 	Vec2& setX(const int& x);
 	Vec2& setY(const int& y);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasX() const;
 	bool hasY() const;

@@ -10,7 +10,7 @@
 #include "battleship/state/Player.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
@@ -100,7 +100,7 @@ Player& Player::setShots(const std::vector<Shot> & shots) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Player::hasUuid() const {
 	return _isUuidSet(mgen::SHALLOW);

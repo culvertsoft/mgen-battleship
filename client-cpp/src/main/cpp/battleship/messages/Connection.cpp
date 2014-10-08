@@ -10,7 +10,7 @@
 #include "battleship/messages/Connection.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -21,7 +21,7 @@ Connection::Connection() {
 Connection::~Connection() {
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Connection::operator==(const Connection& other) const {
 	return true;

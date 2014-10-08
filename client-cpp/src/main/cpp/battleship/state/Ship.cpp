@@ -10,7 +10,7 @@
 #include "battleship/state/Ship.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
@@ -42,7 +42,7 @@ Ship& Ship::setPoints(const std::vector<Segment> & points) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Ship::hasPoints() const {
 	return _isPointsSet(mgen::SHALLOW);

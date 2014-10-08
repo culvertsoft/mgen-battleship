@@ -11,18 +11,18 @@
 #define BATTLESHIP_MESSAGES_RESIGN
 
 #include "battleship/messages/GameInput.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class Resign : public GameInput /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Resign : public GameInput /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 public:
 	Resign();
 	virtual ~Resign();
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool operator==(const Resign& other) const;
 	bool operator!=(const Resign& other) const;

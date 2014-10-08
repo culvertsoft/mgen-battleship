@@ -11,12 +11,12 @@
 #define BATTLESHIP_MESSAGES_PLAYERCHANGEDTEAM
 
 #include "battleship/messages/Connection.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class PlayerChangedTeam : public Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class PlayerChangedTeam : public Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	std::string m_playerId;
 	bool _m_playerId_isSet;
@@ -32,7 +32,7 @@ public:
 
 	PlayerChangedTeam& setPlayerId(const std::string& playerId);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasPlayerId() const;
 

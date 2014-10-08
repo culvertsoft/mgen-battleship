@@ -16,9 +16,9 @@ import se.culvertsoft.mgen.javapack.serialization.Reader;
 import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Chat extends Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private String m_text;
 	private battleship.state.Team m_team;
@@ -93,7 +93,7 @@ public class Chat extends Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
 		return this;
 	}
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	@Override
 	public String toString() {

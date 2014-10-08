@@ -18,9 +18,9 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private String m_uuid;
 	private String m_name;
@@ -117,7 +117,7 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cust
 		return this;
 	}
 
-	/*custom_methods_begin*/
+	/* custom_methods_begin */
 
 	public boolean hasFiredAt(final Vec2 firePos) {
 		for (final Shot shot : getShots()) {
@@ -127,13 +127,12 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /*cust
 		}
 		return false;
 	}
-	
-	
+
 	public boolean hasFiredAt(int x, int y) {
 		return hasFiredAt(new Vec2(x, y));
 	}
-	
-	/*custom_methods_end*/
+
+	/* custom_methods_end */
 
 	@Override
 	public String toString() {

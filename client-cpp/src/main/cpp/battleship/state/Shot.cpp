@@ -10,7 +10,7 @@
 #include "battleship/state/Shot.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
@@ -62,7 +62,7 @@ Shot& Shot::setIsHit(const bool& isHit) {
 	return *this;
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Shot::hasPos() const {
 	return _isPosSet(mgen::SHALLOW);

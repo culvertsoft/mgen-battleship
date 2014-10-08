@@ -18,9 +18,9 @@ import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
-/*custom_imports_begin*//*custom_imports_end*/
+/* custom_imports_begin *//* custom_imports_end */
 
-public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 
 	private Player m_redPlayer;
 	private Player m_bluePlayer;
@@ -183,7 +183,7 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		return this;
 	}
 
-	/*custom_methods_begin*/
+	/* custom_methods_begin */
 
 	public Player getPlayer(final Team team) {
 		switch (team) {
@@ -217,7 +217,7 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 			return null;
 		}
 	}
-	
+
 	public Player getPlayer(final String uuid) {
 		if (hasRedPlayer() && getRedPlayer().getUuid().equals(uuid)) {
 			return getRedPlayer();
@@ -232,8 +232,8 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /*custom
 		}
 		return null;
 	}
-	
-	/*custom_methods_end*/
+
+	/* custom_methods_end */
 
 	@Override
 	public String toString() {

@@ -15,12 +15,12 @@
 #include "battleship/state/Phase.h"
 #include "battleship/state/Player.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Game : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Game : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	Player m_redPlayer;
 	Player m_bluePlayer;
@@ -72,7 +72,7 @@ public:
 	Game& setPhase(const Phase& phase);
 	Game& setCurrentTeam(const Team& currentTeam);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasRedPlayer() const;
 	bool hasBluePlayer() const;

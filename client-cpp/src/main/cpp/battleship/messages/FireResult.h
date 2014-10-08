@@ -13,12 +13,12 @@
 #include "battleship/messages/GameInfo.h"
 #include "battleship/state/Team.h"
 #include "battleship/state/Vec2.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class FireResult : public GameInfo /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class FireResult : public GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	bool m_hit;
 	battleship::state::Vec2 m_position;
@@ -46,7 +46,7 @@ public:
 	FireResult& setPosition(const battleship::state::Vec2& position);
 	FireResult& setFiringTeam(const battleship::state::Team& firingTeam);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasHit() const;
 	bool hasPosition() const;

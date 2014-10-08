@@ -12,12 +12,12 @@
 
 #include "battleship/messages/Connection.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
 
-class Chat : public Connection /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Chat : public Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	std::string m_text;
 	battleship::state::Team m_team;
@@ -45,7 +45,7 @@ public:
 	Chat& setTeam(const battleship::state::Team& team);
 	Chat& setFrom(const std::string& from);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasText() const;
 	bool hasTeam() const;

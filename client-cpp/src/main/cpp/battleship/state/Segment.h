@@ -12,12 +12,12 @@
 
 #include "mgen/classes/MGenBase.h"
 #include "battleship/state/Vec2.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Segment : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Segment : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	bool m_alive;
 	Vec2 m_pos;
@@ -39,7 +39,7 @@ public:
 	Segment& setAlive(const bool& alive);
 	Segment& setPos(const Vec2& pos);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasAlive() const;
 	bool hasPos() const;

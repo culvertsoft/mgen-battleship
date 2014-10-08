@@ -10,7 +10,7 @@
 #include "battleship/messages/Resign.h"
 #include "mgen/util/validation.h"
 #include "mgen/util/stlLiteral.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace messages {
@@ -21,7 +21,7 @@ Resign::Resign() {
 Resign::~Resign() {
 }
 
-/*custom_methods_begin*//*custom_methods_end*/
+/* custom_methods_begin *//* custom_methods_end */
 
 bool Resign::operator==(const Resign& other) const {
 	return true;

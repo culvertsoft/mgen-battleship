@@ -13,12 +13,12 @@
 #include "mgen/classes/MGenBase.h"
 #include "battleship/state/Shot.h"
 #include "battleship/state/Team.h"
-/*custom_includes_begin*//*custom_includes_end*/
+/* custom_includes_begin *//* custom_includes_end */
 
 namespace battleship {
 namespace state {
 
-class Player : public mgen::MGenBase /*custom_ifcs_begin*//*custom_ifcs_end*/ {
+class Player : public mgen::MGenBase /* custom_ifcs_begin *//* custom_ifcs_end */ {
 private:
 	std::string m_uuid;
 	std::string m_name;
@@ -52,7 +52,7 @@ public:
 	Player& setTeam(const Team& team);
 	Player& setShots(const std::vector<Shot> & shots);
 
-	/*custom_methods_begin*//*custom_methods_end*/
+	/* custom_methods_begin *//* custom_methods_end */
 
 	bool hasUuid() const;
 	bool hasName() const;
