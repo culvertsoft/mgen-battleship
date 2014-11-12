@@ -50,9 +50,6 @@ public interface AI {
 	 * @param gameState
 	 *            The current state of the game
 	 * 
-	 * @param myTeam
-	 *            Your team
-	 * 
 	 * @return The shot you want to make. If you return an invalid (already
 	 *         fired there or outside of map) shot enough times you lose the
 	 *         game. If you return null you automatically resign.
@@ -93,6 +90,7 @@ public interface AI {
 	 * Notifies you that the game is over and who won.
 	 * 
 	 * @param gameOverMsg
+	 *            Status of the game over event
 	 */
 	void gameOver(final GameOver gameOverMsg);
 

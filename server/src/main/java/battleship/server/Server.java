@@ -49,9 +49,14 @@ public class Server {
 
 	/**
 	 * Adds a listening backend to this Server. Must be called before init
+	 *
+	 * @param port
+	 *            The port on which to listen
 	 * 
-	 * @param backend
-	 *            The backend to add
+	 * @param factory
+	 *            The back-end factory to use
+	 * 
+	 * @return this Server
 	 */
 	public Server addBackend(final int port, final BackEnd.Factory factory) {
 		m_backEnds.add(factory.create(port, m_networkListener));
@@ -60,6 +65,8 @@ public class Server {
 
 	/**
 	 * Starts this clients internal threads.
+	 * 
+	 * @return this Server
 	 */
 	public Server init() {
 		for (final BackEnd backend : m_backEnds) {
@@ -70,6 +77,8 @@ public class Server {
 
 	/**
 	 * Stops this clients internal threads.
+	 * 
+	 * @return this Server
 	 */
 	public Server close() {
 		for (final BackEnd backend : m_backEnds) {
@@ -109,7 +118,8 @@ public class Server {
 			m_players.remove(m_sendingClient);
 			removePlayer(player);
 			if (player.getTeam() != Team.OBSERVERS && isInGame()) {
-				handleGameOver(opposingTeam(player), "Team " + player.getTeam() + " disconnected");
+				handleGameOver(opposingTeam(player), "Team " + player.getTeam()
+						+ " disconnected");
 			}
 		}
 
@@ -163,16 +173,19 @@ public class Server {
 			final Ship ship = mapOf(opposingTeam).shipAt(o.getPosition());
 			if (ship != null) {
 				ship.takeHit(o.getPosition());
-				broadcast(new FireResult(true, o.getPosition(), player.getTeam()));
+				broadcast(new FireResult(true, o.getPosition(),
+						player.getTeam()));
 				if (ship.isSunk()) {
 					broadcast(new ShipSunk(ship, opposingTeam));
 					if (!isAlive(opponent)) {
-						handleGameOver(player.getTeam(), "All enemy ships sunk!");
+						handleGameOver(player.getTeam(),
+								"All enemy ships sunk!");
 						return;
 					}
 				}
 			} else {
-				broadcast(new FireResult(false, o.getPosition(), player.getTeam()));
+				broadcast(new FireResult(false, o.getPosition(),
+						player.getTeam()));
 			}
 
 			broadcastSnapshot();
@@ -187,7 +200,8 @@ public class Server {
 					onJoin(createPlayer(o.getName()));
 				}
 			} else {
-				reply(new LoginReply(null, false, "Game has already started", null));
+				reply(new LoginReply(null, false, "Game has already started",
+						null));
 			}
 		}
 
@@ -195,7 +209,8 @@ public class Server {
 		public void handle(final Resign o) {
 			final Player player = sendingPlayer();
 			if (player.getTeam() != Team.OBSERVERS && isInGame()) {
-				handleGameOver(opposingTeam(player), "Team " + player.getTeam() + " resigned");
+				handleGameOver(opposingTeam(player), "Team " + player.getTeam()
+						+ " resigned");
 			}
 		}
 
@@ -204,7 +219,8 @@ public class Server {
 
 			final Player player = sendingPlayer();
 			final Team desiredNewTeam = o.getTeam();
-			final Team newTeam = isTeamFree(desiredNewTeam) ? desiredNewTeam : freeSlot();
+			final Team newTeam = isTeamFree(desiredNewTeam) ? desiredNewTeam
+					: freeSlot();
 			final Team oldTeam = player.getTeam();
 
 			if (!isInLobby()) {
@@ -212,7 +228,8 @@ public class Server {
 				return;
 			}
 
-			if (!isObserver(player) && desiredNewTeam != newTeam && newTeam == Team.OBSERVERS) {
+			if (!isObserver(player) && desiredNewTeam != newTeam
+					&& newTeam == Team.OBSERVERS) {
 				// We don't want to auto drop to observers
 				return;
 			}
@@ -268,7 +285,8 @@ public class Server {
 		}
 
 		@Override
-		public synchronized void onDisconnect(final Client client, final String reason) {
+		public synchronized void onDisconnect(final Client client,
+				final String reason) {
 			if (m_players.containsKey(client)) {
 				m_sendingClient = client;
 				m_gameListener.onLeft(m_players.get(client), reason);
@@ -276,14 +294,16 @@ public class Server {
 		}
 
 		@Override
-		public synchronized void onMessage(final Client client, final Message message) {
+		public synchronized void onMessage(final Client client,
+				final Message message) {
 			m_sendingClient = client;
 			if (message instanceof Login || hasLoggedIn(client))
 				Dispatcher.dispatch(message, m_gameListener);
 		}
 
 		@Override
-		public synchronized void onError(final Exception error, final Object source) {
+		public synchronized void onError(final Exception error,
+				final Object source) {
 			System.err.println("Error from: " + source);
 			error.printStackTrace();
 		}
@@ -618,7 +638,8 @@ public class Server {
 	}
 
 	private Player createPlayer(final String name) {
-		return new Player(UUID.randomUUID().toString(), name, Team.OBSERVERS, new ArrayList<Shot>());
+		return new Player(UUID.randomUUID().toString(), name, Team.OBSERVERS,
+				new ArrayList<Shot>());
 	}
 
 	private List<Integer> properShipLengths() {
@@ -639,8 +660,8 @@ public class Server {
 
 		final Player prevRed = m_game != null ? m_game.getRedPlayer() : null;
 		final Player prevBlue = m_game != null ? m_game.getBluePlayer() : null;
-		final ArrayList<Player> prevObservers = m_game != null ? m_game.getObservers()
-				: new ArrayList<Player>();
+		final ArrayList<Player> prevObservers = m_game != null ? m_game
+				.getObservers() : new ArrayList<Player>();
 
 		return new Game(prevRed, // redplayer
 				prevBlue, // blueplayer

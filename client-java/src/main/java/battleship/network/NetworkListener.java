@@ -12,6 +12,9 @@ public interface NetworkListener {
 	/**
 	 * Called when the network layer disconnects from the mgen-battleship
 	 * server.
+	 * 
+	 * @param reason
+	 *            Why the disconnect occurred
 	 */
 	void onDisconnect(String reason);
 

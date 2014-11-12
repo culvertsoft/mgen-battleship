@@ -1,4 +1,3 @@
-
 // Remember, sbt needs empty lines between active settings
 
 name := "mgen-battleship"
@@ -6,6 +5,8 @@ name := "mgen-battleship"
 organization := "se.culvertsoft"
 
 version := scala.util.Properties.envOrElse("MGEN_BATTLESHIP_VERSION", "SNAPSHOT")
+
+scalaVersion := "2.11.4"
 
 isSnapshot := version.value.contains("SNAPSHOT")
 
