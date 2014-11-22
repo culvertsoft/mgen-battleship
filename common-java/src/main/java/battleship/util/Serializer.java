@@ -3,7 +3,6 @@ package battleship.util;
 import static se.culvertsoft.mgen.javapack.serialization.BuiltInReader.EMPTY_INPUT_STREAM;
 import static se.culvertsoft.mgen.javapack.serialization.BuiltInWriter.EMPTY_OUTPUT_STREAM;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -29,8 +28,7 @@ public class Serializer {
 	}
 
 	public synchronized Message readBinary(final byte[] data) throws IOException {
-		final ByteArrayInputStream bis = new ByteArrayInputStream(data);
-		return m_binaryReader.setInput(bis).readObject(data, Message.class);
+		return m_binaryReader.readObject(data, Message.class);
 	}
 
 	public synchronized Message read(final DataMessage container) throws IOException {
@@ -54,13 +52,8 @@ public class Serializer {
 	private final ClassRegistry m_classRegistry = new ClassRegistry();
 	private final ByteArrayOutputStream m_bos = new ByteArrayOutputStream();
 	private final BinaryWriter m_binWriter = new BinaryWriter(m_bos, m_classRegistry, true);
-	private final JsonPrettyWriter m_jsonWriter = new JsonPrettyWriter(
-			EMPTY_OUTPUT_STREAM,
-			m_classRegistry,
-			true);
-	private final BinaryReader m_binaryReader = new BinaryReader(
-			EMPTY_INPUT_STREAM,
-			m_classRegistry);
+	private final JsonPrettyWriter m_jsonWriter = new JsonPrettyWriter(EMPTY_OUTPUT_STREAM, m_classRegistry, true);
+	private final BinaryReader m_binaryReader = new BinaryReader( EMPTY_INPUT_STREAM, m_classRegistry);
 	private final JsonReader m_jsonReader = new JsonReader(EMPTY_INPUT_STREAM, m_classRegistry);
 
 }
