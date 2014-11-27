@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -109,19 +109,17 @@ public class Map extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custom
 		if (Map.class != other.getClass()) return false;
 		final Map o = (Map)other;
 		return true
-		  && (_isShipsSet(FieldSetDepth.SHALLOW) == o._isShipsSet(FieldSetDepth.SHALLOW))
-		  && (_isSizeSet(FieldSetDepth.SHALLOW) == o._isSizeSet(FieldSetDepth.SHALLOW))
+		  && hasShips() == o.hasShips()
+		  && hasSize() == o.hasSize()
 		  && EqualityTester.areEqual(getShips(), o.getShips(), _ships_METADATA.typ())
 		  && EqualityTester.areEqual(getSize(), o.getSize(), _size_METADATA.typ());
 	}
 
 	@Override
 	public Map deepCopy() {
-		final Map out = new Map();
-		out.setShips(DeepCopyer.deepCopy(getShips(), _ships_METADATA.typ()));
-		out.setSize(DeepCopyer.deepCopy(getSize(), _size_METADATA.typ()));
-		out._setShipsSet(_isShipsSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setSizeSet(_isSizeSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Map out = new Map(
+			DeepCopyer.deepCopy(getShips(), _ships_METADATA.typ()),
+			DeepCopyer.deepCopy(getSize(), _size_METADATA.typ()));
 		return out;
 	}
 

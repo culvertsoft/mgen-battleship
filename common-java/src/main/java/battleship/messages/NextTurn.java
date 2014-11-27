@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,8 +13,6 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /* custom_imports_begin *//* custom_imports_end */
 
@@ -98,19 +96,18 @@ public class NextTurn extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_end
 		if (NextTurn.class != other.getClass()) return false;
 		final NextTurn o = (NextTurn)other;
 		return true
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
-		  && (_isMaxTimeSet(FieldSetDepth.SHALLOW) == o._isMaxTimeSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ())
-		  && EqualityTester.areEqual(getMaxTime(), o.getMaxTime(), _maxTime_METADATA.typ());
+		  && hasTeam() == o.hasTeam()
+		  && hasMaxTime() == o.hasMaxTime()
+		  && getTeam() == o.getTeam()
+		  && getMaxTime() == o.getMaxTime();
 	}
 
 	@Override
 	public NextTurn deepCopy() {
-		final NextTurn out = new NextTurn();
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
-		out.setMaxTime(DeepCopyer.deepCopy(getMaxTime(), _maxTime_METADATA.typ()));
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setMaxTimeSet(_isMaxTimeSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final NextTurn out = new NextTurn(
+			getTeam(),
+			getMaxTime());
+		if (!hasMaxTime()) out.unsetMaxTime();
 		return out;
 	}
 

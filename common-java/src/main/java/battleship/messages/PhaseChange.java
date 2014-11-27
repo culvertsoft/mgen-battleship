@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,8 +13,6 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /* custom_imports_begin *//* custom_imports_end */
 
@@ -71,15 +69,14 @@ public class PhaseChange extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_
 		if (PhaseChange.class != other.getClass()) return false;
 		final PhaseChange o = (PhaseChange)other;
 		return true
-		  && (_isPhaseSet(FieldSetDepth.SHALLOW) == o._isPhaseSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getPhase(), o.getPhase(), _phase_METADATA.typ());
+		  && hasPhase() == o.hasPhase()
+		  && getPhase() == o.getPhase();
 	}
 
 	@Override
 	public PhaseChange deepCopy() {
-		final PhaseChange out = new PhaseChange();
-		out.setPhase(DeepCopyer.deepCopy(getPhase(), _phase_METADATA.typ()));
-		out._setPhaseSet(_isPhaseSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final PhaseChange out = new PhaseChange(
+			getPhase());
 		return out;
 	}
 

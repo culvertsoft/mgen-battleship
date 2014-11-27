@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -73,15 +73,14 @@ public class Snapshot extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_end
 		if (Snapshot.class != other.getClass()) return false;
 		final Snapshot o = (Snapshot)other;
 		return true
-		  && (_isStateSet(FieldSetDepth.SHALLOW) == o._isStateSet(FieldSetDepth.SHALLOW))
+		  && hasState() == o.hasState()
 		  && EqualityTester.areEqual(getState(), o.getState(), _state_METADATA.typ());
 	}
 
 	@Override
 	public Snapshot deepCopy() {
-		final Snapshot out = new Snapshot();
-		out.setState(DeepCopyer.deepCopy(getState(), _state_METADATA.typ()));
-		out._setStateSet(_isStateSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Snapshot out = new Snapshot(
+			DeepCopyer.deepCopy(getState(), _state_METADATA.typ()));
 		return out;
 	}
 

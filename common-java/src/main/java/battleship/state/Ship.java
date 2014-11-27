@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin */
@@ -187,15 +187,14 @@ public class Ship extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		if (Ship.class != other.getClass()) return false;
 		final Ship o = (Ship)other;
 		return true
-		  && (_isPointsSet(FieldSetDepth.SHALLOW) == o._isPointsSet(FieldSetDepth.SHALLOW))
+		  && hasPoints() == o.hasPoints()
 		  && EqualityTester.areEqual(getPoints(), o.getPoints(), _points_METADATA.typ());
 	}
 
 	@Override
 	public Ship deepCopy() {
-		final Ship out = new Ship();
-		out.setPoints(DeepCopyer.deepCopy(getPoints(), _points_METADATA.typ()));
-		out._setPointsSet(_isPointsSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Ship out = new Ship(
+			DeepCopyer.deepCopy(getPoints(), _points_METADATA.typ()));
 		return out;
 	}
 

@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,8 +13,6 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /* custom_imports_begin *//* custom_imports_end */
 
@@ -71,15 +69,14 @@ public class TeamSelect extends Connection /* custom_ifcs_begin *//* custom_ifcs
 		if (TeamSelect.class != other.getClass()) return false;
 		final TeamSelect o = (TeamSelect)other;
 		return true
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ());
+		  && hasTeam() == o.hasTeam()
+		  && getTeam() == o.getTeam();
 	}
 
 	@Override
 	public TeamSelect deepCopy() {
-		final TeamSelect out = new TeamSelect();
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final TeamSelect out = new TeamSelect(
+			getTeam());
 		return out;
 	}
 

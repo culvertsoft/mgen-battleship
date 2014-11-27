@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -261,39 +261,32 @@ public class Game extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		if (Game.class != other.getClass()) return false;
 		final Game o = (Game)other;
 		return true
-		  && (_isRedPlayerSet(FieldSetDepth.SHALLOW) == o._isRedPlayerSet(FieldSetDepth.SHALLOW))
-		  && (_isBluePlayerSet(FieldSetDepth.SHALLOW) == o._isBluePlayerSet(FieldSetDepth.SHALLOW))
-		  && (_isObserversSet(FieldSetDepth.SHALLOW) == o._isObserversSet(FieldSetDepth.SHALLOW))
-		  && (_isRedMapSet(FieldSetDepth.SHALLOW) == o._isRedMapSet(FieldSetDepth.SHALLOW))
-		  && (_isBlueMapSet(FieldSetDepth.SHALLOW) == o._isBlueMapSet(FieldSetDepth.SHALLOW))
-		  && (_isPhaseSet(FieldSetDepth.SHALLOW) == o._isPhaseSet(FieldSetDepth.SHALLOW))
-		  && (_isCurrentTeamSet(FieldSetDepth.SHALLOW) == o._isCurrentTeamSet(FieldSetDepth.SHALLOW))
+		  && hasRedPlayer() == o.hasRedPlayer()
+		  && hasBluePlayer() == o.hasBluePlayer()
+		  && hasObservers() == o.hasObservers()
+		  && hasRedMap() == o.hasRedMap()
+		  && hasBlueMap() == o.hasBlueMap()
+		  && hasPhase() == o.hasPhase()
+		  && hasCurrentTeam() == o.hasCurrentTeam()
 		  && EqualityTester.areEqual(getRedPlayer(), o.getRedPlayer(), _redPlayer_METADATA.typ())
 		  && EqualityTester.areEqual(getBluePlayer(), o.getBluePlayer(), _bluePlayer_METADATA.typ())
 		  && EqualityTester.areEqual(getObservers(), o.getObservers(), _observers_METADATA.typ())
 		  && EqualityTester.areEqual(getRedMap(), o.getRedMap(), _redMap_METADATA.typ())
 		  && EqualityTester.areEqual(getBlueMap(), o.getBlueMap(), _blueMap_METADATA.typ())
-		  && EqualityTester.areEqual(getPhase(), o.getPhase(), _phase_METADATA.typ())
-		  && EqualityTester.areEqual(getCurrentTeam(), o.getCurrentTeam(), _currentTeam_METADATA.typ());
+		  && getPhase() == o.getPhase()
+		  && getCurrentTeam() == o.getCurrentTeam();
 	}
 
 	@Override
 	public Game deepCopy() {
-		final Game out = new Game();
-		out.setRedPlayer(DeepCopyer.deepCopy(getRedPlayer(), _redPlayer_METADATA.typ()));
-		out.setBluePlayer(DeepCopyer.deepCopy(getBluePlayer(), _bluePlayer_METADATA.typ()));
-		out.setObservers(DeepCopyer.deepCopy(getObservers(), _observers_METADATA.typ()));
-		out.setRedMap(DeepCopyer.deepCopy(getRedMap(), _redMap_METADATA.typ()));
-		out.setBlueMap(DeepCopyer.deepCopy(getBlueMap(), _blueMap_METADATA.typ()));
-		out.setPhase(DeepCopyer.deepCopy(getPhase(), _phase_METADATA.typ()));
-		out.setCurrentTeam(DeepCopyer.deepCopy(getCurrentTeam(), _currentTeam_METADATA.typ()));
-		out._setRedPlayerSet(_isRedPlayerSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setBluePlayerSet(_isBluePlayerSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setObserversSet(_isObserversSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setRedMapSet(_isRedMapSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setBlueMapSet(_isBlueMapSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setPhaseSet(_isPhaseSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setCurrentTeamSet(_isCurrentTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Game out = new Game(
+			DeepCopyer.deepCopy(getRedPlayer(), _redPlayer_METADATA.typ()),
+			DeepCopyer.deepCopy(getBluePlayer(), _bluePlayer_METADATA.typ()),
+			DeepCopyer.deepCopy(getObservers(), _observers_METADATA.typ()),
+			DeepCopyer.deepCopy(getRedMap(), _redMap_METADATA.typ()),
+			DeepCopyer.deepCopy(getBlueMap(), _blueMap_METADATA.typ()),
+			getPhase(),
+			getCurrentTeam());
 		return out;
 	}
 

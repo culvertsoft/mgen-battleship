@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,8 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 /* custom_imports_begin *//* custom_imports_end */
 
 public class Login extends Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
@@ -71,15 +70,14 @@ public class Login extends Connection /* custom_ifcs_begin *//* custom_ifcs_end 
 		if (Login.class != other.getClass()) return false;
 		final Login o = (Login)other;
 		return true
-		  && (_isNameSet(FieldSetDepth.SHALLOW) == o._isNameSet(FieldSetDepth.SHALLOW))
+		  && hasName() == o.hasName()
 		  && EqualityTester.areEqual(getName(), o.getName(), _name_METADATA.typ());
 	}
 
 	@Override
 	public Login deepCopy() {
-		final Login out = new Login();
-		out.setName(DeepCopyer.deepCopy(getName(), _name_METADATA.typ()));
-		out._setNameSet(_isNameSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Login out = new Login(
+			getName());
 		return out;
 	}
 

@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,8 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 /* custom_imports_begin *//* custom_imports_end */
 
 public class ShipPlacementReply extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
@@ -98,19 +97,18 @@ public class ShipPlacementReply extends GameInfo /* custom_ifcs_begin *//* custo
 		if (ShipPlacementReply.class != other.getClass()) return false;
 		final ShipPlacementReply o = (ShipPlacementReply)other;
 		return true
-		  && (_isResultSet(FieldSetDepth.SHALLOW) == o._isResultSet(FieldSetDepth.SHALLOW))
-		  && (_isFailReasonSet(FieldSetDepth.SHALLOW) == o._isFailReasonSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getResult(), o.getResult(), _result_METADATA.typ())
+		  && hasResult() == o.hasResult()
+		  && hasFailReason() == o.hasFailReason()
+		  && getResult() == o.getResult()
 		  && EqualityTester.areEqual(getFailReason(), o.getFailReason(), _failReason_METADATA.typ());
 	}
 
 	@Override
 	public ShipPlacementReply deepCopy() {
-		final ShipPlacementReply out = new ShipPlacementReply();
-		out.setResult(DeepCopyer.deepCopy(getResult(), _result_METADATA.typ()));
-		out.setFailReason(DeepCopyer.deepCopy(getFailReason(), _failReason_METADATA.typ()));
-		out._setResultSet(_isResultSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setFailReasonSet(_isFailReasonSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final ShipPlacementReply out = new ShipPlacementReply(
+			getResult(),
+			getFailReason());
+		if (!hasResult()) out.unsetResult();
 		return out;
 	}
 

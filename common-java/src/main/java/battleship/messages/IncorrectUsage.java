@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,8 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 /* custom_imports_begin *//* custom_imports_end */
 
 public class IncorrectUsage extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_end */ {
@@ -71,15 +70,14 @@ public class IncorrectUsage extends GameInfo /* custom_ifcs_begin *//* custom_if
 		if (IncorrectUsage.class != other.getClass()) return false;
 		final IncorrectUsage o = (IncorrectUsage)other;
 		return true
-		  && (_isReasonSet(FieldSetDepth.SHALLOW) == o._isReasonSet(FieldSetDepth.SHALLOW))
+		  && hasReason() == o.hasReason()
 		  && EqualityTester.areEqual(getReason(), o.getReason(), _reason_METADATA.typ());
 	}
 
 	@Override
 	public IncorrectUsage deepCopy() {
-		final IncorrectUsage out = new IncorrectUsage();
-		out.setReason(DeepCopyer.deepCopy(getReason(), _reason_METADATA.typ()));
-		out._setReasonSet(_isReasonSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final IncorrectUsage out = new IncorrectUsage(
+			getReason());
 		return out;
 	}
 

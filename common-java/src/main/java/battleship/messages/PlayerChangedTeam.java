@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,8 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 /* custom_imports_begin *//* custom_imports_end */
 
 public class PlayerChangedTeam extends Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
@@ -71,15 +70,14 @@ public class PlayerChangedTeam extends Connection /* custom_ifcs_begin *//* cust
 		if (PlayerChangedTeam.class != other.getClass()) return false;
 		final PlayerChangedTeam o = (PlayerChangedTeam)other;
 		return true
-		  && (_isPlayerIdSet(FieldSetDepth.SHALLOW) == o._isPlayerIdSet(FieldSetDepth.SHALLOW))
+		  && hasPlayerId() == o.hasPlayerId()
 		  && EqualityTester.areEqual(getPlayerId(), o.getPlayerId(), _playerId_METADATA.typ());
 	}
 
 	@Override
 	public PlayerChangedTeam deepCopy() {
-		final PlayerChangedTeam out = new PlayerChangedTeam();
-		out.setPlayerId(DeepCopyer.deepCopy(getPlayerId(), _playerId_METADATA.typ()));
-		out._setPlayerIdSet(_isPlayerIdSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final PlayerChangedTeam out = new PlayerChangedTeam(
+			getPlayerId());
 		return out;
 	}
 

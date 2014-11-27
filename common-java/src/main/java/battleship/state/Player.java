@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -157,27 +157,23 @@ public class Player extends se.culvertsoft.mgen.javapack.classes.MGenBase /* cus
 		if (Player.class != other.getClass()) return false;
 		final Player o = (Player)other;
 		return true
-		  && (_isUuidSet(FieldSetDepth.SHALLOW) == o._isUuidSet(FieldSetDepth.SHALLOW))
-		  && (_isNameSet(FieldSetDepth.SHALLOW) == o._isNameSet(FieldSetDepth.SHALLOW))
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
-		  && (_isShotsSet(FieldSetDepth.SHALLOW) == o._isShotsSet(FieldSetDepth.SHALLOW))
+		  && hasUuid() == o.hasUuid()
+		  && hasName() == o.hasName()
+		  && hasTeam() == o.hasTeam()
+		  && hasShots() == o.hasShots()
 		  && EqualityTester.areEqual(getUuid(), o.getUuid(), _uuid_METADATA.typ())
 		  && EqualityTester.areEqual(getName(), o.getName(), _name_METADATA.typ())
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ())
+		  && getTeam() == o.getTeam()
 		  && EqualityTester.areEqual(getShots(), o.getShots(), _shots_METADATA.typ());
 	}
 
 	@Override
 	public Player deepCopy() {
-		final Player out = new Player();
-		out.setUuid(DeepCopyer.deepCopy(getUuid(), _uuid_METADATA.typ()));
-		out.setName(DeepCopyer.deepCopy(getName(), _name_METADATA.typ()));
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
-		out.setShots(DeepCopyer.deepCopy(getShots(), _shots_METADATA.typ()));
-		out._setUuidSet(_isUuidSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setNameSet(_isNameSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setShotsSet(_isShotsSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Player out = new Player(
+			getUuid(),
+			getName(),
+			getTeam(),
+			DeepCopyer.deepCopy(getShots(), _shots_METADATA.typ()));
 		return out;
 	}
 

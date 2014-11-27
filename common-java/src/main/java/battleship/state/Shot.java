@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -100,19 +100,18 @@ public class Shot extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		if (Shot.class != other.getClass()) return false;
 		final Shot o = (Shot)other;
 		return true
-		  && (_isPosSet(FieldSetDepth.SHALLOW) == o._isPosSet(FieldSetDepth.SHALLOW))
-		  && (_isIsHitSet(FieldSetDepth.SHALLOW) == o._isIsHitSet(FieldSetDepth.SHALLOW))
+		  && hasPos() == o.hasPos()
+		  && hasIsHit() == o.hasIsHit()
 		  && EqualityTester.areEqual(getPos(), o.getPos(), _pos_METADATA.typ())
-		  && EqualityTester.areEqual(getIsHit(), o.getIsHit(), _isHit_METADATA.typ());
+		  && getIsHit() == o.getIsHit();
 	}
 
 	@Override
 	public Shot deepCopy() {
-		final Shot out = new Shot();
-		out.setPos(DeepCopyer.deepCopy(getPos(), _pos_METADATA.typ()));
-		out.setIsHit(DeepCopyer.deepCopy(getIsHit(), _isHit_METADATA.typ()));
-		out._setPosSet(_isPosSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setIsHitSet(_isIsHitSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Shot out = new Shot(
+			DeepCopyer.deepCopy(getPos(), _pos_METADATA.typ()),
+			getIsHit());
+		if (!hasIsHit()) out.unsetIsHit();
 		return out;
 	}
 

@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -123,23 +123,21 @@ public class FireResult extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_e
 		if (FireResult.class != other.getClass()) return false;
 		final FireResult o = (FireResult)other;
 		return true
-		  && (_isHitSet(FieldSetDepth.SHALLOW) == o._isHitSet(FieldSetDepth.SHALLOW))
-		  && (_isPositionSet(FieldSetDepth.SHALLOW) == o._isPositionSet(FieldSetDepth.SHALLOW))
-		  && (_isFiringTeamSet(FieldSetDepth.SHALLOW) == o._isFiringTeamSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getHit(), o.getHit(), _hit_METADATA.typ())
+		  && hasHit() == o.hasHit()
+		  && hasPosition() == o.hasPosition()
+		  && hasFiringTeam() == o.hasFiringTeam()
+		  && getHit() == o.getHit()
 		  && EqualityTester.areEqual(getPosition(), o.getPosition(), _position_METADATA.typ())
-		  && EqualityTester.areEqual(getFiringTeam(), o.getFiringTeam(), _firingTeam_METADATA.typ());
+		  && getFiringTeam() == o.getFiringTeam();
 	}
 
 	@Override
 	public FireResult deepCopy() {
-		final FireResult out = new FireResult();
-		out.setHit(DeepCopyer.deepCopy(getHit(), _hit_METADATA.typ()));
-		out.setPosition(DeepCopyer.deepCopy(getPosition(), _position_METADATA.typ()));
-		out.setFiringTeam(DeepCopyer.deepCopy(getFiringTeam(), _firingTeam_METADATA.typ()));
-		out._setHitSet(_isHitSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setPositionSet(_isPositionSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setFiringTeamSet(_isFiringTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final FireResult out = new FireResult(
+			getHit(),
+			DeepCopyer.deepCopy(getPosition(), _position_METADATA.typ()),
+			getFiringTeam());
+		if (!hasHit()) out.unsetHit();
 		return out;
 	}
 

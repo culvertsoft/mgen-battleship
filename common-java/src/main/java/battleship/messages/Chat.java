@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,8 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 /* custom_imports_begin *//* custom_imports_end */
 
 public class Chat extends Connection /* custom_ifcs_begin *//* custom_ifcs_end */ {
@@ -117,23 +116,20 @@ public class Chat extends Connection /* custom_ifcs_begin *//* custom_ifcs_end *
 		if (Chat.class != other.getClass()) return false;
 		final Chat o = (Chat)other;
 		return true
-		  && (_isTextSet(FieldSetDepth.SHALLOW) == o._isTextSet(FieldSetDepth.SHALLOW))
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
-		  && (_isFromSet(FieldSetDepth.SHALLOW) == o._isFromSet(FieldSetDepth.SHALLOW))
+		  && hasText() == o.hasText()
+		  && hasTeam() == o.hasTeam()
+		  && hasFrom() == o.hasFrom()
 		  && EqualityTester.areEqual(getText(), o.getText(), _text_METADATA.typ())
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ())
+		  && getTeam() == o.getTeam()
 		  && EqualityTester.areEqual(getFrom(), o.getFrom(), _from_METADATA.typ());
 	}
 
 	@Override
 	public Chat deepCopy() {
-		final Chat out = new Chat();
-		out.setText(DeepCopyer.deepCopy(getText(), _text_METADATA.typ()));
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
-		out.setFrom(DeepCopyer.deepCopy(getFrom(), _from_METADATA.typ()));
-		out._setTextSet(_isTextSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setFromSet(_isFromSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Chat out = new Chat(
+			getText(),
+			getTeam(),
+			getFrom());
 		return out;
 	}
 

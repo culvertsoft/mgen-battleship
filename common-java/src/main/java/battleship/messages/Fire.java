@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -73,15 +73,14 @@ public class Fire extends GameInput /* custom_ifcs_begin *//* custom_ifcs_end */
 		if (Fire.class != other.getClass()) return false;
 		final Fire o = (Fire)other;
 		return true
-		  && (_isPositionSet(FieldSetDepth.SHALLOW) == o._isPositionSet(FieldSetDepth.SHALLOW))
+		  && hasPosition() == o.hasPosition()
 		  && EqualityTester.areEqual(getPosition(), o.getPosition(), _position_METADATA.typ());
 	}
 
 	@Override
 	public Fire deepCopy() {
-		final Fire out = new Fire();
-		out.setPosition(DeepCopyer.deepCopy(getPosition(), _position_METADATA.typ()));
-		out._setPositionSet(_isPositionSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Fire out = new Fire(
+			DeepCopyer.deepCopy(getPosition(), _position_METADATA.typ()));
 		return out;
 	}
 

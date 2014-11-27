@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -96,19 +96,17 @@ public class ShipSunk extends GameInfo /* custom_ifcs_begin *//* custom_ifcs_end
 		if (ShipSunk.class != other.getClass()) return false;
 		final ShipSunk o = (ShipSunk)other;
 		return true
-		  && (_isShipSet(FieldSetDepth.SHALLOW) == o._isShipSet(FieldSetDepth.SHALLOW))
-		  && (_isTeamSet(FieldSetDepth.SHALLOW) == o._isTeamSet(FieldSetDepth.SHALLOW))
+		  && hasShip() == o.hasShip()
+		  && hasTeam() == o.hasTeam()
 		  && EqualityTester.areEqual(getShip(), o.getShip(), _ship_METADATA.typ())
-		  && EqualityTester.areEqual(getTeam(), o.getTeam(), _team_METADATA.typ());
+		  && getTeam() == o.getTeam();
 	}
 
 	@Override
 	public ShipSunk deepCopy() {
-		final ShipSunk out = new ShipSunk();
-		out.setShip(DeepCopyer.deepCopy(getShip(), _ship_METADATA.typ()));
-		out.setTeam(DeepCopyer.deepCopy(getTeam(), _team_METADATA.typ()));
-		out._setShipSet(_isShipSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setTeamSet(_isTeamSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final ShipSunk out = new ShipSunk(
+			DeepCopyer.deepCopy(getShip(), _ship_METADATA.typ()),
+			getTeam());
 		return out;
 	}
 

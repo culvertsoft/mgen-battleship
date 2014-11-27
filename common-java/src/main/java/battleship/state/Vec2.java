@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,8 +13,6 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
 /* custom_imports_begin *//* custom_imports_end */
 
@@ -102,19 +100,19 @@ public class Vec2 extends se.culvertsoft.mgen.javapack.classes.MGenBase /* custo
 		if (Vec2.class != other.getClass()) return false;
 		final Vec2 o = (Vec2)other;
 		return true
-		  && (_isXSet(FieldSetDepth.SHALLOW) == o._isXSet(FieldSetDepth.SHALLOW))
-		  && (_isYSet(FieldSetDepth.SHALLOW) == o._isYSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getX(), o.getX(), _x_METADATA.typ())
-		  && EqualityTester.areEqual(getY(), o.getY(), _y_METADATA.typ());
+		  && hasX() == o.hasX()
+		  && hasY() == o.hasY()
+		  && getX() == o.getX()
+		  && getY() == o.getY();
 	}
 
 	@Override
 	public Vec2 deepCopy() {
-		final Vec2 out = new Vec2();
-		out.setX(DeepCopyer.deepCopy(getX(), _x_METADATA.typ()));
-		out.setY(DeepCopyer.deepCopy(getY(), _y_METADATA.typ()));
-		out._setXSet(_isXSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setYSet(_isYSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Vec2 out = new Vec2(
+			getX(),
+			getY());
+		if (!hasX()) out.unsetX();
+		if (!hasY()) out.unsetY();
 		return out;
 	}
 

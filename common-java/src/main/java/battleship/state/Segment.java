@@ -2,7 +2,7 @@
  ********************************************************************************************************************
  ********************************************************************************************************************
            *****                                                                                      *****
-           *****               GENERATED WITH MGEN (SNAPSHOT 2014-10-04 14:13:29 +0200)               *****
+           *****               GENERATED WITH MGEN (SNAPSHOT 2014-11-12 20:36:02 +0100)               *****
            *****                                                                                      *****		
  ********************************************************************************************************************
  ********************************************************************************************************************/
@@ -13,9 +13,9 @@ import se.culvertsoft.mgen.javapack.metadata.FieldSetDepth;
 import se.culvertsoft.mgen.javapack.metadata.FieldVisitSelection;
 import se.culvertsoft.mgen.javapack.serialization.FieldVisitor;
 import se.culvertsoft.mgen.javapack.serialization.Reader;
-import se.culvertsoft.mgen.javapack.util.EqualityTester;
-import se.culvertsoft.mgen.javapack.util.DeepCopyer;
 import se.culvertsoft.mgen.javapack.util.FieldHasher;
+import se.culvertsoft.mgen.javapack.util.DeepCopyer;
+import se.culvertsoft.mgen.javapack.util.EqualityTester;
 import se.culvertsoft.mgen.javapack.util.Validator;
 import se.culvertsoft.mgen.javapack.util.Marker;
 /* custom_imports_begin *//* custom_imports_end */
@@ -100,19 +100,18 @@ public class Segment extends se.culvertsoft.mgen.javapack.classes.MGenBase /* cu
 		if (Segment.class != other.getClass()) return false;
 		final Segment o = (Segment)other;
 		return true
-		  && (_isAliveSet(FieldSetDepth.SHALLOW) == o._isAliveSet(FieldSetDepth.SHALLOW))
-		  && (_isPosSet(FieldSetDepth.SHALLOW) == o._isPosSet(FieldSetDepth.SHALLOW))
-		  && EqualityTester.areEqual(getAlive(), o.getAlive(), _alive_METADATA.typ())
+		  && hasAlive() == o.hasAlive()
+		  && hasPos() == o.hasPos()
+		  && getAlive() == o.getAlive()
 		  && EqualityTester.areEqual(getPos(), o.getPos(), _pos_METADATA.typ());
 	}
 
 	@Override
 	public Segment deepCopy() {
-		final Segment out = new Segment();
-		out.setAlive(DeepCopyer.deepCopy(getAlive(), _alive_METADATA.typ()));
-		out.setPos(DeepCopyer.deepCopy(getPos(), _pos_METADATA.typ()));
-		out._setAliveSet(_isAliveSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
-		out._setPosSet(_isPosSet(FieldSetDepth.SHALLOW), FieldSetDepth.SHALLOW);
+		final Segment out = new Segment(
+			getAlive(),
+			DeepCopyer.deepCopy(getPos(), _pos_METADATA.typ()));
+		if (!hasAlive()) out.unsetAlive();
 		return out;
 	}
 
